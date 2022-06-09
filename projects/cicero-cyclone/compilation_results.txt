@@ -1,0 +1,149 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+	Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
+	Info: Processing started: Wed Jun  8 17:07:18 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MKRVIDOR4000 -c MKRVIDOR4000
+Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/memory_read_iface.sv
+	Info (12023): Found entity 1: memory_read_iface
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/memories/memory_pkg.sv
+Warning (10335): Unrecognized synthesis attribute "ram_style" at cicero-rtl/memories/cache_directly_mapped_latency.sv(30)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/cache_directly_mapped_latency.sv
+	Info (12023): Found entity 1: cache_directly_mapped_latency
+Warning (10335): Unrecognized synthesis attribute "dont_touch" at cicero-rtl/memories/cache_directly_mapped.sv(30)
+Warning (10335): Unrecognized synthesis attribute "dont_touch" at cicero-rtl/memories/cache_directly_mapped.sv(31)
+Warning (10335): Unrecognized synthesis attribute "dont_touch" at cicero-rtl/memories/cache_directly_mapped.sv(32)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/cache_directly_mapped.sv
+	Info (12023): Found entity 1: cache_directly_mapped
+Warning (10335): Unrecognized synthesis attribute "ram_style" at cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv(38)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv
+	Info (12023): Found entity 1: cache_block_directly_mapped_broadcast
+Warning (10335): Unrecognized synthesis attribute "ram_style" at cicero-rtl/memories/cache_block_directly_mapped.sv(36)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/cache_block_directly_mapped.sv
+	Info (12023): Found entity 1: cache_block_directly_mapped
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/memories/bram.sv
+	Info (12023): Found entity 1: bram
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/cpu/regex_cpu_pipelined.sv
+	Info (12023): Found entity 1: regex_cpu_pipelined
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/cpu/regex_cpu.sv
+	Info (12023): Found entity 1: regex_cpu
+Info (12021): Found 1 design units, including 0 entities, in source file cicero-rtl/cpu/instruction_package.sv
+	Info (12022): Found design unit 1: instruction_package (SystemVerilog)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/cpu/cpu_iface.sv
+	Info (12023): Found entity 1: cpu_iface
+Error (10170): Verilog HDL syntax error at topology_token_ring.sv(54) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_token_ring.sv(121) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_token_ring.sv(126) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_token_ring.sv(147) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_token_ring.sv(152) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10112): Ignored design unit "topology_token_ring" at topology_token_ring.sv(1) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/coprocessor/topology_token_ring.sv
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/topology_single.sv
+	Info (12023): Found entity 1: topology_single
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(40) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(121) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(127) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(142) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(156) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(162) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh_1.sv(186) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10112): Ignored design unit "old_topology_mesh" at topology_mesh_1.sv(1) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/coprocessor/topology_mesh_1.sv
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(55) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(139) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(145) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(160) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(174) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(180) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(204) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at topology_mesh.sv(210) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10112): Ignored design unit "topology_mesh" at topology_mesh.sv(1) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/coprocessor/topology_mesh.sv
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/switch.sv
+	Info (12023): Found entity 1: switch
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/ping_pong_buffer.sv
+	Info (12023): Found entity 1: ping_pong_buffer
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/engine_interfaced.sv
+	Info (12023): Found entity 1: engine_interfaced
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/engine_and_station_xy.sv
+	Info (12023): Found entity 1: engine_and_station_xy
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/engine_and_station.sv
+	Info (12023): Found entity 1: engine_and_station
+Error (10170): Verilog HDL syntax error at engine.sv(138) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at engine.sv(155) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at engine.sv(179) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at engine.sv(237) near text: "if";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at engine.sv(321) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at engine.sv(343) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10112): Ignored design unit "engine" at engine.sv(41) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/coprocessor/engine.sv
+Error (10170): Verilog HDL syntax error at coprocessor_top.sv(334) near text: "if";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10170): Verilog HDL syntax error at coprocessor_top.sv(427) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
+Error (10112): Ignored design unit "coprocessor_top" at coprocessor_top.sv(47) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/coprocessor/coprocessor_top.sv
+Info (12021): Found 1 design units, including 0 entities, in source file cicero-rtl/coprocessor/coprocessor_package.sv
+	Info (12022): Found design unit 1: coprocessor_package (SystemVerilog)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/channel_multi_cc.sv
+	Info (12023): Found entity 1: channel_multi_cc
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/channel_iface.sv
+	Info (12023): Found entity 1: channel_iface
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/coprocessor/channel.sv
+	Info (12023): Found entity 1: channel
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/axi/re2_copro_v1_s00_axi.v
+	Info (12023): Found entity 1: re2_copro_v1_S00_AXI
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/axi/re2_copro_v1.v
+	Info (12023): Found entity 1: cicero_core
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/axi/axi_top.sv
+	Info (12023): Found entity 1: AXI_top
+Info (12021): Found 1 design units, including 0 entities, in source file cicero-rtl/axi/axi_package.sv
+	Info (12022): Found design unit 1: AXI_package (SystemVerilog)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbitration_logic_rr.sv
+	Info (12023): Found entity 1: arbitration_logic_rr
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbitration_logic_no_lowest.sv
+	Info (12023): Found entity 1: arbitration_logic_no_lowest
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv
+	Info (12023): Found entity 1: arbitration_logic_fixed_shiftable
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbitration_logic_fixed.sv
+	Info (12023): Found entity 1: arbitration_logic_fixed
+Error (10644): Verilog HDL error at arbiter_rr_n.sv(27): this block requires a name
+Error (10644): Verilog HDL error at arbiter_rr_n.sv(48): this block requires a name
+Error (10644): Verilog HDL error at arbiter_rr_n.sv(46): this block requires a name
+Error (10112): Ignored design unit "arbiter_rr_n" at arbiter_rr_n.sv(5) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/arbiters/arbiter_rr_n.sv
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbiter_rr.sv
+	Info (12023): Found entity 1: arbiter_rr
+Error (10644): Verilog HDL error at arbiter_no_lowest.sv(28): this block requires a name
+Error (10644): Verilog HDL error at arbiter_no_lowest.sv(51): this block requires a name
+Error (10644): Verilog HDL error at arbiter_no_lowest.sv(49): this block requires a name
+Error (10112): Ignored design unit "arbiter_no_lowest" at arbiter_no_lowest.sv(5) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/arbiters/arbiter_no_lowest.sv
+Error (10644): Verilog HDL error at arbiter_fixed_shiftable.sv(28): this block requires a name
+Error (10644): Verilog HDL error at arbiter_fixed_shiftable.sv(51): this block requires a name
+Error (10644): Verilog HDL error at arbiter_fixed_shiftable.sv(49): this block requires a name
+Error (10112): Ignored design unit "arbiter_fixed_shiftable" at arbiter_fixed_shiftable.sv(5) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/arbiters/arbiter_fixed_shiftable.sv
+Error (10644): Verilog HDL error at arbiter_fixed.sv(26): this block requires a name
+Error (10644): Verilog HDL error at arbiter_fixed.sv(45): this block requires a name
+Error (10644): Verilog HDL error at arbiter_fixed.sv(43): this block requires a name
+Error (10112): Ignored design unit "arbiter_fixed" at arbiter_fixed.sv(5) due to previous errors
+Info (12021): Found 0 design units, including 0 entities, in source file cicero-rtl/arbiters/arbiter_fixed.sv
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbiter_2_rr.sv
+	Info (12023): Found entity 1: arbiter_2_rr
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/arbiters/arbiter_2_fixed.sv
+	Info (12023): Found entity 1: arbiter_2_fixed
+Warning (10335): Unrecognized synthesis attribute "ram_style" at cicero-rtl/fifo.sv(37)
+Info (12021): Found 1 design units, including 1 entities, in source file cicero-rtl/fifo.sv
+	Info (12023): Found entity 1: fifo
+Info (12021): Found 1 design units, including 1 entities, in source file /leonardo/development/quartus/vidor4000/ip/system_pll/system_pll.v
+	Info (12023): Found entity 1: SYSTEM_PLL
+Info (12021): Found 1 design units, including 1 entities, in source file mkrvidor4000_top.v
+	Info (12023): Found entity 1: MKRVIDOR4000_top
+Info (144001): Generated suppressed messages file C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/output_files/MKRVIDOR4000.map.smsg
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 49 errors, 8 warnings
+	Error: Peak virtual memory: 4726 megabytes
+	Error: Processing ended: Wed Jun  8 17:07:27 2022
+	Error: Elapsed time: 00:00:09
+	Error: Total CPU time (on all processors): 00:00:17
+Error (293001): Quartus Prime Full Compilation was unsuccessful. 51 errors, 8 warnings
