@@ -331,6 +331,7 @@ module coprocessor_top #(
         endcase
     end
 
+	 generate
     if( BB_N_X > 0 && BB_N_Y > 0)
     begin
         topology_mesh #(
@@ -425,6 +426,7 @@ module coprocessor_top #(
             .memory_cc                  (memory_for_cc              )
         );
     end
+	 endgenerate
 
     assign  memory_muxed.ready =    memory_ready;
     assign  memory_addr        =    memory_muxed.addr;
