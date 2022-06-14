@@ -89,59 +89,8 @@ set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
 
 
 set_global_assignment -name ENABLE_SIGNALTAP OFF
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/memory_read_iface.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/memory_pkg.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/cache_directly_mapped_latency.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/cache_directly_mapped.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/cache_block_directly_mapped.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/memories/bram.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/CPU/regex_cpu_pipelined.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/CPU/regex_cpu.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/CPU/instruction_package.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/CPU/cpu_iface.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/topology_token_ring.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/topology_single.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/topology_mesh_1.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/topology_mesh.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/switch.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/ping_pong_buffer.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/engine_interfaced.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/engine_and_station_xy.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/engine_and_station.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/engine.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/coprocessor_top.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/coprocessor_package.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/channel_multi_cc.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/channel_iface.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/coprocessor/channel.sv"
-set_global_assignment -name VERILOG_FILE "cicero-rtl/AXI/re2_copro_v1_S00_AXI.v"
-set_global_assignment -name VERILOG_FILE "cicero-rtl/AXI/re2_copro_v1.v"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/AXI/AXI_top.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/AXI/AXI_package.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbitration_logic_rr.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbitration_logic_no_lowest.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbitration_logic_fixed.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_rr_n.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_rr.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_no_lowest.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_fixed_shiftable.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_fixed.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_2_rr.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/arbiters/arbiter_2_fixed.sv"
-set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/fifo.sv"
 set_global_assignment -name SDC_FILE ../../constraints/MKRVIDOR4000/vidor_s.sdc
 set_global_assignment -name QIP_FILE ../../ip/SYSTEM_PLL/SYSTEM_PLL.qip
 set_global_assignment -name VERILOG_FILE MKRVIDOR4000_top.v
 set_global_assignment -name VERILOG_INCLUDE_FILE user.v
-set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (SystemVerilog)"
-set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH AXI_top_tb -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_NAME AXI_top_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id AXI_top_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AXI_top_tb -section_id AXI_top_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE sim/AXI_top_tb.sv -section_id AXI_top_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

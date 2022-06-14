@@ -1,5 +1,7 @@
 #include <wiring_private.h>
-#include "jtag.h"
+#include "JTAG.h"
+
+extern void enableFpgaClock(void);
 
 #define TDI                               12
 #define TDO                               15
@@ -38,45 +40,34 @@ const unsigned char bitstream[] = {
   #include "app.h"
 };
 
+// Load the bitstream one the FPGA
+static void  setupFPGA() {
+  static uint8_t data[9] = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  enableFpgaClock();
+  jtag_host_setup();
+  JTAG_Write_VDR_to_VIR(0x00, data, 66);
+  pinMode(MB_INT_PIN, OUTPUT);
+  digitalWrite(MB_INT_PIN, LOW);
+  data[4] = 0x03;
+  JTAG_Write_VDR_to_VIR(0x00, data, 66);
+  digitalWrite(MB_INT_PIN, HIGH);
+  digitalWrite(MB_INT_PIN, LOW);
+  delay(1000);
+}
+
+
 int FPGAVal=HIGH;
 const int SPEED=5;
 const int FPGALED=6;
 
-// the setup function runs once when you press reset or power the board
+// Runs once on reset or power to the board
 void setup() {
 
-  int ret;
-  uint32_t ptr[1];
-
-  //enableFpgaClock();
-  pinPeripheral(30, PIO_AC_CLK);
-  clockout(0, 1);
-  delay(1000);
-  
-  //Init Jtag Port
-  ret = jtagInit();
-  mbPinSet();
-
-  // Load FPGA user configuration
-  ptr[0] = 0 | 3;
-  mbEveSend(ptr, 1);
-
-  // Give it delay
-  delay(1000);
+  setupFPGA();
 
   // Configure onboard LED Pin as output
   pinMode(LED_BUILTIN, OUTPUT);
 
-  // Disable all JTAG Pins (usefull for USB BLASTER connection)
-  pinMode(TDO, INPUT);
-  pinMode(TMS, INPUT);
-  pinMode(TDI, INPUT);
-  pinMode(TCK, INPUT);
-
-  // Configure other share pins as input too
-  pinMode(SIGNAL_IN, INPUT);  // oSAM_INTstat
-  pinMode(MB_INT_PIN, INPUT);
-  pinMode(MB_INT, INPUT);
   Serial.begin(9600);
   pinMode(SPEED,OUTPUT);
   pinMode(FPGALED,INPUT);
