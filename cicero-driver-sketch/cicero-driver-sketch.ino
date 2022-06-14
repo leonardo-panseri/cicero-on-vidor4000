@@ -3,25 +3,27 @@
 
 extern void enableFpgaClock(void);
 
-#define TDI                               12
-#define TDO                               15
-#define TCK                               13
-#define TMS                               14
-#define MB_INT                            28
-#define MB_INT_PIN                        31
-#define SIGNAL_OUT                        41 //B5 L16
-#define SIGNAL_IN                         33 //B2 N2
+// FPGA Pins
+#define TDI            12
+#define TDO            15
+#define TCK            13
+#define TMS            14
+#define MB_INT         28
+#define MB_INT_PIN     31
+#define SIGNAL_OUT     41 //B5 L16
+#define SIGNAL_IN      33 //B2 N2
 
-#define no_data    0xFF, 0xFF, 0xFF, 0xFF, \
-          0xFF, 0xFF, 0xFF, 0xFF, \
-          0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, \
-          0xFF, 0xFF, 0xFF, 0xFF, \
-          0x00, 0x00, 0x00, 0x00  \
+#define no_data   0xFF, 0xFF, 0xFF, 0xFF, \
+                  0xFF, 0xFF, 0xFF, 0xFF, \
+                  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, \
+                  0xFF, 0xFF, 0xFF, 0xFF, \
+                  0x00, 0x00, 0x00, 0x00  \
 
 #define NO_BOOTLOADER   no_data
-#define NO_APP        no_data
+#define NO_APP          no_data
 #define NO_USER_DATA    no_data
 
+// Bitstream and signature
 __attribute__ ((used, section(".fpga_bitstream_signature")))
 const unsigned char signatures[4096] = {
   //#include "signature.ttf"
@@ -40,7 +42,7 @@ const unsigned char bitstream[] = {
   #include "app.h"
 };
 
-// Load the bitstream one the FPGA
+// Load the bitstream on the FPGA
 static void  setupFPGA() {
   static uint8_t data[9] = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
   enableFpgaClock();
@@ -55,14 +57,13 @@ static void  setupFPGA() {
   delay(1000);
 }
 
-
+// Global variables
 int FPGAVal=HIGH;
 const int SPEED=5;
 const int FPGALED=6;
 
 // Runs once on reset or power to the board
 void setup() {
-
   setupFPGA();
 
   // Configure onboard LED Pin as output
