@@ -159,9 +159,10 @@ SYSTEM_PLL PLL_inst(
   .locked());
 
 
+// power-on reset, the 5th bit will be low for a while after the board is powered
 reg [5:0] rRESETCNT;
 
-
+// include user logic
 `include "user.v"
 
 always @(posedge wMEM_CLK)
