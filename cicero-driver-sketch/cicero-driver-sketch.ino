@@ -57,10 +57,28 @@ static void  setupFPGA() {
   delay(1000);
 }
 
+// Virtual Instruction Register values
+#define VIR_STATUS            0x01
+#define VIR_COMMAND           0x02
+#define VIR_ADDRESS           0x03
+#define VIR_START_CC_POINTER  0x04
+#define VIR_END_CC_POINTER    0x05
+#define VIR_DATA_IN           0x06
+#define VIR_DATA_OUT          0x07
+#define VIR_DEBUG             0x0F
+
+unsigned int readRegister32(uint8_t VIR) {
+  uint8_t data[4];
+  JTAG_Read_VDR_from_VIR(VIR, data, 32);
+  uint32_t result = 0;
+  for (int i = 3; i >= 0; i++) {
+    result = result | (data[i] << ((3 - i) * 8));
+  }
+  return result;
+}
+
 // Global variables
-int FPGAVal=HIGH;
-const int SPEED=5;
-const int FPGALED=6;
+int val;
 
 // Runs once on reset or power to the board
 void setup() {
@@ -70,33 +88,29 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
   Serial.begin(9600);
-  pinMode(SPEED,OUTPUT);
-  pinMode(FPGALED,INPUT);
-  digitalWrite(SPEED,FPGAVal);
+  pinMode(6, INPUT);
+  val = digitalRead(6);
+  delay(1000);
   while (!Serial);
-  Serial.println("Press any key to toggle blink rate");
-}
+  Serial.println(val);
+  
+  uint8_t data[4] = {0x23, 0x01, 0x00, 0x00};
+  JTAG_Write_VDR_to_VIR(0x06, data, 32);
 
+  val = digitalRead(6);
+  Serial.println(val);
+
+  JTAG_Read_VDR_from_VIR(0x0F, data, 32);
+  int i;
+  for (i = 0; i < 4; i++) {
+    Serial.println(data[i]);
+  }
+  
+  uint32_t res = readRegister32(VIR_DEBUG);
+  Serial.println(res);
+}
 
 // the loop function runs over and over again forever
 void loop() {
-   static int oldstate=-1;
-   static int linect=0;
-   int state;
-   if (Serial.read()!=-1)
-   {
-      FPGAVal=FPGAVal==HIGH?LOW:HIGH;
-      digitalWrite(SPEED,FPGAVal);
-   }                  
-   state=digitalRead(FPGALED);
-   if (state!=oldstate)
-   {
-    Serial.print(state);
-    if (++linect==16) 
-      {
-        Serial.println();
-        linect=0;
-      }
-    oldstate=state;
-   }
+  
 }

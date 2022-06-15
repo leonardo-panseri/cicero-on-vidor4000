@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at bram.sv(61): always construct contains both blocking and non-blocking assignments File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv Line: 61
