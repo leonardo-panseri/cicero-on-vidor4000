@@ -44,35 +44,43 @@ module bram #(
       
       localparam RATIO = maxWIDTH / minWIDTH; 
       localparam log2RATIO = log2(RATIO);
+		
+		(* ramstyle = "M9K" *) logic [RATIO-1:0][minWIDTH-1:0] ram[0:maxSIZE-1];
+		
+	   always_ff@(posedge clk)
+		  begin
+			if(w_valid) ram[w_addr / RATIO][w_addr % RATIO] <= w_data;
+			r_data <= ram[r_addr];
+		end
 
-      (* ramstyle="M9K" *)reg [minWIDTH-1:0] RAM [0:maxSIZE-1]; 
-
-      always_ff @(posedge clk) 
-      begin 
-
-          if (w_valid) 
-          begin
-            RAM[w_addr] <= w_data;
-          end
-
-      end
-
-      reg [READ_WIDTH-1:0] read;
-      always_ff @(posedge clk) 
-      begin : ramread 
-        integer i; 
-        reg [log2RATIO-1:0] lsbaddr; 
-        if (r_valid) 
-        begin 
-          for (i = 0; i < RATIO; i = i+1) 
-          begin 
-            lsbaddr = i; 
-            read[(i+1)*minWIDTH-1 -: minWIDTH] <= RAM[{r_addr, lsbaddr}];
-          end 
-        end 
-      end
-
-      assign r_data = read;
+//      (* ramstyle = "M9K" *) reg [minWIDTH-1:0] RAM [0:maxSIZE-1]; 
+//
+//      always_ff @(posedge clk) 
+//      begin 
+//
+//          if (w_valid) 
+//          begin
+//            RAM[w_addr] <= w_data;
+//          end
+//
+//      end
+//
+//      reg [READ_WIDTH-1:0] read;
+//      always_ff @(posedge clk) 
+//      begin : ramread 
+//        integer i; 
+//        reg [log2RATIO-1:0] lsbaddr; 
+//        if (r_valid) 
+//        begin 
+//          for (i = 0; i < RATIO; i = i+1) 
+//          begin 
+//            lsbaddr = i; 
+//            read[(i+1)*minWIDTH-1 -: minWIDTH] <= RAM[{r_addr, lsbaddr}];
+//          end 
+//        end 
+//      end
+//
+//      assign r_data = read;
        
         
           
