@@ -67,7 +67,7 @@ static void  setupFPGA() {
 #define VIR_DATA_OUT          0x07
 #define VIR_DEBUG             0x0F
 
-unsigned int readRegister32(uint8_t VIR) {
+uint32_t readRegister32(uint8_t VIR) {
   uint8_t data[4];
   JTAG_Read_VDR_from_VIR(VIR, data, 32);
   uint32_t result = 0;
@@ -107,7 +107,7 @@ void setup() {
   }
   
   uint32_t res = readRegister32(VIR_DEBUG);
-  Serial.println(res);
+  Serial.println(res, DEC);
 }
 
 // the loop function runs over and over again forever

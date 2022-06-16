@@ -45,7 +45,7 @@ module bram #(
       localparam RATIO = maxWIDTH / minWIDTH; 
       localparam log2RATIO = log2(RATIO);
 
-      reg [minWIDTH-1:0] RAM [0:maxSIZE-1]; 
+      (* ramstyle="M9K" *)reg [minWIDTH-1:0] RAM [0:maxSIZE-1]; 
 
       always_ff @(posedge clk) 
       begin 
