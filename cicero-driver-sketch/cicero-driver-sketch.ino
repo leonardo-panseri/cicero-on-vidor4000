@@ -70,12 +70,21 @@ static void  setupFPGA() {
 uint32_t readRegister32(uint8_t VIR) {
   uint8_t data[4];
   JTAG_Read_VDR_from_VIR(VIR, data, 32);
-  uint32_t result = 0;
-  for (int i = 3; i >= 0; i++) {
-    result = result | (data[i] << ((3 - i) * 8));
-  }
-  return result;
+  return ((uint32_t) data[0]) | (((uint32_t) data[1]) << 8) | (((uint32_t) data[2]) << 16) | (((uint32_t) data[3]) << 24);
 }
+
+void writeRegister32(uint8_t VIR, uint32_t data) {
+  uint8_t bytes[4];
+  bytes[0] = data;
+  bytes[1] = data >> 8;
+  bytes[2] = data >> 16;
+  bytes[3] = data >> 24;
+  JTAG_Write_VDR_to_VIR(VIR, bytes, 32);
+}
+
+const char code[] PROGMEM = {
+  #include "code.h"
+};
 
 // Global variables
 int val;
@@ -90,24 +99,20 @@ void setup() {
   Serial.begin(9600);
   pinMode(6, INPUT);
   val = digitalRead(6);
-  delay(1000);
+  
   while (!Serial);
   Serial.println(val);
   
-  uint8_t data[4] = {0x23, 0x01, 0x00, 0x00};
-  JTAG_Write_VDR_to_VIR(0x06, data, 32);
+  uint32_t a = 0x87654321;
+  writeRegister32(VIR_DATA_IN, a);
 
   val = digitalRead(6);
   Serial.println(val);
-
-  JTAG_Read_VDR_from_VIR(0x0F, data, 32);
-  int i;
-  for (i = 0; i < 4; i++) {
-    Serial.println(data[i]);
-  }
   
   uint32_t res = readRegister32(VIR_DEBUG);
-  Serial.println(res, DEC);
+  Serial.println(res, HEX);
+
+  Serial.println(code);
 }
 
 // the loop function runs over and over again forever
