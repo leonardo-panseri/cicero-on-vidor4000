@@ -37,7 +37,7 @@ logic     [ BRAM_WRITE_WIDTH      -1:0 ] bram_w;
 logic                                    bram_w_valid;
 
 ///// Coprocessor
-localparam BB_N                      = 1;
+localparam BB_N                      = 4;
 localparam BB_N_X                    = 0;
 localparam BB_N_Y                    = 0;
 localparam FIFO_COUNT_WIDTH          = 5;
@@ -48,7 +48,7 @@ localparam CACHE_BLOCK_WIDTH_BITS    = 2;
 localparam BASIC_BLOCK_PIPELINED     = 1;
 localparam PC_WIDTH                  = 9;
 localparam CHARACTER_WIDTH           = 8;
-localparam CC_ID_BITS                = 1;
+localparam CC_ID_BITS                = 2;
 
 
 logic                                   memory_addr_from_coprocessor_ready;

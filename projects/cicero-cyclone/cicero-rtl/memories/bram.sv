@@ -11,7 +11,7 @@ module bram #(
         input                         rst  ,
         input                         r_valid,
         input  [READ_ADDR_WIDTH-1 :0] r_addr ,
-        output [READ_WIDTH-1      :0] r_data ,
+        output reg [READ_WIDTH-1  :0] r_data ,
         input  [WRITE_ADDR_WIDTH-1:0] w_addr ,
         input                         w_valid,
         input  [WRITE_WIDTH-1     :0] w_data 

@@ -1,0 +1,480 @@
+# Reading pref.tcl
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2021.2 win64 Apr 14 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do MKRVIDOR4000_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Questa Intel Starter FPGA Edition-64 vmap 2021.2 Lib Mapping Utility 2021.04 Apr 14 2021
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/21.1/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL {C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:43 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL" C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v 
+# -- Compiling module SYSTEM_PLL
+# 
+# Top level modules:
+# 	SYSTEM_PLL
+# End time: 17:13:43 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:43 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v 
+# -- Compiling module Virtual_JTAG_Adapter
+# 
+# Top level modules:
+# 	Virtual_JTAG_Adapter
+# End time: 17:13:43 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:43 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v 
+# -- Compiling module SYSTEM_PLL_altpll
+# 
+# Top level modules:
+# 	SYSTEM_PLL_altpll
+# End time: 17:13:44 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:44 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v 
+# -- Compiling module MKRVIDOR4000_top
+# 
+# Top level modules:
+# 	MKRVIDOR4000_top
+# End time: 17:13:44 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:44 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv 
+# -- Compiling interface memory_read_iface
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:44 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:44 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv 
+# -- Compiling module cache_block_directly_mapped_broadcast
+# 
+# Top level modules:
+# 	cache_block_directly_mapped_broadcast
+# End time: 17:13:44 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:44 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv 
+# -- Compiling module bram
+# 
+# Top level modules:
+# 	bram
+# End time: 17:13:45 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:45 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv 
+# -- Compiling package instruction_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:45 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:45 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv 
+# -- Compiling module engine
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv(316): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# 
+# Top level modules:
+# 	engine
+# End time: 17:13:45 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:45 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv 
+# -- Compiling package coprocessor_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:45 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:45 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv 
+# -- Compiling interface channel_iface
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:46 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:46 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv 
+# -- Compiling package AXI_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:46 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:46 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv 
+# -- Compiling module arbitration_logic_rr
+# 
+# Top level modules:
+# 	arbitration_logic_rr
+# End time: 17:13:46 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:46 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv 
+# -- Compiling module arbitration_logic_fixed_shiftable
+# 
+# Top level modules:
+# 	arbitration_logic_fixed_shiftable
+# End time: 17:13:46 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:46 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv 
+# -- Compiling module arbitration_logic_fixed
+# 
+# Top level modules:
+# 	arbitration_logic_fixed
+# End time: 17:13:47 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:47 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv 
+# -- Compiling module arbiter_rr_n
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(11): (vlog-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(12): (vlog-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	arbiter_rr_n
+# End time: 17:13:47 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:47 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv 
+# -- Compiling module arbiter_fixed_shiftable
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv(12): (vlog-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv(13): (vlog-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	arbiter_fixed_shiftable
+# End time: 17:13:47 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:47 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv 
+# -- Compiling module arbiter_fixed
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv(10): (vlog-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv(11): (vlog-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	arbiter_fixed
+# End time: 17:13:47 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:47 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv 
+# -- Compiling module arbiter_2_rr
+# 
+# Top level modules:
+# 	arbiter_2_rr
+# End time: 17:13:48 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:48 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv 
+# -- Compiling module arbiter_2_fixed
+# 
+# Top level modules:
+# 	arbiter_2_fixed
+# End time: 17:13:48 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:48 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv 
+# -- Compiling module fifo
+# 
+# Top level modules:
+# 	fifo
+# End time: 17:13:48 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:48 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv 
+# -- Compiling package regex_cpu_pipelined_sv_unit
+# -- Importing package instruction_package
+# -- Compiling module regex_cpu_pipelined
+# 
+# Top level modules:
+# 	regex_cpu_pipelined
+# End time: 17:13:48 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:48 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv 
+# -- Compiling module topology_token_ring
+# 
+# Top level modules:
+# 	topology_token_ring
+# End time: 17:13:49 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:49 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv 
+# -- Compiling module switch
+# 
+# Top level modules:
+# 	switch
+# End time: 17:13:49 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:49 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv 
+# -- Compiling module engine_interfaced
+# 
+# Top level modules:
+# 	engine_interfaced
+# End time: 17:13:49 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:49 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv 
+# -- Compiling module engine_and_station
+# 
+# Top level modules:
+# 	engine_and_station
+# End time: 17:13:49 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:49 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv 
+# -- Compiling package coprocessor_top_sv_unit
+# -- Importing package coprocessor_package
+# -- Compiling module coprocessor_top
+# 
+# Top level modules:
+# 	coprocessor_top
+# End time: 17:13:50 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:50 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv 
+# -- Compiling module channel_multi_cc
+# 
+# Top level modules:
+# 	channel_multi_cc
+# End time: 17:13:50 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:50 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv 
+# -- Compiling package AXI_top_sv_unit
+# -- Importing package AXI_package
+# -- Compiling module AXI_top
+# 
+# Top level modules:
+# 	AXI_top
+# End time: 17:13:50 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:50 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv 
+# -- Compiling package AXI_package
+# -- Compiling package AXI_top_tb_sv_unit
+# -- Importing package AXI_package
+# -- Compiling module AXI_top
+# -- Compiling module AXI_top_tb
+# 
+# Top level modules:
+# 	AXI_top_tb
+# End time: 17:13:50 on Jun 17,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI {C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 17:13:50 on Jun 17,2022
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI" C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv 
+# -- Compiling package AXI_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:13:51 on Jun 17,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs="+acc"  AXI_top_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs=""+acc"" AXI_top_tb 
+# Start time: 17:13:51 on Jun 17,2022
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(11): (vopt-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(12): (vopt-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv(12): (vopt-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv(13): (vopt-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vopt-143) Recognized 1 FSM in module "coprocessor_top(fast)".
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(11): (vopt-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv(12): (vopt-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv(10): (vopt-13314) Defaulting port 'in_valid' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv(11): (vopt-13314) Defaulting port 'in_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vopt-143) Recognized 1 FSM in module "cache_block_directly_mapped_broadcast(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "fifo(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "AXI_top(fast)".
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 9, found 7.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'end_cc_pointer_register'.
+# ** Warning: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'start_cc_pointer_register'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=11.
+# Loading sv_std.std
+# Loading work.AXI_package(fast)
+# Loading work.AXI_top_tb_sv_unit(fast)
+# Loading work.AXI_top_tb(fast)
+# Loading work.AXI_top(fast)
+# Loading work.bram(fast)
+# Loading work.coprocessor_package(fast)
+# Loading work.coprocessor_top_sv_unit(fast)
+# Loading work.coprocessor_top(fast)
+# Loading work.topology_token_ring(fast)
+# Loading work.engine_and_station(fast)
+# Loading work.channel_iface(fast__3)
+# Loading work.engine_interfaced(fast)
+# Loading work.engine(fast)
+# Loading work.cache_block_directly_mapped_broadcast(fast)
+# Loading work.fifo(fast)
+# Loading work.arbiter_fixed_shiftable(fast)
+# Loading work.arbitration_logic_fixed_shiftable(fast)
+# Loading work.arbitration_logic_fixed(fast)
+# Loading work.instruction_package(fast)
+# Loading work.regex_cpu_pipelined_sv_unit(fast)
+# Loading work.regex_cpu_pipelined(fast)
+# Loading work.arbiter_2_rr(fast)
+# Loading work.arbiter_rr_n(fast)
+# Loading work.arbitration_logic_rr(fast)
+# Loading work.arbitration_logic_fixed(fast__1)
+# Loading work.channel_multi_cc(fast)
+# Loading work.switch(fast)
+# Loading work.engine_and_station(fast__1)
+# Loading work.switch(fast__1)
+# Loading work.engine_and_station(fast__2)
+# Loading work.channel_multi_cc(fast__1)
+# Loading work.arbiter_2_fixed(fast)
+# Loading work.arbiter_fixed(fast)
+# Loading work.arbiter_rr_n(fast__1)
+# Loading work.arbitration_logic_rr(fast__1)
+# Loading work.arbitration_logic_fixed(fast__2)
+# Loading work.memory_read_iface(fast__1)
+# Loading work.memory_read_iface(fast__2)
+# Loading work.channel_iface(fast__1)
+# Loading work.channel_iface(fast__2)
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[0]/addr', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[0] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 33
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[0]/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[0] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 32
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[1]/addr', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[1] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 33
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[1]/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[1] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 32
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[2]/addr', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[2] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 33
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[2]/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[2] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 32
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[3]/addr', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[3] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 33
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[3]/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/memory_bb[3] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 32
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[0]/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv(93).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[0] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[0]/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv(93).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[0] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 14
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[1]/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv(26).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[1] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[2]/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv(26).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[2] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[3]/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv(26).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[3] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[4]/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv(26).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[4] File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[0]/engine_and_station_i/cpu2switch/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[0]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[0]/engine_and_station_i/cpu2switch/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[0]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 14
+# ** Error (suppressible): (vsim-12003) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[1]/valid' written by continuous and procedural assignments. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[0]/engine_and_station_i/aChannel File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv Line: 42
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[1]/engine_and_station_i/cpu2switch/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[1]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[1]/engine_and_station_i/cpu2switch/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[1]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 14
+# ** Error (suppressible): (vsim-12003) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[2]/valid' written by continuous and procedural assignments. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[1]/engine_and_station_i/aChannel File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv Line: 42
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[2]/engine_and_station_i/cpu2switch/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[2]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[2]/engine_and_station_i/cpu2switch/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[2]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 14
+# ** Error (suppressible): (vsim-12003) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[3]/valid' written by continuous and procedural assignments. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[2]/engine_and_station_i/aChannel File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv Line: 42
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[3]/engine_and_station_i/cpu2switch/data', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[3]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 15
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[3]/engine_and_station_i/cpu2switch/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv(41).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[3]/engine_and_station_i/cpu2switch File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv Line: 14
+# ** Error (suppressible): (vsim-12003) Variable '/AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/channel_i[4]/valid' written by continuous and procedural assignments. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/genblk1/a_topology/gen_engine_and_station[3]/engine_and_station_i/aChannel File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv Line: 42
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/memory_muxed/addr', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv(135).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/memory_muxed File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 33
+# ** Error (suppressible): (vsim-3839) Variable '/AXI_top_tb/dut/a_regex_coprocessor/memory_muxed/valid', driven via a port connection, is multiply driven. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv(135).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor/memory_muxed File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv Line: 32
+# ** Error (suppressible): (vsim-12003) Variable '/AXI_top_tb/dut/a_regex_coprocessor/override_pc/data' written by continuous and procedural assignments. See C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv(15).
+#    Time: 0 ps  Iteration: 0  Instance: /AXI_top_tb/dut/a_regex_coprocessor File: C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv Line: 113
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./MKRVIDOR4000_run_msim_rtl_verilog.do PAUSED at line 41
+# End time: 17:14:23 on Jun 17,2022, Elapsed time: 0:00:32
+# Errors: 29, Warnings: 11
