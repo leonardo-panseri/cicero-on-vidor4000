@@ -1,0 +1,902 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/simulation/modelsim
+T_opt
+!s110 1655475956
+VADW6Xb9n@Oc2:Fa0ShPf@1
+04 10 4 work AXI_top_tb fast 0
+=1-4ccc6a8ab64d-62ac8ef2-333-1110
+!s124 OEM10U120 
+o-quiet -auto_acc_if_foreign -work work -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+varbiter_2_fixed
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1655475950
+!i10b 1
+!s100 dOMcNYfLKB^RJdcW44::T3
+I>kF@M`7lGdC]@IZd=i>9c2
+S1
+R0
+Z4 w1654189820
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv
+!i122 19
+L0 4 38
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.2;73
+r1
+!s85 0
+31
+Z7 !s108 1655475950.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_fixed.sv|
+!i113 0
+Z8 o-sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+varbiter_2_rr
+R2
+R3
+!i10b 1
+!s100 :Hjn0fh[]>8T=iB_6AocH0
+I23U5nn9]7Cn2z<Z4NZAM80
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv
+!i122 18
+L0 5 43
+R5
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_2_rr.sv|
+!i113 0
+R8
+R9
+R1
+varbiter_fixed
+R2
+R3
+!i10b 1
+!s100 RZ0LHGf>@jP>9RHVbhlnZ2
+I1G2RKjX5c]4GD^=c^Sl3n0
+S1
+R0
+w1654764015
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv
+!i122 17
+L0 5 49
+R5
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed.sv|
+!i113 0
+R8
+R9
+R1
+varbiter_fixed_shiftable
+R2
+Z10 !s110 1655475949
+!i10b 1
+!s100 g2lgmNQ9a`^R3lInz4>]40
+I7UoEULO<1F;M`2e[g2c6i2
+S1
+R0
+w1654763983
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv
+!i122 16
+L0 5 57
+R5
+R6
+r1
+!s85 0
+31
+Z11 !s108 1655475949.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_fixed_shiftable.sv|
+!i113 0
+R8
+R9
+R1
+varbiter_rr_n
+R2
+R10
+!i10b 1
+!s100 ED4M_E6MWk1>Fj>7@z2263
+IY]h2Inzb@`8RCzM[0^P1i2
+S1
+R0
+w1654763913
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv
+!i122 15
+L0 5 54
+R5
+R6
+r1
+!s85 0
+31
+R11
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbiter_rr_n.sv|
+!i113 0
+R8
+R9
+R1
+varbitration_logic_fixed
+R2
+R10
+!i10b 1
+!s100 ;Hhi;?md]L2GJG2YdkeUj3
+I972GeRbI7RUkd=hGJUjQ[2
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv
+!i122 14
+L0 1 17
+R5
+R6
+r1
+!s85 0
+31
+R11
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed.sv|
+!i113 0
+R8
+R9
+R1
+varbitration_logic_fixed_shiftable
+R2
+R10
+!i10b 1
+!s100 AM<6Ah::ajILWoCSV5JJS2
+I5]dTY6<>`eW59I@I;C95:0
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv
+!i122 13
+L0 1 87
+R5
+R6
+r1
+!s85 0
+31
+R11
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_fixed_shiftable.sv|
+!i113 0
+R8
+R9
+R1
+varbitration_logic_rr
+R2
+Z12 !s110 1655475948
+!i10b 1
+!s100 Y=>?B8Gl?V`HW0SMn5H_c1
+IlYZz@kHBhbX?bHbe;aH9i0
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv
+!i122 12
+L0 1 67
+R5
+R6
+r1
+!s85 0
+31
+Z13 !s108 1655475948.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/arbiters/arbitration_logic_rr.sv|
+!i113 0
+R8
+R9
+R1
+XAXI_package
+R2
+R12
+!i10b 1
+!s100 9[mkZMX5`YZ<c[=J1@m060
+IND>BB`]A5fEi6MZi]>jl[0
+S1
+R0
+w1655470666
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv
+!i122 11
+Z14 L0 3 0
+VND>BB`]A5fEi6MZi]>jl[0
+R6
+r1
+!s85 0
+31
+R13
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_package.sv|
+!i113 0
+R8
+Z15 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@a@x@i_package
+vAXI_top
+R2
+Z16 DXx4 work 11 AXI_package 0 22 ND>BB`]A5fEi6MZi]>jl[0
+DXx4 work 15 AXI_top_sv_unit 0 22 8oO`Dlf81mN4bNZnKRXjR1
+Z17 !s110 1655475953
+R5
+r1
+!s85 0
+!i10b 1
+!s100 KW[BPMkOl?T^a`daooko_3
+I?7?MjSc5S]E6c3IKD9fT]0
+!s105 AXI_top_sv_unit
+S1
+R0
+Z18 w1655471621
+Z19 8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv
+Z20 FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv
+!i122 28
+L0 8 238
+R6
+31
+Z21 !s108 1655475952.000000
+Z22 !s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv|
+Z23 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv|
+!i113 0
+R8
+R15
+R1
+n@a@x@i_top
+XAXI_top_sv_unit
+R2
+R16
+R17
+V8oO`Dlf81mN4bNZnKRXjR1
+r1
+!s85 0
+!i10b 1
+!s100 ^Y__CfVmDhB?S4?Si?Ji:2
+I8oO`Dlf81mN4bNZnKRXjR1
+!i103 1
+S1
+R0
+R18
+R19
+R20
+!i122 28
+Z24 L0 2 0
+R6
+31
+R21
+R22
+R23
+!i113 0
+R8
+R15
+R1
+n@a@x@i_top_sv_unit
+vAXI_top_tb
+R2
+R16
+DXx4 work 18 AXI_top_tb_sv_unit 0 22 @4Q;M;FB4kNbz]oTR7g`L1
+R17
+R5
+r1
+!s85 0
+!i10b 1
+!s100 ;c9o8ETKzFRZhDHPH2F[e2
+I?VzaY[>^d9<I=b44ZOn?O1
+!s105 AXI_top_tb_sv_unit
+S1
+R0
+Z25 w1654190664
+Z26 8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv
+Z27 FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv
+!i122 29
+L0 5 79
+R6
+31
+Z28 !s108 1655475953.000000
+Z29 !s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv|
+Z30 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim/AXI_top_tb.sv|
+!i113 0
+R8
+Z31 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-sim -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@a@x@i_top_tb
+XAXI_top_tb_sv_unit
+R2
+R16
+R17
+V@4Q;M;FB4kNbz]oTR7g`L1
+r1
+!s85 0
+!i10b 1
+!s100 Rd4@dVllJHEWhT2ReezMl2
+I@4Q;M;FB4kNbz]oTR7g`L1
+!i103 1
+S1
+R0
+R25
+R26
+R27
+!i122 29
+R14
+R6
+31
+R28
+R29
+R30
+!i113 0
+R8
+R31
+R1
+n@a@x@i_top_tb_sv_unit
+vbram
+R2
+Z32 !s110 1655475947
+!i10b 1
+!s100 J<m?ijMKmUdR]MI[BHYA62
+Ij@Y[Og^@zCZa:>GncC:fT2
+S1
+R0
+w1655475845
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv
+!i122 6
+L0 2 89
+R5
+R6
+r1
+!s85 0
+31
+Z33 !s108 1655475947.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/bram.sv|
+!i113 0
+R8
+Z34 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vcache_block_directly_mapped_broadcast
+R2
+R32
+!i10b 1
+!s100 BkmlL42mPWWL]SiNDa:5e1
+IGHYfTLEGoXLHJCH3ZbP3z0
+S1
+R0
+w1654783244
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv
+!i122 5
+L0 10 136
+R5
+R6
+r1
+!s85 0
+31
+Z35 !s108 1655475946.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/cache_block_directly_mapped_broadcast.sv|
+!i113 0
+R8
+R34
+R1
+Ychannel_iface
+R2
+R12
+!i10b 1
+!s100 2R<;WG>[0[;kKX^b4TXP`3
+I=ZPD>:oH21VLHV>k[QHg]3
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv
+!i122 10
+Z36 L0 1 0
+R5
+R6
+r1
+!s85 0
+31
+R13
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_iface.sv|
+!i113 0
+R8
+Z37 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vchannel_multi_cc
+R2
+Z38 !s110 1655475952
+!i10b 1
+!s100 m;8ai?1DnPh[;bo?f:5G41
+IX<44;=Je[1Ol;^_LE:H7o1
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv
+!i122 27
+L0 1 107
+R5
+R6
+r1
+!s85 0
+31
+R21
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/channel_multi_cc.sv|
+!i113 0
+R8
+R37
+R1
+Xcoprocessor_package
+R2
+R12
+!i10b 1
+!s100 AE:lYFePFo`EbBKNh;]Sd1
+IbPnB6OHK1oYW_ATASAcBL2
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv
+!i122 9
+R14
+VbPnB6OHK1oYW_ATASAcBL2
+R6
+r1
+!s85 0
+31
+R13
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_package.sv|
+!i113 0
+R8
+R37
+R1
+vcoprocessor_top
+R2
+Z39 DXx4 work 19 coprocessor_package 0 22 bPnB6OHK1oYW_ATASAcBL2
+DXx4 work 23 coprocessor_top_sv_unit 0 22 aW6I?zFfkBX44R:4clmlf1
+R38
+R5
+r1
+!s85 0
+!i10b 1
+!s100 n2QRU25QMX0BXCX<7LmjW0
+I=n3mPnJ1i^OcdV>D9X;S_1
+!s105 coprocessor_top_sv_unit
+S1
+R0
+Z40 w1654782771
+Z41 8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv
+Z42 FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv
+!i122 26
+L0 47 397
+R6
+31
+R21
+Z43 !s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv|
+Z44 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/coprocessor_top.sv|
+!i113 0
+R8
+R37
+R1
+Xcoprocessor_top_sv_unit
+R2
+R39
+R38
+VaW6I?zFfkBX44R:4clmlf1
+r1
+!s85 0
+!i10b 1
+!s100 MJL;8ohRQJ1nL:J]n_ETb0
+IaW6I?zFfkBX44R:4clmlf1
+!i103 1
+S1
+R0
+R40
+R41
+R42
+!i122 26
+L0 45 0
+R6
+31
+R21
+R43
+R44
+!i113 0
+R8
+R37
+R1
+vengine
+R2
+R32
+!i10b 1
+!s100 RZI3^7PD]FZXh<?zM1m>31
+I1fS726K?FRhChR3WOgbT^3
+S1
+R0
+w1654763696
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv
+!i122 8
+L0 41 317
+R5
+R6
+r1
+!s85 0
+31
+R33
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine.sv|
+!i113 0
+R8
+R37
+R1
+vengine_and_station
+R2
+R38
+!i10b 1
+!s100 [@FZ@R@V_Ao3Ejm>M5jB;1
+In6aJVm`JeaYk1IE>eD_hK2
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv
+!i122 25
+L0 20 93
+R5
+R6
+r1
+!s85 0
+31
+R21
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_and_station.sv|
+!i113 0
+R8
+R37
+R1
+vengine_interfaced
+R2
+R38
+!i10b 1
+!s100 FbF]eV4ldWG4PGcS[9T<P0
+ImB_JOaz<o?F6]:lWQE<F90
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv
+!i122 24
+L0 1 72
+R5
+R6
+r1
+!s85 0
+31
+Z45 !s108 1655475951.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/engine_interfaced.sv|
+!i113 0
+R8
+R37
+R1
+vfifo
+R2
+Z46 !s110 1655475951
+!i10b 1
+!s100 ?P2CTSWco^Kb7f`G@>Hon3
+IC2[Gil6>U6ZFWZDk=bE4_2
+S1
+R0
+w1654783252
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv
+!i122 20
+L0 15 253
+R5
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/fifo.sv|
+!i113 0
+R8
+!s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+Xinstruction_package
+R2
+R32
+!i10b 1
+!s100 ndKLiGoS[VMJ054?8<<;S2
+IhcH3`BzAMGaEL=o:XCZE>1
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv
+!i122 7
+L0 4 0
+VhcH3`BzAMGaEL=o:XCZE>1
+R6
+r1
+!s85 0
+31
+R33
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/instruction_package.sv|
+!i113 0
+R8
+Z47 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+Ymemory_read_iface
+R2
+Z48 !s110 1655475946
+!i10b 1
+!s100 ;I3Ick0]Wmm5ZOo_Qg[dQ0
+IzOjGIeLORNE`C;fCC7OHl3
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv
+!i122 4
+R36
+R5
+R6
+r1
+!s85 0
+31
+R35
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/memories/memory_read_iface.sv|
+!i113 0
+R8
+R34
+R1
+vMKRVIDOR4000_top
+R2
+R48
+!i10b 1
+!s100 llol5j:c6l8=?]@YWlI8Z1
+II<i0^f161RjZ?846S1:251
+S1
+R0
+w1655371909
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/user.v
+!i122 3
+L0 21 202
+R5
+R6
+r1
+!s85 0
+31
+R35
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/user.v|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/MKRVIDOR4000_top.v|
+!i113 0
+R8
+Z49 !s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@m@k@r@v@i@d@o@r4000_top
+vregex_cpu_pipelined
+R2
+Z50 DXx4 work 19 instruction_package 0 22 hcH3`BzAMGaEL=o:XCZE>1
+DXx4 work 27 regex_cpu_pipelined_sv_unit 0 22 iC_IDcDf=ck>e5j_9HPCk3
+R46
+R5
+r1
+!s85 0
+!i10b 1
+!s100 `CnW`^6Z3b@XbA:1IK@_i2
+IYHo3YDTacV5bj_0o?N^<L1
+!s105 regex_cpu_pipelined_sv_unit
+S1
+R0
+R4
+Z51 8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv
+Z52 FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv
+!i122 21
+L0 6 356
+R6
+31
+R45
+Z53 !s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv|
+Z54 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/CPU/regex_cpu_pipelined.sv|
+!i113 0
+R8
+R47
+R1
+Xregex_cpu_pipelined_sv_unit
+R2
+R50
+R46
+ViC_IDcDf=ck>e5j_9HPCk3
+r1
+!s85 0
+!i10b 1
+!s100 QXS4SMJM7nd5^mPRa`cU`2
+IiC_IDcDf=ck>e5j_9HPCk3
+!i103 1
+S1
+R0
+R4
+R51
+R52
+!i122 21
+R24
+R6
+31
+R45
+R53
+R54
+!i113 0
+R8
+R47
+R1
+vswitch
+R2
+R46
+!i10b 1
+!s100 UPLTdT0EhzB[TCZ77cG4U0
+I[65VBn4o9`Vo4[HU8fD@i1
+S1
+R0
+R4
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv
+!i122 23
+L0 1 88
+R5
+R6
+r1
+!s85 0
+31
+R45
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/switch.sv|
+!i113 0
+R8
+R37
+R1
+vSYSTEM_PLL
+R2
+!s110 1655475945
+!i10b 1
+!s100 hTmH83_<7nlA]I9RS5=Z71
+IAfm_AeKfc`D>jRzK6R]Ha2
+S1
+R0
+w1654192352
+8C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v
+FC:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v
+!i122 0
+L0 39 156
+R5
+R6
+r1
+!s85 0
+31
+Z55 !s108 1655475945.000000
+!s107 C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL|C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL/SYSTEM_PLL.v|
+!i113 0
+R8
+!s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/ip/SYSTEM_PLL -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@s@y@s@t@e@m_@p@l@l
+vSYSTEM_PLL_altpll
+R2
+R48
+!i10b 1
+!s100 Tj>8FTRW^?X32D7odO::a1
+I`RbReS0:K]k;fmLA1?m5V3
+S1
+R0
+w1654764044
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v
+!i122 2
+L0 31 95
+R5
+R6
+r1
+!s85 0
+31
+R35
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db/system_pll_altpll.v|
+!i113 0
+R8
+!s92 -sv -work work +incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/db -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@s@y@s@t@e@m_@p@l@l_altpll
+vtopology_token_ring
+R2
+R46
+!i10b 1
+!s100 XeJ`ZefbVVWSDCW]hW^C:1
+IKWWHW[6bED<X^IZCP9ZF:3
+S1
+R0
+w1654762736
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv
+!i122 22
+L0 1 161
+R5
+R6
+r1
+!s85 0
+31
+R45
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/cicero-rtl/coprocessor/topology_token_ring.sv|
+!i113 0
+R8
+R37
+R1
+vVirtual_JTAG_Adapter
+R2
+R48
+!i10b 1
+!s100 od3oo7z0H=<In;FV4eRWR0
+I:eR<me:L[GGoQRn=`5`O;3
+S1
+R0
+w1655288431
+8C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v
+FC:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v
+!i122 1
+L0 1 120
+R5
+R6
+r1
+!s85 0
+31
+R55
+!s107 C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone|C:/Leonardo/Development/Quartus/vidor4000/projects/cicero-cyclone/Virtual_JTAG_Adapter.v|
+!i113 0
+R8
+R49
+R1
+n@virtual_@j@t@a@g_@adapter
