@@ -67,6 +67,22 @@ static void  setupFPGA() {
 #define VIR_DATA_OUT          0x07
 #define VIR_DEBUG             0x0F
 
+// Cicero commands
+#define  CMD_NOP                   0x0
+#define  CMD_WRITE                 0x1
+#define  CMD_READ                  0x2
+#define  CMD_START                 0x3
+#define  CMD_RESET                 0x4
+#define  CMD_READ_ELAPSED_CLOCK    0x5
+#define  CMD_RESTART               0x6
+
+// Cicero status
+#define  STATUS_IDLE               0x0
+#define  STATUS_RUNNING            0x1
+#define  STATUS_ACCEPTED           0x2
+#define  STATUS_REJECTED           0x3
+#define  STATUS_ERROR              0x4
+
 uint32_t readRegister32(uint8_t VIR) {
   uint8_t data[4];
   JTAG_Read_VDR_from_VIR(VIR, data, 32);
@@ -82,7 +98,69 @@ void writeRegister32(uint8_t VIR, uint32_t data) {
   JTAG_Write_VDR_to_VIR(VIR, bytes, 32);
 }
 
-const char code[] PROGMEM = {
+void writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
+  uint32_t addr = starting_addr;
+  uint8_t dword[4];
+  short first = 1;
+  int bytes_written = 1;
+  for (int i = 0; i < numbytes; i = i + 4) {
+    dword[3] = bytes[i];
+    bytes_written = 1;
+    if (i + 1 < numbytes) {
+      dword[2] = bytes[i + 1];
+      bytes_written = 2;
+    } else dword[2] = 0;
+    if (i + 2 < numbytes) {
+      dword[1] = bytes[i + 2];
+      bytes_written = 3;
+    } else dword[1] = 0;
+    if (i + 3 < numbytes) {
+      dword[0] = bytes[i + 3];
+      bytes_written = 4;
+    } else dword[0] = 0;
+
+    writeRegister32(VIR_ADDRESS, addr);
+    delay(100);
+    JTAG_Write_VDR_to_VIR(VIR_DATA_IN, dword, 32);
+
+    delay(1000);
+
+    if (first) {
+      first = 0;
+      writeRegister32(VIR_COMMAND, CMD_WRITE);
+      delay(500);
+    }
+
+    addr = addr + bytes_written;
+  }
+
+  writeRegister32(VIR_COMMAND, CMD_NOP);
+}
+
+void readDWordsFromRAM(uint32_t starting_addr, int dwordsToRead, uint32_t *res) {
+  uint32_t addr = starting_addr;
+  short first = 1;
+  for(int i = 0; i < dwordsToRead; i++) {
+    writeRegister32(VIR_ADDRESS, addr);
+    delay(100);
+
+    if (first) {
+      first = 0;
+      writeRegister32(VIR_COMMAND, CMD_READ);
+      delay(500);
+    }
+
+    res[i] = readRegister32(VIR_DATA_OUT);
+
+    delay(1000);
+
+    addr = addr + 4;
+  }
+
+  writeRegister32(VIR_COMMAND, CMD_NOP);
+}
+
+uint8_t code[] = {
   #include "code.h"
 };
 
@@ -93,26 +171,40 @@ int val;
 void setup() {
   setupFPGA();
 
-  // Configure onboard LED Pin as output
+  // Configure Pins
   pinMode(LED_BUILTIN, OUTPUT);
-
-  Serial.begin(9600);
+  pinMode(0, INPUT);
+  pinMode(1, INPUT);
+  pinMode(2, INPUT);
+  pinMode(3, INPUT);
   pinMode(6, INPUT);
-  val = digitalRead(6);
-  
+
+  // Initialize Serial
+  Serial.begin(9600);
   while (!Serial);
-  Serial.println(val);
   
-  uint32_t a = 0x87654321;
-  writeRegister32(VIR_DATA_IN, a);
-
-  val = digitalRead(6);
-  Serial.println(val);
+  //val = digitalRead(6);
+  //Serial.println(val);
   
-  uint32_t res = readRegister32(VIR_DEBUG);
-  Serial.println(res, HEX);
+  //uint32_t a = 0x87654321;
+  //writeRegister32(VIR_DATA_IN, a);
+  //val = digitalRead(6);
+  //Serial.println(val);
+  
+  //uint32_t res = readRegister32(VIR_DEBUG);
+  //Serial.println(res, HEX);
 
-  Serial.println(code);
+  // The length of the code in bytes is encoded in the first two bytes of the file
+  uint16_t codeNumBytes = ((uint16_t) code[1]) | (((uint16_t) code[0]) << 8);
+  writeBytesToRAM(codeNumBytes, &code[2], 0);
+
+  int dwordsToRead = ceil(codeNumBytes / 4);
+  uint32_t bytesRead[dwordsToRead];
+  readDWordsFromRAM(0, dwordsToRead, bytesRead);
+  Serial.println("Results");
+  for(int i = 0; i < dwordsToRead; i++) {
+    Serial.println(bytesRead[i], HEX);
+  }
 }
 
 // the loop function runs over and over again forever

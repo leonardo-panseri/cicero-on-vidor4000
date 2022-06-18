@@ -15,15 +15,16 @@ module AXI_top(
     input  logic [REG_WIDTH-1:0] end_cc_pointer_register,
     input  logic [REG_WIDTH-1:0] cmd_register,
     output logic [REG_WIDTH-1:0] status_register,
-    output logic [REG_WIDTH-1:0] data_o_register
+    output logic [REG_WIDTH-1:0] data_o_register,
+	 inout  [14:0] bMKR_D
 );
 logic rst_master;
 ///// AXI
 logic [REG_WIDTH-1:0]   status_register_next;
 
 ///// BRAM
-parameter BRAM_READ_WIDTH            = 64;
-parameter BRAM_READ_ADDR_WIDTH       = 9;
+parameter BRAM_READ_WIDTH            = 32;
+parameter BRAM_READ_ADDR_WIDTH       = 10;
 parameter BRAM_WRITE_WIDTH           = 32;
 parameter BRAM_WRITE_ADDR_WIDTH      = 10;
 
@@ -83,6 +84,11 @@ end
 
 always_comb 
 begin
+	bMKR_D[0] = bram_r[0];
+	bMKR_D[1] = bram_r[1];
+	bMKR_D[2] = bram_r[2];
+	bMKR_D[3] = bram_r[3];
+
     status_register_next               = status_register;
 
     elapsed_cc_next                    = elapsed_cc;
@@ -112,10 +118,10 @@ begin
             end
             CMD_READ:
             begin      
-                bram_r_addr         = address_register[BYTE_ADDR_OFFSET_IN_REG+:BRAM_READ_ADDR_WIDTH]; //use low
+                bram_r_addr         = address_register[0+:BRAM_READ_ADDR_WIDTH]; //use low
                 bram_r_valid        = 1'b1;
                 memory_addr_from_coprocessor_ready = 1'b0;
-                data_o_register     = bram_r[address_register[0+:BYTE_ADDR_OFFSET_IN_REG]*REG_WIDTH+:REG_WIDTH];
+                data_o_register     = bram_r[0+:BRAM_READ_WIDTH];
             end
             CMD_START:
             begin
@@ -149,10 +155,10 @@ begin
         end
         CMD_READ:
         begin      
-            bram_r_addr         = address_register[BYTE_ADDR_OFFSET_IN_REG+:BRAM_READ_ADDR_WIDTH]; //use low
+            bram_r_addr         = address_register[0+:BRAM_READ_ADDR_WIDTH]; //use low
             bram_r_valid        = 1'b1;
             memory_addr_from_coprocessor_ready = 1'b0;
-            data_o_register     = bram_r[address_register[0+:BYTE_ADDR_OFFSET_IN_REG]*REG_WIDTH+:REG_WIDTH];
+            data_o_register     = bram_r[0+:BRAM_READ_WIDTH];
         end
         CMD_RESTART:
         begin

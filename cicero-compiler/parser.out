@@ -1,0 +1,1466 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BEL
+    CARRIAGE_RET
+    ESC
+    ESCAPED
+    F_FEED
+    L_FEED
+    TAB
+
+Grammar
+
+Rule 0     S' -> regex
+Rule 1     regex -> alternative
+Rule 2     alternative -> alternative OR concatenation
+Rule 3     alternative -> alternative OR
+Rule 4     alternative -> concatenation
+Rule 5     concatenation -> concatenation repetition
+Rule 6     concatenation -> repetition
+Rule 7     repetition -> subexpr TIMES
+Rule 8     repetition -> subexpr PLUS
+Rule 9     repetition -> subexpr OPT
+Rule 10    repetition -> subexpr LCPAR NUM RCPAR
+Rule 11    repetition -> subexpr LCPAR COMMA NUM RCPAR
+Rule 12    repetition -> subexpr LCPAR NUM COMMA RCPAR
+Rule 13    repetition -> subexpr LCPAR NUM COMMA NUM RCPAR
+Rule 14    repetition -> subexpr
+Rule 15    subexpr -> LPAR alternative RPAR
+Rule 16    subexpr -> LSPAR HAT group RSPAR
+Rule 17    subexpr -> LSPAR group RSPAR
+Rule 18    subexpr -> terminal_sequence
+Rule 19    subexpr -> metachar
+Rule 20    subexpr -> ANYCHAR
+Rule 21    subexpr -> DOLLAR
+Rule 22    subexpr -> MINUS
+Rule 23    group -> terminal_sequence MINUS terminal_sequence group
+Rule 24    group -> terminal_sequence MINUS terminal_sequence
+Rule 25    group -> terminal_sequence group
+Rule 26    group -> terminal_sequence
+Rule 27    group -> metachar group
+Rule 28    group -> metachar
+Rule 29    terminal_sequence -> CHAR
+Rule 30    terminal_sequence -> NUM
+Rule 31    terminal_sequence -> HEXA
+Rule 32    terminal_sequence -> COMMA
+Rule 33    metachar -> WHITESPACE
+Rule 34    metachar -> WHITESPACE_COMPLEMENTED
+Rule 35    metachar -> DIGIT
+Rule 36    metachar -> DIGIT_COMPLEMENTED
+Rule 37    metachar -> ALPHANUMERIC
+Rule 38    metachar -> ALPHANUMERIC_COMPLEMENTED
+
+Terminals, with rules where they appear
+
+ALPHANUMERIC         : 37
+ALPHANUMERIC_COMPLEMENTED : 38
+ANYCHAR              : 20
+BEL                  : 
+CARRIAGE_RET         : 
+CHAR                 : 29
+COMMA                : 11 12 13 32
+DIGIT                : 35
+DIGIT_COMPLEMENTED   : 36
+DOLLAR               : 21
+ESC                  : 
+ESCAPED              : 
+F_FEED               : 
+HAT                  : 16
+HEXA                 : 31
+LCPAR                : 10 11 12 13
+LPAR                 : 15
+LSPAR                : 16 17
+L_FEED               : 
+MINUS                : 22 23 24
+NUM                  : 10 11 12 13 13 30
+OPT                  : 9
+OR                   : 2 3
+PLUS                 : 8
+RCPAR                : 10 11 12 13
+RPAR                 : 15
+RSPAR                : 16 17
+TAB                  : 
+TIMES                : 7
+WHITESPACE           : 33
+WHITESPACE_COMPLEMENTED : 34
+error                : 
+
+Nonterminals, with rules where they appear
+
+alternative          : 1 2 3 15
+concatenation        : 2 4 5
+group                : 16 17 23 25 27
+metachar             : 19 27 28
+regex                : 0
+repetition           : 5 6
+subexpr              : 7 8 9 10 11 12 13 14
+terminal_sequence    : 18 23 23 24 24 25 26
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . regex
+    (1) regex -> . alternative
+    (2) alternative -> . alternative OR concatenation
+    (3) alternative -> . alternative OR
+    (4) alternative -> . concatenation
+    (5) concatenation -> . concatenation repetition
+    (6) concatenation -> . repetition
+    (7) repetition -> . subexpr TIMES
+    (8) repetition -> . subexpr PLUS
+    (9) repetition -> . subexpr OPT
+    (10) repetition -> . subexpr LCPAR NUM RCPAR
+    (11) repetition -> . subexpr LCPAR COMMA NUM RCPAR
+    (12) repetition -> . subexpr LCPAR NUM COMMA RCPAR
+    (13) repetition -> . subexpr LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> . subexpr
+    (15) subexpr -> . LPAR alternative RPAR
+    (16) subexpr -> . LSPAR HAT group RSPAR
+    (17) subexpr -> . LSPAR group RSPAR
+    (18) subexpr -> . terminal_sequence
+    (19) subexpr -> . metachar
+    (20) subexpr -> . ANYCHAR
+    (21) subexpr -> . DOLLAR
+    (22) subexpr -> . MINUS
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    LPAR            shift and go to state 8
+    LSPAR           shift and go to state 9
+    ANYCHAR         shift and go to state 12
+    DOLLAR          shift and go to state 13
+    MINUS           shift and go to state 14
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    regex                          shift and go to state 1
+    alternative                    shift and go to state 2
+    concatenation                  shift and go to state 3
+    repetition                     shift and go to state 4
+    subexpr                        shift and go to state 5
+    terminal_sequence              shift and go to state 10
+    metachar                       shift and go to state 11
+
+state 1
+
+    (0) S' -> regex .
+
+
+
+state 2
+
+    (1) regex -> alternative .
+    (2) alternative -> alternative . OR concatenation
+    (3) alternative -> alternative . OR
+
+    $end            reduce using rule 1 (regex -> alternative .)
+    OR              shift and go to state 23
+
+
+state 3
+
+    (4) alternative -> concatenation .
+    (5) concatenation -> concatenation . repetition
+    (7) repetition -> . subexpr TIMES
+    (8) repetition -> . subexpr PLUS
+    (9) repetition -> . subexpr OPT
+    (10) repetition -> . subexpr LCPAR NUM RCPAR
+    (11) repetition -> . subexpr LCPAR COMMA NUM RCPAR
+    (12) repetition -> . subexpr LCPAR NUM COMMA RCPAR
+    (13) repetition -> . subexpr LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> . subexpr
+    (15) subexpr -> . LPAR alternative RPAR
+    (16) subexpr -> . LSPAR HAT group RSPAR
+    (17) subexpr -> . LSPAR group RSPAR
+    (18) subexpr -> . terminal_sequence
+    (19) subexpr -> . metachar
+    (20) subexpr -> . ANYCHAR
+    (21) subexpr -> . DOLLAR
+    (22) subexpr -> . MINUS
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    OR              reduce using rule 4 (alternative -> concatenation .)
+    $end            reduce using rule 4 (alternative -> concatenation .)
+    RPAR            reduce using rule 4 (alternative -> concatenation .)
+    LPAR            shift and go to state 8
+    LSPAR           shift and go to state 9
+    ANYCHAR         shift and go to state 12
+    DOLLAR          shift and go to state 13
+    MINUS           shift and go to state 14
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    repetition                     shift and go to state 24
+    subexpr                        shift and go to state 5
+    terminal_sequence              shift and go to state 10
+    metachar                       shift and go to state 11
+
+state 4
+
+    (6) concatenation -> repetition .
+
+    LPAR            reduce using rule 6 (concatenation -> repetition .)
+    LSPAR           reduce using rule 6 (concatenation -> repetition .)
+    ANYCHAR         reduce using rule 6 (concatenation -> repetition .)
+    DOLLAR          reduce using rule 6 (concatenation -> repetition .)
+    MINUS           reduce using rule 6 (concatenation -> repetition .)
+    CHAR            reduce using rule 6 (concatenation -> repetition .)
+    NUM             reduce using rule 6 (concatenation -> repetition .)
+    HEXA            reduce using rule 6 (concatenation -> repetition .)
+    COMMA           reduce using rule 6 (concatenation -> repetition .)
+    WHITESPACE      reduce using rule 6 (concatenation -> repetition .)
+    WHITESPACE_COMPLEMENTED reduce using rule 6 (concatenation -> repetition .)
+    DIGIT           reduce using rule 6 (concatenation -> repetition .)
+    DIGIT_COMPLEMENTED reduce using rule 6 (concatenation -> repetition .)
+    ALPHANUMERIC    reduce using rule 6 (concatenation -> repetition .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 6 (concatenation -> repetition .)
+    OR              reduce using rule 6 (concatenation -> repetition .)
+    $end            reduce using rule 6 (concatenation -> repetition .)
+    RPAR            reduce using rule 6 (concatenation -> repetition .)
+
+
+state 5
+
+    (7) repetition -> subexpr . TIMES
+    (8) repetition -> subexpr . PLUS
+    (9) repetition -> subexpr . OPT
+    (10) repetition -> subexpr . LCPAR NUM RCPAR
+    (11) repetition -> subexpr . LCPAR COMMA NUM RCPAR
+    (12) repetition -> subexpr . LCPAR NUM COMMA RCPAR
+    (13) repetition -> subexpr . LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> subexpr .
+
+    TIMES           shift and go to state 25
+    PLUS            shift and go to state 26
+    OPT             shift and go to state 27
+    LCPAR           shift and go to state 28
+    LPAR            reduce using rule 14 (repetition -> subexpr .)
+    LSPAR           reduce using rule 14 (repetition -> subexpr .)
+    ANYCHAR         reduce using rule 14 (repetition -> subexpr .)
+    DOLLAR          reduce using rule 14 (repetition -> subexpr .)
+    MINUS           reduce using rule 14 (repetition -> subexpr .)
+    CHAR            reduce using rule 14 (repetition -> subexpr .)
+    NUM             reduce using rule 14 (repetition -> subexpr .)
+    HEXA            reduce using rule 14 (repetition -> subexpr .)
+    COMMA           reduce using rule 14 (repetition -> subexpr .)
+    WHITESPACE      reduce using rule 14 (repetition -> subexpr .)
+    WHITESPACE_COMPLEMENTED reduce using rule 14 (repetition -> subexpr .)
+    DIGIT           reduce using rule 14 (repetition -> subexpr .)
+    DIGIT_COMPLEMENTED reduce using rule 14 (repetition -> subexpr .)
+    ALPHANUMERIC    reduce using rule 14 (repetition -> subexpr .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 14 (repetition -> subexpr .)
+    OR              reduce using rule 14 (repetition -> subexpr .)
+    $end            reduce using rule 14 (repetition -> subexpr .)
+    RPAR            reduce using rule 14 (repetition -> subexpr .)
+
+
+state 6
+
+    (30) terminal_sequence -> NUM .
+
+    TIMES           reduce using rule 30 (terminal_sequence -> NUM .)
+    PLUS            reduce using rule 30 (terminal_sequence -> NUM .)
+    OPT             reduce using rule 30 (terminal_sequence -> NUM .)
+    LCPAR           reduce using rule 30 (terminal_sequence -> NUM .)
+    LPAR            reduce using rule 30 (terminal_sequence -> NUM .)
+    LSPAR           reduce using rule 30 (terminal_sequence -> NUM .)
+    ANYCHAR         reduce using rule 30 (terminal_sequence -> NUM .)
+    DOLLAR          reduce using rule 30 (terminal_sequence -> NUM .)
+    MINUS           reduce using rule 30 (terminal_sequence -> NUM .)
+    CHAR            reduce using rule 30 (terminal_sequence -> NUM .)
+    NUM             reduce using rule 30 (terminal_sequence -> NUM .)
+    HEXA            reduce using rule 30 (terminal_sequence -> NUM .)
+    COMMA           reduce using rule 30 (terminal_sequence -> NUM .)
+    WHITESPACE      reduce using rule 30 (terminal_sequence -> NUM .)
+    WHITESPACE_COMPLEMENTED reduce using rule 30 (terminal_sequence -> NUM .)
+    DIGIT           reduce using rule 30 (terminal_sequence -> NUM .)
+    DIGIT_COMPLEMENTED reduce using rule 30 (terminal_sequence -> NUM .)
+    ALPHANUMERIC    reduce using rule 30 (terminal_sequence -> NUM .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 30 (terminal_sequence -> NUM .)
+    OR              reduce using rule 30 (terminal_sequence -> NUM .)
+    $end            reduce using rule 30 (terminal_sequence -> NUM .)
+    RPAR            reduce using rule 30 (terminal_sequence -> NUM .)
+    RSPAR           reduce using rule 30 (terminal_sequence -> NUM .)
+
+
+state 7
+
+    (32) terminal_sequence -> COMMA .
+
+    TIMES           reduce using rule 32 (terminal_sequence -> COMMA .)
+    PLUS            reduce using rule 32 (terminal_sequence -> COMMA .)
+    OPT             reduce using rule 32 (terminal_sequence -> COMMA .)
+    LCPAR           reduce using rule 32 (terminal_sequence -> COMMA .)
+    LPAR            reduce using rule 32 (terminal_sequence -> COMMA .)
+    LSPAR           reduce using rule 32 (terminal_sequence -> COMMA .)
+    ANYCHAR         reduce using rule 32 (terminal_sequence -> COMMA .)
+    DOLLAR          reduce using rule 32 (terminal_sequence -> COMMA .)
+    MINUS           reduce using rule 32 (terminal_sequence -> COMMA .)
+    CHAR            reduce using rule 32 (terminal_sequence -> COMMA .)
+    NUM             reduce using rule 32 (terminal_sequence -> COMMA .)
+    HEXA            reduce using rule 32 (terminal_sequence -> COMMA .)
+    COMMA           reduce using rule 32 (terminal_sequence -> COMMA .)
+    WHITESPACE      reduce using rule 32 (terminal_sequence -> COMMA .)
+    WHITESPACE_COMPLEMENTED reduce using rule 32 (terminal_sequence -> COMMA .)
+    DIGIT           reduce using rule 32 (terminal_sequence -> COMMA .)
+    DIGIT_COMPLEMENTED reduce using rule 32 (terminal_sequence -> COMMA .)
+    ALPHANUMERIC    reduce using rule 32 (terminal_sequence -> COMMA .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 32 (terminal_sequence -> COMMA .)
+    OR              reduce using rule 32 (terminal_sequence -> COMMA .)
+    $end            reduce using rule 32 (terminal_sequence -> COMMA .)
+    RPAR            reduce using rule 32 (terminal_sequence -> COMMA .)
+    RSPAR           reduce using rule 32 (terminal_sequence -> COMMA .)
+
+
+state 8
+
+    (15) subexpr -> LPAR . alternative RPAR
+    (2) alternative -> . alternative OR concatenation
+    (3) alternative -> . alternative OR
+    (4) alternative -> . concatenation
+    (5) concatenation -> . concatenation repetition
+    (6) concatenation -> . repetition
+    (7) repetition -> . subexpr TIMES
+    (8) repetition -> . subexpr PLUS
+    (9) repetition -> . subexpr OPT
+    (10) repetition -> . subexpr LCPAR NUM RCPAR
+    (11) repetition -> . subexpr LCPAR COMMA NUM RCPAR
+    (12) repetition -> . subexpr LCPAR NUM COMMA RCPAR
+    (13) repetition -> . subexpr LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> . subexpr
+    (15) subexpr -> . LPAR alternative RPAR
+    (16) subexpr -> . LSPAR HAT group RSPAR
+    (17) subexpr -> . LSPAR group RSPAR
+    (18) subexpr -> . terminal_sequence
+    (19) subexpr -> . metachar
+    (20) subexpr -> . ANYCHAR
+    (21) subexpr -> . DOLLAR
+    (22) subexpr -> . MINUS
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    LPAR            shift and go to state 8
+    LSPAR           shift and go to state 9
+    ANYCHAR         shift and go to state 12
+    DOLLAR          shift and go to state 13
+    MINUS           shift and go to state 14
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    alternative                    shift and go to state 29
+    concatenation                  shift and go to state 3
+    repetition                     shift and go to state 4
+    subexpr                        shift and go to state 5
+    terminal_sequence              shift and go to state 10
+    metachar                       shift and go to state 11
+
+state 9
+
+    (16) subexpr -> LSPAR . HAT group RSPAR
+    (17) subexpr -> LSPAR . group RSPAR
+    (23) group -> . terminal_sequence MINUS terminal_sequence group
+    (24) group -> . terminal_sequence MINUS terminal_sequence
+    (25) group -> . terminal_sequence group
+    (26) group -> . terminal_sequence
+    (27) group -> . metachar group
+    (28) group -> . metachar
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    HAT             shift and go to state 30
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    group                          shift and go to state 31
+    terminal_sequence              shift and go to state 32
+    metachar                       shift and go to state 33
+
+state 10
+
+    (18) subexpr -> terminal_sequence .
+
+    TIMES           reduce using rule 18 (subexpr -> terminal_sequence .)
+    PLUS            reduce using rule 18 (subexpr -> terminal_sequence .)
+    OPT             reduce using rule 18 (subexpr -> terminal_sequence .)
+    LCPAR           reduce using rule 18 (subexpr -> terminal_sequence .)
+    LPAR            reduce using rule 18 (subexpr -> terminal_sequence .)
+    LSPAR           reduce using rule 18 (subexpr -> terminal_sequence .)
+    ANYCHAR         reduce using rule 18 (subexpr -> terminal_sequence .)
+    DOLLAR          reduce using rule 18 (subexpr -> terminal_sequence .)
+    MINUS           reduce using rule 18 (subexpr -> terminal_sequence .)
+    CHAR            reduce using rule 18 (subexpr -> terminal_sequence .)
+    NUM             reduce using rule 18 (subexpr -> terminal_sequence .)
+    HEXA            reduce using rule 18 (subexpr -> terminal_sequence .)
+    COMMA           reduce using rule 18 (subexpr -> terminal_sequence .)
+    WHITESPACE      reduce using rule 18 (subexpr -> terminal_sequence .)
+    WHITESPACE_COMPLEMENTED reduce using rule 18 (subexpr -> terminal_sequence .)
+    DIGIT           reduce using rule 18 (subexpr -> terminal_sequence .)
+    DIGIT_COMPLEMENTED reduce using rule 18 (subexpr -> terminal_sequence .)
+    ALPHANUMERIC    reduce using rule 18 (subexpr -> terminal_sequence .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 18 (subexpr -> terminal_sequence .)
+    OR              reduce using rule 18 (subexpr -> terminal_sequence .)
+    $end            reduce using rule 18 (subexpr -> terminal_sequence .)
+    RPAR            reduce using rule 18 (subexpr -> terminal_sequence .)
+
+
+state 11
+
+    (19) subexpr -> metachar .
+
+    TIMES           reduce using rule 19 (subexpr -> metachar .)
+    PLUS            reduce using rule 19 (subexpr -> metachar .)
+    OPT             reduce using rule 19 (subexpr -> metachar .)
+    LCPAR           reduce using rule 19 (subexpr -> metachar .)
+    LPAR            reduce using rule 19 (subexpr -> metachar .)
+    LSPAR           reduce using rule 19 (subexpr -> metachar .)
+    ANYCHAR         reduce using rule 19 (subexpr -> metachar .)
+    DOLLAR          reduce using rule 19 (subexpr -> metachar .)
+    MINUS           reduce using rule 19 (subexpr -> metachar .)
+    CHAR            reduce using rule 19 (subexpr -> metachar .)
+    NUM             reduce using rule 19 (subexpr -> metachar .)
+    HEXA            reduce using rule 19 (subexpr -> metachar .)
+    COMMA           reduce using rule 19 (subexpr -> metachar .)
+    WHITESPACE      reduce using rule 19 (subexpr -> metachar .)
+    WHITESPACE_COMPLEMENTED reduce using rule 19 (subexpr -> metachar .)
+    DIGIT           reduce using rule 19 (subexpr -> metachar .)
+    DIGIT_COMPLEMENTED reduce using rule 19 (subexpr -> metachar .)
+    ALPHANUMERIC    reduce using rule 19 (subexpr -> metachar .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 19 (subexpr -> metachar .)
+    OR              reduce using rule 19 (subexpr -> metachar .)
+    $end            reduce using rule 19 (subexpr -> metachar .)
+    RPAR            reduce using rule 19 (subexpr -> metachar .)
+
+
+state 12
+
+    (20) subexpr -> ANYCHAR .
+
+    TIMES           reduce using rule 20 (subexpr -> ANYCHAR .)
+    PLUS            reduce using rule 20 (subexpr -> ANYCHAR .)
+    OPT             reduce using rule 20 (subexpr -> ANYCHAR .)
+    LCPAR           reduce using rule 20 (subexpr -> ANYCHAR .)
+    LPAR            reduce using rule 20 (subexpr -> ANYCHAR .)
+    LSPAR           reduce using rule 20 (subexpr -> ANYCHAR .)
+    ANYCHAR         reduce using rule 20 (subexpr -> ANYCHAR .)
+    DOLLAR          reduce using rule 20 (subexpr -> ANYCHAR .)
+    MINUS           reduce using rule 20 (subexpr -> ANYCHAR .)
+    CHAR            reduce using rule 20 (subexpr -> ANYCHAR .)
+    NUM             reduce using rule 20 (subexpr -> ANYCHAR .)
+    HEXA            reduce using rule 20 (subexpr -> ANYCHAR .)
+    COMMA           reduce using rule 20 (subexpr -> ANYCHAR .)
+    WHITESPACE      reduce using rule 20 (subexpr -> ANYCHAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 20 (subexpr -> ANYCHAR .)
+    DIGIT           reduce using rule 20 (subexpr -> ANYCHAR .)
+    DIGIT_COMPLEMENTED reduce using rule 20 (subexpr -> ANYCHAR .)
+    ALPHANUMERIC    reduce using rule 20 (subexpr -> ANYCHAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 20 (subexpr -> ANYCHAR .)
+    OR              reduce using rule 20 (subexpr -> ANYCHAR .)
+    $end            reduce using rule 20 (subexpr -> ANYCHAR .)
+    RPAR            reduce using rule 20 (subexpr -> ANYCHAR .)
+
+
+state 13
+
+    (21) subexpr -> DOLLAR .
+
+    TIMES           reduce using rule 21 (subexpr -> DOLLAR .)
+    PLUS            reduce using rule 21 (subexpr -> DOLLAR .)
+    OPT             reduce using rule 21 (subexpr -> DOLLAR .)
+    LCPAR           reduce using rule 21 (subexpr -> DOLLAR .)
+    LPAR            reduce using rule 21 (subexpr -> DOLLAR .)
+    LSPAR           reduce using rule 21 (subexpr -> DOLLAR .)
+    ANYCHAR         reduce using rule 21 (subexpr -> DOLLAR .)
+    DOLLAR          reduce using rule 21 (subexpr -> DOLLAR .)
+    MINUS           reduce using rule 21 (subexpr -> DOLLAR .)
+    CHAR            reduce using rule 21 (subexpr -> DOLLAR .)
+    NUM             reduce using rule 21 (subexpr -> DOLLAR .)
+    HEXA            reduce using rule 21 (subexpr -> DOLLAR .)
+    COMMA           reduce using rule 21 (subexpr -> DOLLAR .)
+    WHITESPACE      reduce using rule 21 (subexpr -> DOLLAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 21 (subexpr -> DOLLAR .)
+    DIGIT           reduce using rule 21 (subexpr -> DOLLAR .)
+    DIGIT_COMPLEMENTED reduce using rule 21 (subexpr -> DOLLAR .)
+    ALPHANUMERIC    reduce using rule 21 (subexpr -> DOLLAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 21 (subexpr -> DOLLAR .)
+    OR              reduce using rule 21 (subexpr -> DOLLAR .)
+    $end            reduce using rule 21 (subexpr -> DOLLAR .)
+    RPAR            reduce using rule 21 (subexpr -> DOLLAR .)
+
+
+state 14
+
+    (22) subexpr -> MINUS .
+
+    TIMES           reduce using rule 22 (subexpr -> MINUS .)
+    PLUS            reduce using rule 22 (subexpr -> MINUS .)
+    OPT             reduce using rule 22 (subexpr -> MINUS .)
+    LCPAR           reduce using rule 22 (subexpr -> MINUS .)
+    LPAR            reduce using rule 22 (subexpr -> MINUS .)
+    LSPAR           reduce using rule 22 (subexpr -> MINUS .)
+    ANYCHAR         reduce using rule 22 (subexpr -> MINUS .)
+    DOLLAR          reduce using rule 22 (subexpr -> MINUS .)
+    MINUS           reduce using rule 22 (subexpr -> MINUS .)
+    CHAR            reduce using rule 22 (subexpr -> MINUS .)
+    NUM             reduce using rule 22 (subexpr -> MINUS .)
+    HEXA            reduce using rule 22 (subexpr -> MINUS .)
+    COMMA           reduce using rule 22 (subexpr -> MINUS .)
+    WHITESPACE      reduce using rule 22 (subexpr -> MINUS .)
+    WHITESPACE_COMPLEMENTED reduce using rule 22 (subexpr -> MINUS .)
+    DIGIT           reduce using rule 22 (subexpr -> MINUS .)
+    DIGIT_COMPLEMENTED reduce using rule 22 (subexpr -> MINUS .)
+    ALPHANUMERIC    reduce using rule 22 (subexpr -> MINUS .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 22 (subexpr -> MINUS .)
+    OR              reduce using rule 22 (subexpr -> MINUS .)
+    $end            reduce using rule 22 (subexpr -> MINUS .)
+    RPAR            reduce using rule 22 (subexpr -> MINUS .)
+
+
+state 15
+
+    (29) terminal_sequence -> CHAR .
+
+    TIMES           reduce using rule 29 (terminal_sequence -> CHAR .)
+    PLUS            reduce using rule 29 (terminal_sequence -> CHAR .)
+    OPT             reduce using rule 29 (terminal_sequence -> CHAR .)
+    LCPAR           reduce using rule 29 (terminal_sequence -> CHAR .)
+    LPAR            reduce using rule 29 (terminal_sequence -> CHAR .)
+    LSPAR           reduce using rule 29 (terminal_sequence -> CHAR .)
+    ANYCHAR         reduce using rule 29 (terminal_sequence -> CHAR .)
+    DOLLAR          reduce using rule 29 (terminal_sequence -> CHAR .)
+    MINUS           reduce using rule 29 (terminal_sequence -> CHAR .)
+    CHAR            reduce using rule 29 (terminal_sequence -> CHAR .)
+    NUM             reduce using rule 29 (terminal_sequence -> CHAR .)
+    HEXA            reduce using rule 29 (terminal_sequence -> CHAR .)
+    COMMA           reduce using rule 29 (terminal_sequence -> CHAR .)
+    WHITESPACE      reduce using rule 29 (terminal_sequence -> CHAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 29 (terminal_sequence -> CHAR .)
+    DIGIT           reduce using rule 29 (terminal_sequence -> CHAR .)
+    DIGIT_COMPLEMENTED reduce using rule 29 (terminal_sequence -> CHAR .)
+    ALPHANUMERIC    reduce using rule 29 (terminal_sequence -> CHAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 29 (terminal_sequence -> CHAR .)
+    OR              reduce using rule 29 (terminal_sequence -> CHAR .)
+    $end            reduce using rule 29 (terminal_sequence -> CHAR .)
+    RPAR            reduce using rule 29 (terminal_sequence -> CHAR .)
+    RSPAR           reduce using rule 29 (terminal_sequence -> CHAR .)
+
+
+state 16
+
+    (31) terminal_sequence -> HEXA .
+
+    TIMES           reduce using rule 31 (terminal_sequence -> HEXA .)
+    PLUS            reduce using rule 31 (terminal_sequence -> HEXA .)
+    OPT             reduce using rule 31 (terminal_sequence -> HEXA .)
+    LCPAR           reduce using rule 31 (terminal_sequence -> HEXA .)
+    LPAR            reduce using rule 31 (terminal_sequence -> HEXA .)
+    LSPAR           reduce using rule 31 (terminal_sequence -> HEXA .)
+    ANYCHAR         reduce using rule 31 (terminal_sequence -> HEXA .)
+    DOLLAR          reduce using rule 31 (terminal_sequence -> HEXA .)
+    MINUS           reduce using rule 31 (terminal_sequence -> HEXA .)
+    CHAR            reduce using rule 31 (terminal_sequence -> HEXA .)
+    NUM             reduce using rule 31 (terminal_sequence -> HEXA .)
+    HEXA            reduce using rule 31 (terminal_sequence -> HEXA .)
+    COMMA           reduce using rule 31 (terminal_sequence -> HEXA .)
+    WHITESPACE      reduce using rule 31 (terminal_sequence -> HEXA .)
+    WHITESPACE_COMPLEMENTED reduce using rule 31 (terminal_sequence -> HEXA .)
+    DIGIT           reduce using rule 31 (terminal_sequence -> HEXA .)
+    DIGIT_COMPLEMENTED reduce using rule 31 (terminal_sequence -> HEXA .)
+    ALPHANUMERIC    reduce using rule 31 (terminal_sequence -> HEXA .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 31 (terminal_sequence -> HEXA .)
+    OR              reduce using rule 31 (terminal_sequence -> HEXA .)
+    $end            reduce using rule 31 (terminal_sequence -> HEXA .)
+    RPAR            reduce using rule 31 (terminal_sequence -> HEXA .)
+    RSPAR           reduce using rule 31 (terminal_sequence -> HEXA .)
+
+
+state 17
+
+    (33) metachar -> WHITESPACE .
+
+    TIMES           reduce using rule 33 (metachar -> WHITESPACE .)
+    PLUS            reduce using rule 33 (metachar -> WHITESPACE .)
+    OPT             reduce using rule 33 (metachar -> WHITESPACE .)
+    LCPAR           reduce using rule 33 (metachar -> WHITESPACE .)
+    LPAR            reduce using rule 33 (metachar -> WHITESPACE .)
+    LSPAR           reduce using rule 33 (metachar -> WHITESPACE .)
+    ANYCHAR         reduce using rule 33 (metachar -> WHITESPACE .)
+    DOLLAR          reduce using rule 33 (metachar -> WHITESPACE .)
+    MINUS           reduce using rule 33 (metachar -> WHITESPACE .)
+    CHAR            reduce using rule 33 (metachar -> WHITESPACE .)
+    NUM             reduce using rule 33 (metachar -> WHITESPACE .)
+    HEXA            reduce using rule 33 (metachar -> WHITESPACE .)
+    COMMA           reduce using rule 33 (metachar -> WHITESPACE .)
+    WHITESPACE      reduce using rule 33 (metachar -> WHITESPACE .)
+    WHITESPACE_COMPLEMENTED reduce using rule 33 (metachar -> WHITESPACE .)
+    DIGIT           reduce using rule 33 (metachar -> WHITESPACE .)
+    DIGIT_COMPLEMENTED reduce using rule 33 (metachar -> WHITESPACE .)
+    ALPHANUMERIC    reduce using rule 33 (metachar -> WHITESPACE .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 33 (metachar -> WHITESPACE .)
+    OR              reduce using rule 33 (metachar -> WHITESPACE .)
+    $end            reduce using rule 33 (metachar -> WHITESPACE .)
+    RPAR            reduce using rule 33 (metachar -> WHITESPACE .)
+    RSPAR           reduce using rule 33 (metachar -> WHITESPACE .)
+
+
+state 18
+
+    (34) metachar -> WHITESPACE_COMPLEMENTED .
+
+    TIMES           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    PLUS            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    OPT             reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    LCPAR           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    LPAR            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    LSPAR           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    ANYCHAR         reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    DOLLAR          reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    MINUS           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    CHAR            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    NUM             reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    HEXA            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    COMMA           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    WHITESPACE      reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    WHITESPACE_COMPLEMENTED reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    DIGIT           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    DIGIT_COMPLEMENTED reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    ALPHANUMERIC    reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    OR              reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    $end            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    RPAR            reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+    RSPAR           reduce using rule 34 (metachar -> WHITESPACE_COMPLEMENTED .)
+
+
+state 19
+
+    (35) metachar -> DIGIT .
+
+    TIMES           reduce using rule 35 (metachar -> DIGIT .)
+    PLUS            reduce using rule 35 (metachar -> DIGIT .)
+    OPT             reduce using rule 35 (metachar -> DIGIT .)
+    LCPAR           reduce using rule 35 (metachar -> DIGIT .)
+    LPAR            reduce using rule 35 (metachar -> DIGIT .)
+    LSPAR           reduce using rule 35 (metachar -> DIGIT .)
+    ANYCHAR         reduce using rule 35 (metachar -> DIGIT .)
+    DOLLAR          reduce using rule 35 (metachar -> DIGIT .)
+    MINUS           reduce using rule 35 (metachar -> DIGIT .)
+    CHAR            reduce using rule 35 (metachar -> DIGIT .)
+    NUM             reduce using rule 35 (metachar -> DIGIT .)
+    HEXA            reduce using rule 35 (metachar -> DIGIT .)
+    COMMA           reduce using rule 35 (metachar -> DIGIT .)
+    WHITESPACE      reduce using rule 35 (metachar -> DIGIT .)
+    WHITESPACE_COMPLEMENTED reduce using rule 35 (metachar -> DIGIT .)
+    DIGIT           reduce using rule 35 (metachar -> DIGIT .)
+    DIGIT_COMPLEMENTED reduce using rule 35 (metachar -> DIGIT .)
+    ALPHANUMERIC    reduce using rule 35 (metachar -> DIGIT .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 35 (metachar -> DIGIT .)
+    OR              reduce using rule 35 (metachar -> DIGIT .)
+    $end            reduce using rule 35 (metachar -> DIGIT .)
+    RPAR            reduce using rule 35 (metachar -> DIGIT .)
+    RSPAR           reduce using rule 35 (metachar -> DIGIT .)
+
+
+state 20
+
+    (36) metachar -> DIGIT_COMPLEMENTED .
+
+    TIMES           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    PLUS            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    OPT             reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    LCPAR           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    LPAR            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    LSPAR           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    ANYCHAR         reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    DOLLAR          reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    MINUS           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    CHAR            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    NUM             reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    HEXA            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    COMMA           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    WHITESPACE      reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    WHITESPACE_COMPLEMENTED reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    DIGIT           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    DIGIT_COMPLEMENTED reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    ALPHANUMERIC    reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    OR              reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    $end            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    RPAR            reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+    RSPAR           reduce using rule 36 (metachar -> DIGIT_COMPLEMENTED .)
+
+
+state 21
+
+    (37) metachar -> ALPHANUMERIC .
+
+    TIMES           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    PLUS            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    OPT             reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    LCPAR           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    LPAR            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    LSPAR           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    ANYCHAR         reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    DOLLAR          reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    MINUS           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    CHAR            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    NUM             reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    HEXA            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    COMMA           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    WHITESPACE      reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    WHITESPACE_COMPLEMENTED reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    DIGIT           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    DIGIT_COMPLEMENTED reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    ALPHANUMERIC    reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    OR              reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    $end            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    RPAR            reduce using rule 37 (metachar -> ALPHANUMERIC .)
+    RSPAR           reduce using rule 37 (metachar -> ALPHANUMERIC .)
+
+
+state 22
+
+    (38) metachar -> ALPHANUMERIC_COMPLEMENTED .
+
+    TIMES           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    PLUS            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    OPT             reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    LCPAR           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    LPAR            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    LSPAR           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    ANYCHAR         reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    DOLLAR          reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    MINUS           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    CHAR            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    NUM             reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    HEXA            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    COMMA           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    WHITESPACE      reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    WHITESPACE_COMPLEMENTED reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    DIGIT           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    DIGIT_COMPLEMENTED reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    ALPHANUMERIC    reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    OR              reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    $end            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    RPAR            reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+    RSPAR           reduce using rule 38 (metachar -> ALPHANUMERIC_COMPLEMENTED .)
+
+
+state 23
+
+    (2) alternative -> alternative OR . concatenation
+    (3) alternative -> alternative OR .
+    (5) concatenation -> . concatenation repetition
+    (6) concatenation -> . repetition
+    (7) repetition -> . subexpr TIMES
+    (8) repetition -> . subexpr PLUS
+    (9) repetition -> . subexpr OPT
+    (10) repetition -> . subexpr LCPAR NUM RCPAR
+    (11) repetition -> . subexpr LCPAR COMMA NUM RCPAR
+    (12) repetition -> . subexpr LCPAR NUM COMMA RCPAR
+    (13) repetition -> . subexpr LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> . subexpr
+    (15) subexpr -> . LPAR alternative RPAR
+    (16) subexpr -> . LSPAR HAT group RSPAR
+    (17) subexpr -> . LSPAR group RSPAR
+    (18) subexpr -> . terminal_sequence
+    (19) subexpr -> . metachar
+    (20) subexpr -> . ANYCHAR
+    (21) subexpr -> . DOLLAR
+    (22) subexpr -> . MINUS
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    OR              reduce using rule 3 (alternative -> alternative OR .)
+    $end            reduce using rule 3 (alternative -> alternative OR .)
+    RPAR            reduce using rule 3 (alternative -> alternative OR .)
+    LPAR            shift and go to state 8
+    LSPAR           shift and go to state 9
+    ANYCHAR         shift and go to state 12
+    DOLLAR          shift and go to state 13
+    MINUS           shift and go to state 14
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    concatenation                  shift and go to state 34
+    repetition                     shift and go to state 4
+    subexpr                        shift and go to state 5
+    terminal_sequence              shift and go to state 10
+    metachar                       shift and go to state 11
+
+state 24
+
+    (5) concatenation -> concatenation repetition .
+
+    LPAR            reduce using rule 5 (concatenation -> concatenation repetition .)
+    LSPAR           reduce using rule 5 (concatenation -> concatenation repetition .)
+    ANYCHAR         reduce using rule 5 (concatenation -> concatenation repetition .)
+    DOLLAR          reduce using rule 5 (concatenation -> concatenation repetition .)
+    MINUS           reduce using rule 5 (concatenation -> concatenation repetition .)
+    CHAR            reduce using rule 5 (concatenation -> concatenation repetition .)
+    NUM             reduce using rule 5 (concatenation -> concatenation repetition .)
+    HEXA            reduce using rule 5 (concatenation -> concatenation repetition .)
+    COMMA           reduce using rule 5 (concatenation -> concatenation repetition .)
+    WHITESPACE      reduce using rule 5 (concatenation -> concatenation repetition .)
+    WHITESPACE_COMPLEMENTED reduce using rule 5 (concatenation -> concatenation repetition .)
+    DIGIT           reduce using rule 5 (concatenation -> concatenation repetition .)
+    DIGIT_COMPLEMENTED reduce using rule 5 (concatenation -> concatenation repetition .)
+    ALPHANUMERIC    reduce using rule 5 (concatenation -> concatenation repetition .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 5 (concatenation -> concatenation repetition .)
+    OR              reduce using rule 5 (concatenation -> concatenation repetition .)
+    $end            reduce using rule 5 (concatenation -> concatenation repetition .)
+    RPAR            reduce using rule 5 (concatenation -> concatenation repetition .)
+
+
+state 25
+
+    (7) repetition -> subexpr TIMES .
+
+    LPAR            reduce using rule 7 (repetition -> subexpr TIMES .)
+    LSPAR           reduce using rule 7 (repetition -> subexpr TIMES .)
+    ANYCHAR         reduce using rule 7 (repetition -> subexpr TIMES .)
+    DOLLAR          reduce using rule 7 (repetition -> subexpr TIMES .)
+    MINUS           reduce using rule 7 (repetition -> subexpr TIMES .)
+    CHAR            reduce using rule 7 (repetition -> subexpr TIMES .)
+    NUM             reduce using rule 7 (repetition -> subexpr TIMES .)
+    HEXA            reduce using rule 7 (repetition -> subexpr TIMES .)
+    COMMA           reduce using rule 7 (repetition -> subexpr TIMES .)
+    WHITESPACE      reduce using rule 7 (repetition -> subexpr TIMES .)
+    WHITESPACE_COMPLEMENTED reduce using rule 7 (repetition -> subexpr TIMES .)
+    DIGIT           reduce using rule 7 (repetition -> subexpr TIMES .)
+    DIGIT_COMPLEMENTED reduce using rule 7 (repetition -> subexpr TIMES .)
+    ALPHANUMERIC    reduce using rule 7 (repetition -> subexpr TIMES .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 7 (repetition -> subexpr TIMES .)
+    OR              reduce using rule 7 (repetition -> subexpr TIMES .)
+    $end            reduce using rule 7 (repetition -> subexpr TIMES .)
+    RPAR            reduce using rule 7 (repetition -> subexpr TIMES .)
+
+
+state 26
+
+    (8) repetition -> subexpr PLUS .
+
+    LPAR            reduce using rule 8 (repetition -> subexpr PLUS .)
+    LSPAR           reduce using rule 8 (repetition -> subexpr PLUS .)
+    ANYCHAR         reduce using rule 8 (repetition -> subexpr PLUS .)
+    DOLLAR          reduce using rule 8 (repetition -> subexpr PLUS .)
+    MINUS           reduce using rule 8 (repetition -> subexpr PLUS .)
+    CHAR            reduce using rule 8 (repetition -> subexpr PLUS .)
+    NUM             reduce using rule 8 (repetition -> subexpr PLUS .)
+    HEXA            reduce using rule 8 (repetition -> subexpr PLUS .)
+    COMMA           reduce using rule 8 (repetition -> subexpr PLUS .)
+    WHITESPACE      reduce using rule 8 (repetition -> subexpr PLUS .)
+    WHITESPACE_COMPLEMENTED reduce using rule 8 (repetition -> subexpr PLUS .)
+    DIGIT           reduce using rule 8 (repetition -> subexpr PLUS .)
+    DIGIT_COMPLEMENTED reduce using rule 8 (repetition -> subexpr PLUS .)
+    ALPHANUMERIC    reduce using rule 8 (repetition -> subexpr PLUS .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 8 (repetition -> subexpr PLUS .)
+    OR              reduce using rule 8 (repetition -> subexpr PLUS .)
+    $end            reduce using rule 8 (repetition -> subexpr PLUS .)
+    RPAR            reduce using rule 8 (repetition -> subexpr PLUS .)
+
+
+state 27
+
+    (9) repetition -> subexpr OPT .
+
+    LPAR            reduce using rule 9 (repetition -> subexpr OPT .)
+    LSPAR           reduce using rule 9 (repetition -> subexpr OPT .)
+    ANYCHAR         reduce using rule 9 (repetition -> subexpr OPT .)
+    DOLLAR          reduce using rule 9 (repetition -> subexpr OPT .)
+    MINUS           reduce using rule 9 (repetition -> subexpr OPT .)
+    CHAR            reduce using rule 9 (repetition -> subexpr OPT .)
+    NUM             reduce using rule 9 (repetition -> subexpr OPT .)
+    HEXA            reduce using rule 9 (repetition -> subexpr OPT .)
+    COMMA           reduce using rule 9 (repetition -> subexpr OPT .)
+    WHITESPACE      reduce using rule 9 (repetition -> subexpr OPT .)
+    WHITESPACE_COMPLEMENTED reduce using rule 9 (repetition -> subexpr OPT .)
+    DIGIT           reduce using rule 9 (repetition -> subexpr OPT .)
+    DIGIT_COMPLEMENTED reduce using rule 9 (repetition -> subexpr OPT .)
+    ALPHANUMERIC    reduce using rule 9 (repetition -> subexpr OPT .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 9 (repetition -> subexpr OPT .)
+    OR              reduce using rule 9 (repetition -> subexpr OPT .)
+    $end            reduce using rule 9 (repetition -> subexpr OPT .)
+    RPAR            reduce using rule 9 (repetition -> subexpr OPT .)
+
+
+state 28
+
+    (10) repetition -> subexpr LCPAR . NUM RCPAR
+    (11) repetition -> subexpr LCPAR . COMMA NUM RCPAR
+    (12) repetition -> subexpr LCPAR . NUM COMMA RCPAR
+    (13) repetition -> subexpr LCPAR . NUM COMMA NUM RCPAR
+
+    NUM             shift and go to state 35
+    COMMA           shift and go to state 36
+
+
+state 29
+
+    (15) subexpr -> LPAR alternative . RPAR
+    (2) alternative -> alternative . OR concatenation
+    (3) alternative -> alternative . OR
+
+    RPAR            shift and go to state 37
+    OR              shift and go to state 23
+
+
+state 30
+
+    (16) subexpr -> LSPAR HAT . group RSPAR
+    (23) group -> . terminal_sequence MINUS terminal_sequence group
+    (24) group -> . terminal_sequence MINUS terminal_sequence
+    (25) group -> . terminal_sequence group
+    (26) group -> . terminal_sequence
+    (27) group -> . metachar group
+    (28) group -> . metachar
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    group                          shift and go to state 38
+    terminal_sequence              shift and go to state 32
+    metachar                       shift and go to state 33
+
+state 31
+
+    (17) subexpr -> LSPAR group . RSPAR
+
+    RSPAR           shift and go to state 39
+
+
+state 32
+
+    (23) group -> terminal_sequence . MINUS terminal_sequence group
+    (24) group -> terminal_sequence . MINUS terminal_sequence
+    (25) group -> terminal_sequence . group
+    (26) group -> terminal_sequence .
+    (23) group -> . terminal_sequence MINUS terminal_sequence group
+    (24) group -> . terminal_sequence MINUS terminal_sequence
+    (25) group -> . terminal_sequence group
+    (26) group -> . terminal_sequence
+    (27) group -> . metachar group
+    (28) group -> . metachar
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    MINUS           shift and go to state 40
+    RSPAR           reduce using rule 26 (group -> terminal_sequence .)
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    terminal_sequence              shift and go to state 32
+    group                          shift and go to state 41
+    metachar                       shift and go to state 33
+
+state 33
+
+    (27) group -> metachar . group
+    (28) group -> metachar .
+    (23) group -> . terminal_sequence MINUS terminal_sequence group
+    (24) group -> . terminal_sequence MINUS terminal_sequence
+    (25) group -> . terminal_sequence group
+    (26) group -> . terminal_sequence
+    (27) group -> . metachar group
+    (28) group -> . metachar
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    RSPAR           reduce using rule 28 (group -> metachar .)
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    metachar                       shift and go to state 33
+    group                          shift and go to state 42
+    terminal_sequence              shift and go to state 32
+
+state 34
+
+    (2) alternative -> alternative OR concatenation .
+    (5) concatenation -> concatenation . repetition
+    (7) repetition -> . subexpr TIMES
+    (8) repetition -> . subexpr PLUS
+    (9) repetition -> . subexpr OPT
+    (10) repetition -> . subexpr LCPAR NUM RCPAR
+    (11) repetition -> . subexpr LCPAR COMMA NUM RCPAR
+    (12) repetition -> . subexpr LCPAR NUM COMMA RCPAR
+    (13) repetition -> . subexpr LCPAR NUM COMMA NUM RCPAR
+    (14) repetition -> . subexpr
+    (15) subexpr -> . LPAR alternative RPAR
+    (16) subexpr -> . LSPAR HAT group RSPAR
+    (17) subexpr -> . LSPAR group RSPAR
+    (18) subexpr -> . terminal_sequence
+    (19) subexpr -> . metachar
+    (20) subexpr -> . ANYCHAR
+    (21) subexpr -> . DOLLAR
+    (22) subexpr -> . MINUS
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    OR              reduce using rule 2 (alternative -> alternative OR concatenation .)
+    $end            reduce using rule 2 (alternative -> alternative OR concatenation .)
+    RPAR            reduce using rule 2 (alternative -> alternative OR concatenation .)
+    LPAR            shift and go to state 8
+    LSPAR           shift and go to state 9
+    ANYCHAR         shift and go to state 12
+    DOLLAR          shift and go to state 13
+    MINUS           shift and go to state 14
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    repetition                     shift and go to state 24
+    subexpr                        shift and go to state 5
+    terminal_sequence              shift and go to state 10
+    metachar                       shift and go to state 11
+
+state 35
+
+    (10) repetition -> subexpr LCPAR NUM . RCPAR
+    (12) repetition -> subexpr LCPAR NUM . COMMA RCPAR
+    (13) repetition -> subexpr LCPAR NUM . COMMA NUM RCPAR
+
+    RCPAR           shift and go to state 43
+    COMMA           shift and go to state 44
+
+
+state 36
+
+    (11) repetition -> subexpr LCPAR COMMA . NUM RCPAR
+
+    NUM             shift and go to state 45
+
+
+state 37
+
+    (15) subexpr -> LPAR alternative RPAR .
+
+    TIMES           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    PLUS            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    OPT             reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    LCPAR           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    LPAR            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    LSPAR           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    ANYCHAR         reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    DOLLAR          reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    MINUS           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    CHAR            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    NUM             reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    HEXA            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    COMMA           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    WHITESPACE      reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    DIGIT           reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    ALPHANUMERIC    reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    OR              reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    $end            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+    RPAR            reduce using rule 15 (subexpr -> LPAR alternative RPAR .)
+
+
+state 38
+
+    (16) subexpr -> LSPAR HAT group . RSPAR
+
+    RSPAR           shift and go to state 46
+
+
+state 39
+
+    (17) subexpr -> LSPAR group RSPAR .
+
+    TIMES           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    PLUS            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    OPT             reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    LCPAR           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    LPAR            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    LSPAR           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    ANYCHAR         reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    DOLLAR          reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    MINUS           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    CHAR            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    NUM             reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    HEXA            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    COMMA           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    WHITESPACE      reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    DIGIT           reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    ALPHANUMERIC    reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    OR              reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    $end            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+    RPAR            reduce using rule 17 (subexpr -> LSPAR group RSPAR .)
+
+
+state 40
+
+    (23) group -> terminal_sequence MINUS . terminal_sequence group
+    (24) group -> terminal_sequence MINUS . terminal_sequence
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+
+    terminal_sequence              shift and go to state 47
+
+state 41
+
+    (25) group -> terminal_sequence group .
+
+    RSPAR           reduce using rule 25 (group -> terminal_sequence group .)
+
+
+state 42
+
+    (27) group -> metachar group .
+
+    RSPAR           reduce using rule 27 (group -> metachar group .)
+
+
+state 43
+
+    (10) repetition -> subexpr LCPAR NUM RCPAR .
+
+    LPAR            reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    LSPAR           reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    ANYCHAR         reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    DOLLAR          reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    MINUS           reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    CHAR            reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    NUM             reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    HEXA            reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    COMMA           reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    WHITESPACE      reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    DIGIT           reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    ALPHANUMERIC    reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    OR              reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    $end            reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+    RPAR            reduce using rule 10 (repetition -> subexpr LCPAR NUM RCPAR .)
+
+
+state 44
+
+    (12) repetition -> subexpr LCPAR NUM COMMA . RCPAR
+    (13) repetition -> subexpr LCPAR NUM COMMA . NUM RCPAR
+
+    RCPAR           shift and go to state 49
+    NUM             shift and go to state 48
+
+
+state 45
+
+    (11) repetition -> subexpr LCPAR COMMA NUM . RCPAR
+
+    RCPAR           shift and go to state 50
+
+
+state 46
+
+    (16) subexpr -> LSPAR HAT group RSPAR .
+
+    TIMES           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    PLUS            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    OPT             reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    LCPAR           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    LPAR            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    LSPAR           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    ANYCHAR         reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    DOLLAR          reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    MINUS           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    CHAR            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    NUM             reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    HEXA            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    COMMA           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    WHITESPACE      reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    DIGIT           reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    ALPHANUMERIC    reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    OR              reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    $end            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+    RPAR            reduce using rule 16 (subexpr -> LSPAR HAT group RSPAR .)
+
+
+state 47
+
+    (23) group -> terminal_sequence MINUS terminal_sequence . group
+    (24) group -> terminal_sequence MINUS terminal_sequence .
+    (23) group -> . terminal_sequence MINUS terminal_sequence group
+    (24) group -> . terminal_sequence MINUS terminal_sequence
+    (25) group -> . terminal_sequence group
+    (26) group -> . terminal_sequence
+    (27) group -> . metachar group
+    (28) group -> . metachar
+    (29) terminal_sequence -> . CHAR
+    (30) terminal_sequence -> . NUM
+    (31) terminal_sequence -> . HEXA
+    (32) terminal_sequence -> . COMMA
+    (33) metachar -> . WHITESPACE
+    (34) metachar -> . WHITESPACE_COMPLEMENTED
+    (35) metachar -> . DIGIT
+    (36) metachar -> . DIGIT_COMPLEMENTED
+    (37) metachar -> . ALPHANUMERIC
+    (38) metachar -> . ALPHANUMERIC_COMPLEMENTED
+
+    RSPAR           reduce using rule 24 (group -> terminal_sequence MINUS terminal_sequence .)
+    CHAR            shift and go to state 15
+    NUM             shift and go to state 6
+    HEXA            shift and go to state 16
+    COMMA           shift and go to state 7
+    WHITESPACE      shift and go to state 17
+    WHITESPACE_COMPLEMENTED shift and go to state 18
+    DIGIT           shift and go to state 19
+    DIGIT_COMPLEMENTED shift and go to state 20
+    ALPHANUMERIC    shift and go to state 21
+    ALPHANUMERIC_COMPLEMENTED shift and go to state 22
+
+    terminal_sequence              shift and go to state 32
+    group                          shift and go to state 51
+    metachar                       shift and go to state 33
+
+state 48
+
+    (13) repetition -> subexpr LCPAR NUM COMMA NUM . RCPAR
+
+    RCPAR           shift and go to state 52
+
+
+state 49
+
+    (12) repetition -> subexpr LCPAR NUM COMMA RCPAR .
+
+    LPAR            reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    LSPAR           reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    ANYCHAR         reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    DOLLAR          reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    MINUS           reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    CHAR            reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    NUM             reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    HEXA            reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    COMMA           reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    WHITESPACE      reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    DIGIT           reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    ALPHANUMERIC    reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    OR              reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    $end            reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+    RPAR            reduce using rule 12 (repetition -> subexpr LCPAR NUM COMMA RCPAR .)
+
+
+state 50
+
+    (11) repetition -> subexpr LCPAR COMMA NUM RCPAR .
+
+    LPAR            reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    LSPAR           reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    ANYCHAR         reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    DOLLAR          reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    MINUS           reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    CHAR            reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    NUM             reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    HEXA            reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    COMMA           reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    WHITESPACE      reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    DIGIT           reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    ALPHANUMERIC    reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    OR              reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    $end            reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+    RPAR            reduce using rule 11 (repetition -> subexpr LCPAR COMMA NUM RCPAR .)
+
+
+state 51
+
+    (23) group -> terminal_sequence MINUS terminal_sequence group .
+
+    RSPAR           reduce using rule 23 (group -> terminal_sequence MINUS terminal_sequence group .)
+
+
+state 52
+
+    (13) repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .
+
+    LPAR            reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    LSPAR           reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    ANYCHAR         reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    DOLLAR          reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    MINUS           reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    CHAR            reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    NUM             reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    HEXA            reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    COMMA           reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    WHITESPACE      reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    WHITESPACE_COMPLEMENTED reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    DIGIT           reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    DIGIT_COMPLEMENTED reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    ALPHANUMERIC    reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    ALPHANUMERIC_COMPLEMENTED reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    OR              reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    $end            reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+    RPAR            reduce using rule 13 (repetition -> subexpr LCPAR NUM COMMA NUM RCPAR .)
+

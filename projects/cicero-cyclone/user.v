@@ -43,5 +43,6 @@ AXI_top UIP (
 	.    end_cc_pointer_register        (end_cc_pointer),
    .               cmd_register			(command),
    .            status_register			(status),
-   .            data_o_register			(data_out)
+   .            data_o_register			(data_out),
+	. bMKR_D (bMKR_D)
 );
