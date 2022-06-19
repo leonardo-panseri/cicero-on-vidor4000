@@ -84,11 +84,6 @@ end
 
 always_comb 
 begin
-	bMKR_D[0] = bram_r[0];
-	bMKR_D[1] = bram_r[1];
-	bMKR_D[2] = bram_r[2];
-	bMKR_D[3] = bram_r[3];
-
     status_register_next               = status_register;
 
     elapsed_cc_next                    = elapsed_cc;

@@ -1,0 +1,1 @@
+vidorcvt.exe <..\projects\cicero-cyclone\output_files\MKRVIDOR4000.ttf >..\cicero-driver-sketch\app.h

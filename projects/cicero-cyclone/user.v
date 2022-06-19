@@ -29,11 +29,6 @@ Virtual_JTAG_Adapter VJA (
 	.          data_out    (data_out)
 );
 
-
-// Test signal
-assign bMKR_D[6] = data_in == 32'h87654321;
-
-
 AXI_top UIP (
    .                        clk			(wOSC_CLK),
    .             	          rst			(iRESETn),

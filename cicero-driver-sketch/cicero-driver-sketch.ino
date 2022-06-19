@@ -225,11 +225,11 @@ void printRAMContents(int dwordsToRead) {
 
 // Global variables
 uint32_t codeEndAddr;
-uint32_t status = 0;
+uint32_t status;
 
 String input;
-bool waiting = false;
-bool ciceroExecuting = false;
+bool waiting;
+bool ciceroExecuting;
 
 // Runs once on reset or power to the board
 void setup() {
@@ -242,6 +242,12 @@ void setup() {
   pinMode(2, INPUT);
   pinMode(3, INPUT);
   pinMode(6, INPUT);
+
+  // Initialize variables
+  status = 0;
+  input = "";
+  waiting = false;
+  ciceroExecuting = false;
 
   // Initialize Serial
   Serial.begin(9600);
@@ -277,7 +283,7 @@ void loop() {
           ciceroExecuting = true;
           loadStringAndStart(input, codeEndAddr);
 
-          printRAMContents(24);
+          printRAMContents(10);
         }
         input += inChar;
       }
