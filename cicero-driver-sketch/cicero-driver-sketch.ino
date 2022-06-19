@@ -3,6 +3,10 @@
 
 extern void enableFpgaClock(void);
 
+/*
+ * FPGA related data and setup functions
+ */
+
 // FPGA Pins
 #define TDI            12
 #define TDO            15
@@ -57,6 +61,10 @@ static void  setupFPGA() {
   delay(1000);
 }
 
+/*
+ * Defines for Cicero and Cicero interface constants
+ */
+
 // Virtual Instruction Register values
 #define VIR_STATUS            0x01
 #define VIR_COMMAND           0x02
@@ -83,12 +91,26 @@ static void  setupFPGA() {
 #define  STATUS_REJECTED           0x3
 #define  STATUS_ERROR              0x4
 
+/*
+ Machine code for Cicero
+ */
+
+uint8_t code[] = {
+  #include "code.h"
+};
+
+/*
+ * Driver for the Virtual JTAG communication interface
+ */
+
+// Reads the 32 bit data register associated with the given virtual instruction register value through the Virtual JTAG
 uint32_t readRegister32(uint8_t VIR) {
   uint8_t data[4];
   JTAG_Read_VDR_from_VIR(VIR, data, 32);
   return ((uint32_t) data[0]) | (((uint32_t) data[1]) << 8) | (((uint32_t) data[2]) << 16) | (((uint32_t) data[3]) << 24);
 }
 
+// Writes the 32 bit data register associated with the given virtual instruction register value through the Virtual JTAG
 void writeRegister32(uint8_t VIR, uint32_t data) {
   uint8_t bytes[4];
   bytes[0] = data;
@@ -98,7 +120,13 @@ void writeRegister32(uint8_t VIR, uint32_t data) {
   JTAG_Write_VDR_to_VIR(VIR, bytes, 32);
 }
 
-void writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
+/*
+ * Cicero drivers
+ */
+
+// Writes the given bytes to the RAM of Cicero, starting from the given address
+// Returns the next free address in the RAM
+uint32_t writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
   uint32_t addr = starting_addr;
   uint8_t dword[4];
   short first = 1;
@@ -120,39 +148,33 @@ void writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
     } else dword[0] = 0;
 
     writeRegister32(VIR_ADDRESS, addr);
-    delay(100);
     JTAG_Write_VDR_to_VIR(VIR_DATA_IN, dword, 32);
-
-    delay(1000);
 
     if (first) {
       first = 0;
       writeRegister32(VIR_COMMAND, CMD_WRITE);
-      delay(500);
     }
 
     addr = addr + bytes_written;
   }
 
   writeRegister32(VIR_COMMAND, CMD_NOP);
+  return addr;
 }
 
-void readDWordsFromRAM(uint32_t starting_addr, int dwordsToRead, uint32_t *res) {
+// Reads the given number of dwords (4 bytes) into the res array, starting from the given address
+void readDWordsFromRAM(int dwordsToRead, uint32_t *res, uint32_t starting_addr) {
   uint32_t addr = starting_addr;
   short first = 1;
   for(int i = 0; i < dwordsToRead; i++) {
     writeRegister32(VIR_ADDRESS, addr);
-    delay(100);
 
     if (first) {
       first = 0;
       writeRegister32(VIR_COMMAND, CMD_READ);
-      delay(500);
     }
 
     res[i] = readRegister32(VIR_DATA_OUT);
-
-    delay(1000);
 
     addr = addr + 4;
   }
@@ -160,12 +182,54 @@ void readDWordsFromRAM(uint32_t starting_addr, int dwordsToRead, uint32_t *res) 
   writeRegister32(VIR_COMMAND, CMD_NOP);
 }
 
-uint8_t code[] = {
-  #include "code.h"
-};
+// Loads machine code into Cicero RAM and return the next free RAM address
+uint32_t loadCode() {
+  // The length of the code in bytes is encoded in the first two bytes of the file
+  uint16_t codeNumBytes = ((uint16_t) code[1]) | (((uint16_t) code[0]) << 8);
+  return writeBytesToRAM(codeNumBytes, &code[2], 0);
+}
+
+// Converts a String into an array of bytes
+void convertStringToBytes(String string, uint8_t *res) {
+  for (int i = 0; i < string.length(); i++) {
+    res[i] = (uint8_t) string[i];
+  }
+}
+
+// Writes the given string into RAM and starts the execution of Cicero
+void loadStringAndStart(String str, uint32_t codeEndAddr) {
+  uint8_t strBytes[str.length()];
+  convertStringToBytes(str, strBytes);
+
+  uint32_t strStartAddr = ceil(codeEndAddr / 4) * 4;
+  uint32_t strEndAddr = writeBytesToRAM(str.length(), strBytes, strStartAddr);
+
+  writeRegister32(VIR_START_CC_POINTER, strStartAddr);
+  writeRegister32(VIR_END_CC_POINTER, strEndAddr);
+
+  writeRegister32(VIR_COMMAND, CMD_START);
+  writeRegister32(VIR_COMMAND, CMD_NOP);
+}
+
+/*
+ * Test functions
+ */
+void printRAMContents(int dwordsToRead) {
+  uint32_t bytesRead[dwordsToRead];
+  readDWordsFromRAM(dwordsToRead, bytesRead, 0);
+  Serial.println("RAM contents:");
+  for(int i = 0; i < dwordsToRead; i++) {
+    Serial.println(bytesRead[i], HEX);
+  }
+}
 
 // Global variables
-int val;
+uint32_t codeEndAddr;
+uint32_t status = 0;
+
+String input;
+bool waiting = false;
+bool ciceroExecuting = false;
 
 // Runs once on reset or power to the board
 void setup() {
@@ -194,20 +258,36 @@ void setup() {
   //uint32_t res = readRegister32(VIR_DEBUG);
   //Serial.println(res, HEX);
 
-  // The length of the code in bytes is encoded in the first two bytes of the file
-  uint16_t codeNumBytes = ((uint16_t) code[1]) | (((uint16_t) code[0]) << 8);
-  writeBytesToRAM(codeNumBytes, &code[2], 0);
-
-  int dwordsToRead = ceil(codeNumBytes / 4);
-  uint32_t bytesRead[dwordsToRead];
-  readDWordsFromRAM(0, dwordsToRead, bytesRead);
-  Serial.println("Results");
-  for(int i = 0; i < dwordsToRead; i++) {
-    Serial.println(bytesRead[i], HEX);
-  }
+  codeEndAddr = loadCode();
 }
 
-// the loop function runs over and over again forever
+// Runs over and over again forever
 void loop() {
-  
+  if (!ciceroExecuting) {
+    if (!waiting) {
+      Serial.println("Input a string to examine:");
+      waiting = true;
+    } else {
+      while (Serial.available() > 0) {
+        char inChar = Serial.read();
+        if (inChar == '\n') {
+          Serial.println("Starting Cicero execution");
+
+          waiting = false;
+          ciceroExecuting = true;
+          loadStringAndStart(input, codeEndAddr);
+
+          printRAMContents(24);
+        }
+        input += inChar;
+      }
+    }
+  } else {
+    delay(1000);
+    uint32_t newStatus = readRegister32(VIR_STATUS);
+    if (newStatus != status) {
+      status = newStatus;
+      Serial.println(status);
+    }
+  }
 }
