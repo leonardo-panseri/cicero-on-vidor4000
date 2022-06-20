@@ -5,8 +5,8 @@ module Virtual_JTAG_Adapter
   output reg [31:0]    address,
   output reg [31:0]    start_cc_pointer,
   output reg [31:0]    end_cc_pointer,
-  output reg [31:0]    data_in,
-  input  reg [31:0]    data_out
+  output reg [63:0]    data_in,
+  input  reg [63:0]    data_out
 );
 
   // Virtual JTAG wires
@@ -60,8 +60,8 @@ module Virtual_JTAG_Adapter
   reg [31:0]    shift_address;
   reg [31:0]    shift_start_cc_pointer;
   reg [31:0]    shift_end_cc_pointer;
-  reg [31:0]    shift_data_in;
-  reg [31:0]    shift_data_out;
+  reg [63:0]    shift_data_in;
+  reg [63:0]    shift_data_out;
   reg [31:0]    shift_debug;
   
   // Virtual JTAG chain
@@ -89,12 +89,12 @@ module Virtual_JTAG_Adapter
 							      if (vJTAG_udr == 1'b1) end_cc_pointer = shift_end_cc_pointer;
 			               end
 			VIR_DATA_IN:   begin
-			                  if (vJTAG_sdr == 1'b1) shift_data_in = {tdi, shift_data_in[31:1]};
+			                  if (vJTAG_sdr == 1'b1) shift_data_in = {tdi, shift_data_in[63:1]};
 							      if (vJTAG_udr == 1'b1) data_in = shift_data_in;
 			               end
 	      VIR_DATA_OUT:  begin
 			                  if (vJTAG_cdr == 1'b1) shift_data_out = data_out;
-							      if (vJTAG_sdr == 1'b1) shift_data_out = {tdi, shift_data_out[31:1]};
+							      if (vJTAG_sdr == 1'b1) shift_data_out = {tdi, shift_data_out[63:1]};
 			               end
 			VIR_DEBUG:     begin
 			                  if (vJTAG_cdr == 1'b1) shift_debug = 32'h123456;

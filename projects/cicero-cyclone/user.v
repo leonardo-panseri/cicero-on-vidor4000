@@ -11,13 +11,13 @@ is on this may not be enough.
 
 // Your code goes here:
 
-reg [31:0] data_in;
+reg [63:0] data_in;
 reg [31:0] address;
 reg [31:0] start_cc_pointer;
 reg [31:0] end_cc_pointer;
 reg [31:0] command;
 reg [31:0] status;
-reg [31:0] data_out;
+reg [63:0] data_out;
 
 Virtual_JTAG_Adapter VJA (
    .           data_in    (data_in),
@@ -29,9 +29,12 @@ Virtual_JTAG_Adapter VJA (
 	.          data_out    (data_out)
 );
 
+wire reset;
+assign reset = ~ iRESETn;
+
 AXI_top UIP (
-   .                        clk			(wOSC_CLK),
-   .             	          rst			(iRESETn),
+   .                        clk			(wCLK24),
+   .             	          rst			(reset),
    .           data_in_register			(data_in),
    .           address_register			(address),
    .  start_cc_pointer_register	      (start_cc_pointer),
