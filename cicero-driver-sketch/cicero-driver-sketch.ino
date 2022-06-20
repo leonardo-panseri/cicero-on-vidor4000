@@ -125,29 +125,30 @@ void writeRegister32(uint8_t VIR, uint32_t data) {
  */
 
 // Writes the given bytes to the RAM of Cicero, starting from the given address
+// NB: the RAM is addressed by dwords (address 0 is the first dword, address 1 is the second dword, ...)
 // Returns the next free address in the RAM
-uint32_t writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
-  uint32_t addr = starting_addr;
+uint32_t writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t startingAddr) {
+  uint32_t byteAddr = startingAddr;
   uint8_t dword[4];
   short first = 1;
-  int bytes_written = 1;
+  int bytesWritten = 1;
   for (int i = 0; i < numbytes; i = i + 4) {
     dword[3] = bytes[i];
-    bytes_written = 1;
+    bytesWritten = 1;
     if (i + 1 < numbytes) {
       dword[2] = bytes[i + 1];
-      bytes_written = 2;
+      bytesWritten = 2;
     } else dword[2] = 0;
     if (i + 2 < numbytes) {
       dword[1] = bytes[i + 2];
-      bytes_written = 3;
+      bytesWritten = 3;
     } else dword[1] = 0;
     if (i + 3 < numbytes) {
       dword[0] = bytes[i + 3];
-      bytes_written = 4;
+      bytesWritten = 4;
     } else dword[0] = 0;
 
-    writeRegister32(VIR_ADDRESS, addr);
+    writeRegister32(VIR_ADDRESS, byteAddr / 4);
     JTAG_Write_VDR_to_VIR(VIR_DATA_IN, dword, 32);
 
     if (first) {
@@ -155,14 +156,15 @@ uint32_t writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t starting_addr) {
       writeRegister32(VIR_COMMAND, CMD_WRITE);
     }
 
-    addr = addr + bytes_written;
+    byteAddr = byteAddr + bytesWritten;
   }
 
   writeRegister32(VIR_COMMAND, CMD_NOP);
-  return addr;
+  return byteAddr;
 }
 
 // Reads the given number of dwords (4 bytes) into the res array, starting from the given address
+// NB: the RAM is addressed by dwords (address 0 is the first dword, address 1 is the second dword, ...)
 void readDWordsFromRAM(int dwordsToRead, uint32_t *res, uint32_t starting_addr) {
   uint32_t addr = starting_addr;
   short first = 1;
@@ -176,7 +178,7 @@ void readDWordsFromRAM(int dwordsToRead, uint32_t *res, uint32_t starting_addr) 
 
     res[i] = readRegister32(VIR_DATA_OUT);
 
-    addr = addr + 4;
+    addr = addr + 1;
   }
 
   writeRegister32(VIR_COMMAND, CMD_NOP);
@@ -201,7 +203,7 @@ void loadStringAndStart(String str, uint32_t codeEndAddr) {
   uint8_t strBytes[str.length()];
   convertStringToBytes(str, strBytes);
 
-  uint32_t strStartAddr = ceil(codeEndAddr / 4) * 4;
+  uint32_t strStartAddr = ceil(codeEndAddr / 4.0) * 4;
   uint32_t strEndAddr = writeBytesToRAM(str.length(), strBytes, strStartAddr);
 
   writeRegister32(VIR_START_CC_POINTER, strStartAddr);
@@ -215,11 +217,11 @@ void loadStringAndStart(String str, uint32_t codeEndAddr) {
  * Test functions
  */
 void printRAMContents(int dwordsToRead) {
-  uint32_t bytesRead[dwordsToRead];
-  readDWordsFromRAM(dwordsToRead, bytesRead, 0);
+  uint32_t dwordsRead[dwordsToRead];
+  readDWordsFromRAM(dwordsToRead, dwordsRead, 0);
   Serial.println("RAM contents:");
   for(int i = 0; i < dwordsToRead; i++) {
-    Serial.println(bytesRead[i], HEX);
+    Serial.println(dwordsRead[i], HEX);
   }
 }
 
@@ -284,8 +286,9 @@ void loop() {
           loadStringAndStart(input, codeEndAddr);
 
           printRAMContents(10);
+        } else {
+          input += inChar;
         }
-        input += inChar;
       }
     }
   } else {
