@@ -151,37 +151,24 @@ void writeRegister64(uint8_t VIR, uint64_t data) {
  * Cicero drivers
  */
 
-// Writes the given bytes to the RAM of Cicero, starting from the given address
+// Writes the given qwords (8 bytes) to the RAM of Cicero, starting from the given address
 // NB: the RAM is addressed by qwords (address 0 is the first qword, address 1 is the second qword, ...)
-// Returns the next free address in the RAM
-uint32_t writeBytesToRAM(int numbytes, uint8_t *bytes, uint32_t startingAddr) {
-  uint32_t byteAddr = startingAddr;
-  uint8_t qword[8];
-  short first = 1;
-  int bytesWritten;
-  for (int i = 0; i < numbytes; i = i + 8) {
-    bytesWritten = 0;
-    for (int j = 7; j >= 0; j--) {
-      int k = i + (7 - j);
-      if (k < numbytes) {
-        qword[j] = bytes[k];
-        bytesWritten = bytesWritten + 1;
-      } else qword[j] = 0;
-    }
-
-    writeRegister32(VIR_ADDRESS, byteAddr / 8);
-    JTAG_Write_VDR_to_VIR(VIR_DATA_IN, qword, 64);
+void writeQWordsToRAM(int qwordsToWrite, uint64_t *qwords, uint32_t startingAddr) {
+  uint32_t addr = startingAddr;
+  bool first = true;
+  for (int i = 0; i < qwordsToWrite; i = i + 1) {
+    writeRegister32(VIR_ADDRESS, addr);
+    writeRegister64(VIR_DATA_IN, qwords[i]);
 
     if (first) {
-      first = 0;
+      first = false;
       writeRegister32(VIR_COMMAND, CMD_WRITE);
     }
 
-    byteAddr = byteAddr + bytesWritten;
+    addr = addr + 1;
   }
 
   writeRegister32(VIR_COMMAND, CMD_NOP);
-  return byteAddr;
 }
 
 // Reads the given number of qwords (8 bytes) into the res array, starting from the given address
@@ -209,7 +196,28 @@ void readQWordsFromRAM(int qwordsToRead, uint64_t *res, uint32_t startingAddr) {
 uint32_t loadCode() {
   // The length of the code in bytes is encoded in the first two bytes of the file
   uint16_t codeNumBytes = ((uint16_t) code[1]) | (((uint16_t) code[0]) << 8);
-  return writeBytesToRAM(codeNumBytes, &code[2], 0);
+
+  int qwordsToWrite = ceil(codeNumBytes / 8.0);
+  uint64_t qwords[qwordsToWrite];
+
+  uint64_t qword = 0;
+  int index = 0;
+  int bytesWritten = 0;
+  for (int i = 2; i < codeNumBytes + 2 - 1; i = i + 2) {
+    bytesWritten = bytesWritten + 2;
+    qword = qword | ((uint64_t) code[i]) << 8 * (bytesWritten - 1) | ((uint64_t) code[i + 1]) << 8 * (bytesWritten - 2);
+
+    if (bytesWritten == 8 || i == codeNumBytes) {
+      qwords[index] = qword;
+      index = index + 1;
+            
+      qword = 0;
+      bytesWritten = 0;
+    }
+  }
+
+  writeQWordsToRAM(qwordsToWrite, qwords, 0);
+  return qwordsToWrite;
 }
 
 // Converts a String into an array of bytes
@@ -220,20 +228,39 @@ void convertStringToBytes(String string, uint8_t *res) {
 }
 
 // Writes the given string into RAM and starts the execution of Cicero
-void loadStringAndStart(String str, uint32_t codeEndAddr) {
+void loadStringAndStart(String str, uint32_t strStartAddr) {
   uint8_t strBytes[str.length()];
   convertStringToBytes(str, strBytes);
 
-  uint32_t strStartAddr = ceil(codeEndAddr / 8.0) * 8;
-  uint32_t strEndAddr = writeBytesToRAM(str.length(), strBytes, strStartAddr);
+  uint32_t strStartByteAddr = strStartAddr * 8;
+  uint32_t strEndByteAddr = strStartByteAddr + str.length() + 1;
 
-  Serial.println(strStartAddr);
-  Serial.println(strEndAddr);
+  int qwordsToWrite = ceil(str.length() / 8.0);
+  uint64_t qwords[qwordsToWrite];
 
-  writeRegister32(VIR_START_CC_POINTER, strStartAddr);
-  writeRegister32(VIR_END_CC_POINTER, strEndAddr);
+  for (int i = 0; i < str.length(); i = i + 8) {
+    uint64_t qword = 0;
+    
+    for (int j = 0; j < 7; j++) {
+      if (i + j >= str.length()) break;
+      qword = qword | ((uint64_t) strBytes[i + j]) << 8 * j;
+    }
+
+    qwords[i / 8] = qword;
+  }
+
+  writeQWordsToRAM(qwordsToWrite, qwords, strStartAddr);
+
+  writeRegister32(VIR_START_CC_POINTER, strStartByteAddr);
+  writeRegister32(VIR_END_CC_POINTER, strEndByteAddr);
 
   writeRegister32(VIR_COMMAND, CMD_START);
+  writeRegister32(VIR_COMMAND, CMD_NOP);
+}
+
+// Resets Cicero
+void reset() {
+  writeRegister32(VIR_COMMAND, CMD_RESET);
   writeRegister32(VIR_COMMAND, CMD_NOP);
 }
 
@@ -250,7 +277,9 @@ void printRAMContents(int qwordsToRead) {
 }
 
 // Global variables
-uint32_t codeEndAddr;
+
+// The address of the qword where input strings can be loaded
+uint32_t strStartAddr;
 uint32_t status;
 
 String input;
@@ -262,10 +291,10 @@ void setup() {
   setupFPGA();
 
   // Configure Pins
-  pinMode(LED_BUILTIN, OUTPUT);
-  for (int i = 0; i < 8; i++) {
-    pinMode(i, INPUT);
-  }
+  // pinMode(LED_BUILTIN, OUTPUT);
+  // for (int i = 0; i < 8; i++) {
+  //   pinMode(i, INPUT);
+  // }
 
   // Initialize variables
   status = 0;
@@ -276,19 +305,9 @@ void setup() {
   // Initialize Serial
   Serial.begin(9600);
   while (!Serial);
-  
-  //val = digitalRead(6);
-  //Serial.println(val);
-  
-  //uint32_t a = 0x87654321;
-  //writeRegister32(VIR_DATA_IN, a);
-  //val = digitalRead(6);
-  //Serial.println(val);
-  
-  //uint32_t res = readRegister32(VIR_DEBUG);
-  //Serial.println(res, HEX);
 
-  codeEndAddr = loadCode();
+  // Load Cicero machine code
+  strStartAddr = loadCode();
 }
 
 // Runs over and over again forever
@@ -301,30 +320,48 @@ void loop() {
       while (Serial.available() > 0) {
         char inChar = Serial.read();
         if (inChar == '\n') {
-          Serial.println("Starting Cicero execution");
+          input += '\0';
+
+          Serial.print("Examining string: ");
+          Serial.println(input);
 
           waiting = false;
           ciceroExecuting = true;
-          loadStringAndStart(input, codeEndAddr);
+          loadStringAndStart(input, strStartAddr);
 
-          Serial.print(digitalRead(0));
-          Serial.print(digitalRead(1));
-          Serial.print(digitalRead(2));
-          Serial.print(digitalRead(3));
-          Serial.println("");
-
-          printRAMContents(10);
+          // printRAMContents(10);
         } else {
           input += inChar;
         }
       }
     }
   } else {
-    delay(1000);
     uint32_t newStatus = readRegister32(VIR_STATUS);
     if (newStatus != status) {
       status = newStatus;
-      Serial.println(status);
+      switch (status) {
+        case STATUS_RUNNING:
+          Serial.println("Cicero is running");
+          break;
+        case STATUS_ACCEPTED:
+          Serial.println("The string is accepted");
+          break;
+        case STATUS_REJECTED:
+          Serial.println("The string is rejected");
+          break;
+        case STATUS_ERROR:
+          Serial.println("Cicero has encountered an error");
+          break;
+        default:
+          Serial.print("Unknown Cicero state: ");
+          Serial.println(status);
+          break;
+      }
+      
+      reset();
+      status = 0;
+      input = "";
+      ciceroExecuting = false;
     }
   }
 }

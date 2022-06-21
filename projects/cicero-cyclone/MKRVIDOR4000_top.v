@@ -163,7 +163,11 @@ SYSTEM_PLL PLL_inst(
 reg [5:0] rRESETCNT;
 
 // include user logic
-`include "user.v"
+user user_module
+	(
+	.clk     (wCLK24),
+	.reset_n (iRESETn)
+	);
 
 always @(posedge wMEM_CLK)
 begin

@@ -9,7 +9,11 @@ is on this may not be enough.
 
 */
 
-// Your code goes here:
+module user
+(
+	input clk,
+	input reset_n
+);
 
 reg [63:0] data_in;
 reg [31:0] address;
@@ -30,10 +34,10 @@ Virtual_JTAG_Adapter VJA (
 );
 
 wire reset;
-assign reset = ~ iRESETn;
+assign reset = ~ reset_n;
 
 AXI_top UIP (
-   .                        clk			(wCLK24),
+   .                        clk			(clk),
    .             	          rst			(reset),
    .           data_in_register			(data_in),
    .           address_register			(address),
@@ -41,6 +45,7 @@ AXI_top UIP (
 	.    end_cc_pointer_register        (end_cc_pointer),
    .               cmd_register			(command),
    .            status_register			(status),
-   .            data_o_register			(data_out),
-	. bMKR_D (bMKR_D)
+   .            data_o_register			(data_out)
 );
+
+endmodule

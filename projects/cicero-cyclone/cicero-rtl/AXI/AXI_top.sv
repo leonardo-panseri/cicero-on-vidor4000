@@ -15,8 +15,7 @@ module AXI_top(
     input  logic [REG_WIDTH-1:0] end_cc_pointer_register,
     input  logic [REG_WIDTH-1:0] cmd_register,
     output logic [REG_WIDTH-1:0] status_register,
-    output logic [REG_WIDTH_64-1:0] data_o_register,
-	 inout  [14:0] bMKR_D
+    output logic [REG_WIDTH_64-1:0] data_o_register
 );
 logic rst_master;
 ///// AXI
@@ -60,12 +59,6 @@ logic     [REG_WIDTH-1:0]               elapsed_cc, elapsed_cc_next;
 
 
 assign rst_master = rst || (cmd_register==CMD_RESET);
-
-
-
-assign bMKR_D[0+:4] = start_cc_pointer_register[0+:4];
-assign bMKR_D[4+:4] = bram_r[0+:4];
-
 
 
 ///// Sequential logic 

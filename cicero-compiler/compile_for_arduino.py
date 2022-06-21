@@ -11,7 +11,7 @@ def code_to_bytes(code):
         res += tmp.to_bytes(2, 'big')
     return res
 
-data = '(a|b)*'
+data = 'a(b|c)*'
 code = re2compiler.compile(data=data, O1=True)
 code = code.split('\n')
 print(code)

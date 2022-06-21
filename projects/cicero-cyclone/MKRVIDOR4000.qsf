@@ -134,7 +134,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE "cicero-rtl/fifo.sv"
 set_global_assignment -name SDC_FILE ../../constraints/MKRVIDOR4000/vidor_s.sdc
 set_global_assignment -name QIP_FILE ../../ip/SYSTEM_PLL/SYSTEM_PLL.qip
 set_global_assignment -name VERILOG_FILE MKRVIDOR4000_top.v
-set_global_assignment -name VERILOG_INCLUDE_FILE user.v
 set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (SystemVerilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
@@ -146,4 +145,5 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AXI_top_tb -section_id AX
 set_global_assignment -name VERILOG_FILE Virtual_JTAG_Adapter.v
 set_global_assignment -name EDA_TEST_BENCH_FILE "cicero-sim/AXI_top_tb.sv" -section_id AXI_top_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE "cicero-rtl/AXI/AXI_package.sv" -section_id AXI_top_tb
+set_global_assignment -name VERILOG_FILE user.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
