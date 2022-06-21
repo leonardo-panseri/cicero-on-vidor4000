@@ -26,7 +26,7 @@ The top module is [MKRVIDOR4000_top](https://github.com/leonardo-panseri/cicero-
 - We adapted the [AXI_top module](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv) to be compatible with the new RAM and the Intel Virtual JTAG interface.
 - We compiled the design and obtained the `MKRVIDOR4000.ttf` bitstream file.
 
-In order to load the FPGA bitstream in the Arduino sketch, the `.ttf` file needs to be converted with the executable found in `vidor-bitstream-converter`/.
+In order to load the FPGA bitstream in the Arduino sketch, the `.ttf` file needs to be converted with the executable found in `vidor-bitstream-converter/`.
 The resulting `app.h` should be copied to the sketch directory and it will be uploaded to the FPGA when the board is powered and on reset.
 
 ## About vidor-bitstream-converter
