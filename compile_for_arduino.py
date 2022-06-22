@@ -3,12 +3,13 @@
 # #####################
 
 # The regex to compile
-regex = "a(b|c)*"
+regex = "a(b|c)+"
 
-# If True, requires the regular expression starts with the start of the string. Corresponds to .*<your_regex> or ^<your_regex>
+# If True, requires that the regular expression matches with the start of the string (equivalent to ^<your_regex>)
 no_prefix = False
-# If True, requires that regular expression ends with the end of the string. Equivalent to <your_regex>$
+# If True, requires that regular expression matches with the end of the string (equivalent to <your_regex>$)
 no_postfix = False
+# NB: no_postfix=True does not seem to work, as the compiled code does not recognize any string even if it is valid
 
 output_file = "cicero-driver-sketch/code.h"
 

@@ -265,7 +265,9 @@ void loadStringAndStart(String str, uint32_t strStartAddr) {
   // This is needed by Cicero to understand where to start and stop reading the string
   // Note that the start of the string will always be aligned with the start of a qword
   uint32_t strStartByteAddr = strStartAddr * 8;
-  uint32_t strEndByteAddr = strStartByteAddr + str.length() + 1;
+  uint32_t strEndByteAddr = strStartByteAddr + str.length();
+  Serial.println(strStartByteAddr);
+  Serial.println(strEndByteAddr);
 
   int qwordsToWrite = ceil(str.length() / 8.0);
   uint64_t qwords[qwordsToWrite];
@@ -355,7 +357,7 @@ void setup() {
 void loop() {
   if (!ciceroExecuting) {
     if (!waiting) {
-      Serial.println("Input a string to examine:");
+      Serial.print("Input a string to examine: ");
       waiting = true;
     } else {
       while (Serial.available() > 0) {
@@ -365,14 +367,19 @@ void loop() {
           // Add the string terminator (needed by Cicero)
           input += '\0';
 
-          Serial.print("Examining string: ");
           Serial.println(input);
+
+          status = readRegister32(VIR_STATUS);
+          if (status != STATUS_IDLE) {
+            Serial.print("Cicero is in an unexpected state: ");
+            Serial.println(status);
+          }
 
           waiting = false;
           ciceroExecuting = true;
           loadStringAndStart(input, strStartAddr);
 
-          printRAMContents(10);
+          // printRAMContents(10);
         } else {
           input += inChar;
         }
@@ -400,7 +407,8 @@ void loop() {
           Serial.println(status);
           break;
       }
-      
+
+      Serial.println("");
       reset();
       status = 0;
       input = "";
