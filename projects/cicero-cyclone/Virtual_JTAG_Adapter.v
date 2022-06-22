@@ -14,6 +14,7 @@ module Virtual_JTAG_Adapter
   wire tdi;
   wire tdo;
   wire [3:0] ir_in;
+  
   // Virtual JTAG TAP controller states
   wire vJTAG_cdr;
   wire vJTAG_sdr;
@@ -53,7 +54,7 @@ module Virtual_JTAG_Adapter
   localparam VIR_DATA_OUT  = 4'b0111;
   localparam VIR_DEBUG     = 4'b1111;
   
-  // Registers where data will be shifted in
+  // Registers where data will be shifted in or out
   reg           shift_bypass;
   reg [31:0]    shift_status;
   reg [31:0]    shift_command;
@@ -68,10 +69,20 @@ module Virtual_JTAG_Adapter
   always @(posedge tck)
    begin
 	   case(ir_in)
+			// Data registers that we want to read
 		   VIR_STATUS:    begin
 			                  if (vJTAG_cdr == 1'b1) shift_status = status;
 							      if (vJTAG_sdr == 1'b1) shift_status = {tdi, shift_status[31:1]};
 			               end
+	      VIR_DATA_OUT:  begin
+			                  if (vJTAG_cdr == 1'b1) shift_data_out = data_out;
+							      if (vJTAG_sdr == 1'b1) shift_data_out = {tdi, shift_data_out[63:1]};
+			               end
+			VIR_DEBUG:     begin
+			                  if (vJTAG_cdr == 1'b1) shift_debug = 32'h123456;
+							      if (vJTAG_sdr == 1'b1) shift_debug = {tdi, shift_debug[31:1]};
+			
+			// Data registers that we want to write
 			VIR_COMMAND:   begin
 			                  if (vJTAG_sdr == 1'b1) shift_command = {tdi, shift_command[31:1]};
 							      if (vJTAG_udr == 1'b1) command = shift_command;
@@ -92,13 +103,7 @@ module Virtual_JTAG_Adapter
 			                  if (vJTAG_sdr == 1'b1) shift_data_in = {tdi, shift_data_in[63:1]};
 							      if (vJTAG_udr == 1'b1) data_in = shift_data_in;
 			               end
-	      VIR_DATA_OUT:  begin
-			                  if (vJTAG_cdr == 1'b1) shift_data_out = data_out;
-							      if (vJTAG_sdr == 1'b1) shift_data_out = {tdi, shift_data_out[63:1]};
-			               end
-			VIR_DEBUG:     begin
-			                  if (vJTAG_cdr == 1'b1) shift_debug = 32'h123456;
-							      if (vJTAG_sdr == 1'b1) shift_debug = {tdi, shift_debug[31:1]};
+
 			               end
 			default:       begin
 							      if (vJTAG_sdr == 1'b1) shift_bypass = tdi;

@@ -33,7 +33,7 @@ logic     [ BRAM_WIDTH       -1:0 ] bram_w;
 logic                               bram_w_valid;
 
 ///// Coprocessor
-localparam BB_N                      = 4;
+localparam BB_N                      = 6;
 localparam BB_N_X                    = 0;
 localparam BB_N_Y                    = 0;
 localparam FIFO_COUNT_WIDTH          = 5;
@@ -103,13 +103,13 @@ begin
             CMD_WRITE: // to write the content of memory write in sequence addr_0, cmd_write, data_0, 
             begin      // addr_1, data_1, ..., cmd_nop.
                 
-                bram_w_addr         = address_register[0+:BRAM_ADDR_WIDTH]; //use low
+                bram_w_addr         = address_register[0+:BRAM_ADDR_WIDTH];
                 bram_w_valid        = 1'b1;
                 bram_w              = data_in_register[0+:BRAM_WIDTH];
             end
             CMD_READ:
             begin      
-                bram_r_addr         = address_register[0+:BRAM_ADDR_WIDTH]; //use low
+                bram_r_addr         = address_register[0+:BRAM_ADDR_WIDTH];
                 bram_r_valid        = 1'b1;
                 memory_addr_from_coprocessor_ready = 1'b0;
                 data_o_register     = bram_r[0+:BRAM_WIDTH];
@@ -140,13 +140,13 @@ begin
         CMD_WRITE: // to write the content of memory write in sequence addr_0, cmd_write, data_0, 
         begin      // addr_1, data_1, ..., cmd_nop.
             
-            bram_w_addr         = address_register[0+:BRAM_ADDR_WIDTH]; //use low
+            bram_w_addr         = address_register[0+:BRAM_ADDR_WIDTH];
             bram_w_valid        = 1'b1;
             bram_w              = data_in_register[0+:BRAM_WIDTH];
         end
         CMD_READ:
         begin      
-            bram_r_addr         = address_register[0+:BRAM_ADDR_WIDTH]; //use low
+            bram_r_addr         = address_register[0+:BRAM_ADDR_WIDTH];
             bram_r_valid        = 1'b1;
             memory_addr_from_coprocessor_ready = 1'b0;
             data_o_register     = bram_r[0+:BRAM_WIDTH];

@@ -14,7 +14,19 @@ module bram #(
         input                         w_valid,
         input      [WIDTH-1     :0]   w_data 
         );
+		
+		localparam maxSIZE  = 2**ADDR_WIDTH;
+		
+		(* ramstyle = "M9K" *) reg [WIDTH-1:0] ram[0:maxSIZE-1];
+		
+		always_ff @ (posedge clk)
+		begin
+			if (w_valid) ram[w_addr] <= w_data;
+			if (r_valid) r_data <= ram[r_addr];
+		end
 
+// This was the RAM of Cicero written for the Xilinx Ultra, it is not synthesizable with the Intel Cyclone
+//
 //      `define max(a,b) ((a) > (b) ? (a) : (b))
 //      `define min(a,b) ((a) < (b) ? (a) : (b))
 //
@@ -42,25 +54,7 @@ module bram #(
 //      
 //      localparam RATIO = maxWIDTH / minWIDTH; 
 //      localparam log2RATIO = log2(RATIO);
-		
-//		(* ramstyle = "M9K" *) logic [RATIO-1:0][minWIDTH-1:0] ram[0:maxSIZE-1];
-		
-//	   always_ff@(posedge clk)
-//		  begin
-//			if(w_valid) ram[w_addr / RATIO][w_addr % RATIO] <= w_data;
-//			r_data <= ram[r_addr];
-//		end
-		
-		localparam maxSIZE  = 2**ADDR_WIDTH;
-		
-		(* ramstyle = "M9K" *) reg [WIDTH-1:0] ram[0:maxSIZE-1];
-		
-		always_ff @ (posedge clk)
-		begin
-			if (w_valid) ram[w_addr] <= w_data;
-			if (r_valid) r_data <= ram[r_addr];
-		end
-
+//
 //      (* ramstyle = "M9K" *) reg [minWIDTH-1:0] RAM [0:maxSIZE-1]; 
 //
 //      always_ff @(posedge clk) 
