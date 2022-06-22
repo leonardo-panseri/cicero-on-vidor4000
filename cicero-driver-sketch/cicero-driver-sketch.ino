@@ -120,7 +120,7 @@ uint32_t readRegister32(uint8_t VIR) {
   // NB: the bytes returned are little-endian: the first is the least significant and the last is the most significant
   uint32_t res = 0;
   for (int i = 0; i < 4; i++) {
-    res = res | ((uint32_t) data[i] << 8 * i);
+    res = res | ((uint32_t) data[i]) << 8 * i;
   }
   return res;
 }
@@ -148,7 +148,7 @@ uint64_t readRegister64(uint8_t VIR) {
   // NB: the bytes returned are little-endian: the first is the least significant and the last is the most significant
   uint64_t res = 0;
   for (int i = 0; i < 8; i++) {
-    res = res | ((uint64_t) data[i] << 8 * i);
+    res = res | ((uint64_t) data[i]) << 8 * i;
   }
   return res;
 }
@@ -372,7 +372,7 @@ void loop() {
           ciceroExecuting = true;
           loadStringAndStart(input, strStartAddr);
 
-          // printRAMContents(10);
+          printRAMContents(10);
         } else {
           input += inChar;
         }

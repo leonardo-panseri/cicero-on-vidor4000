@@ -81,7 +81,7 @@ module Virtual_JTAG_Adapter
 			VIR_DEBUG:     begin
 			                  if (vJTAG_cdr == 1'b1) shift_debug = 32'h123456;
 							      if (vJTAG_sdr == 1'b1) shift_debug = {tdi, shift_debug[31:1]};
-			
+								end
 			// Data registers that we want to write
 			VIR_COMMAND:   begin
 			                  if (vJTAG_sdr == 1'b1) shift_command = {tdi, shift_command[31:1]};
@@ -102,8 +102,6 @@ module Virtual_JTAG_Adapter
 			VIR_DATA_IN:   begin
 			                  if (vJTAG_sdr == 1'b1) shift_data_in = {tdi, shift_data_in[63:1]};
 							      if (vJTAG_udr == 1'b1) data_in = shift_data_in;
-			               end
-
 			               end
 			default:       begin
 							      if (vJTAG_sdr == 1'b1) shift_bypass = tdi;
