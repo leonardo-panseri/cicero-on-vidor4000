@@ -266,8 +266,6 @@ void loadStringAndStart(String str, uint32_t strStartAddr) {
   // Note that the start of the string will always be aligned with the start of a qword
   uint32_t strStartByteAddr = strStartAddr * 8;
   uint32_t strEndByteAddr = strStartByteAddr + str.length();
-  Serial.println(strStartByteAddr);
-  Serial.println(strEndByteAddr);
 
   int qwordsToWrite = ceil(str.length() / 8.0);
   uint64_t qwords[qwordsToWrite];
