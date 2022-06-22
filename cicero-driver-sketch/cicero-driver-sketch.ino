@@ -27,7 +27,7 @@ extern void enableFpgaClock(void);
 #define NO_APP          no_data
 #define NO_USER_DATA    no_data
 
-// Bitstream and signature
+// Bitstream signature
 __attribute__ ((used, section(".fpga_bitstream_signature")))
 const unsigned char signatures[4096] = {
   //#include "signature.ttf"
@@ -41,6 +41,8 @@ const unsigned char signatures[4096] = {
 
   NO_USER_DATA,
 };
+
+// Bitstream data
 __attribute__ ((used, section(".fpga_bitstream")))
 const unsigned char bitstream[] = {
   #include "app.h"
@@ -62,10 +64,11 @@ static void  setupFPGA() {
 }
 
 /*
- * Defines for Cicero and Cicero interface constants
+ * Cicero and Cicero interface constants
  */
 
-// Virtual Instruction Register values
+// Virtual Data Registers addresses
+// These are the addresses to write in the VIR to select the corresponding data register
 // 32 bit registers
 #define VIR_STATUS            0x01
 #define VIR_COMMAND           0x02
@@ -87,7 +90,7 @@ static void  setupFPGA() {
 #define  CMD_READ_ELAPSED_CLOCK    0x5
 #define  CMD_RESTART               0x6
 
-// Cicero status
+// Cicero statuses
 #define  STATUS_IDLE               0x0
 #define  STATUS_RUNNING            0x1
 #define  STATUS_ACCEPTED           0x2
@@ -96,6 +99,7 @@ static void  setupFPGA() {
 
 /*
  Machine code for Cicero
+ Since it is included in the program, a change to the machine code of Cicero always requires to recompile and reupload the sketch
  */
 
 uint8_t code[] = {
@@ -103,23 +107,34 @@ uint8_t code[] = {
 };
 
 /*
- * Driver for the Virtual JTAG communication interface
+ * Drivers for the Virtual JTAG communication interface
  */
 
 // Reads the 32 bit data register associated with the given virtual instruction register value through the Virtual JTAG
 uint32_t readRegister32(uint8_t VIR) {
   uint8_t data[4];
+  
   JTAG_Read_VDR_from_VIR(VIR, data, 32);
-  return ((uint32_t) data[0]) | (((uint32_t) data[1]) << 8) | (((uint32_t) data[2]) << 16) | (((uint32_t) data[3]) << 24);
+
+  // Since the library returns the data as a byte array, we need to convert it to a 32 bit unsigned integer
+  // NB: the bytes returned are little-endian: the first is the least significant and the last is the most significant
+  uint32_t res = 0;
+  for (int i = 0; i < 4; i++) {
+    res = res | ((uint32_t) data[i] << 8 * i);
+  }
+  return res;
 }
 
 // Writes the 32 bit data register associated with the given virtual instruction register value through the Virtual JTAG
 void writeRegister32(uint8_t VIR, uint32_t data) {
   uint8_t bytes[4];
-  bytes[0] = data;
-  bytes[1] = data >> 8;
-  bytes[2] = data >> 16;
-  bytes[3] = data >> 24;
+
+  // Since the library expects the data as a byte array, we need to convert our input data
+  // NB: the bytes in the array are expected to be little-endian: the first is the least significant and the last is the most significant
+  for (int i = 0; i < 4; i++) {
+    bytes[i] = data >> i * 8;
+  }
+
   JTAG_Write_VDR_to_VIR(VIR, bytes, 32);
 }
 
@@ -129,6 +144,8 @@ uint64_t readRegister64(uint8_t VIR) {
   
   JTAG_Read_VDR_from_VIR(VIR, data, 64);
 
+  // Since the library returns the data as a byte array, we need to convert it to a 64 bit unsigned integer
+  // NB: the bytes returned are little-endian: the first is the least significant and the last is the most significant
   uint64_t res = 0;
   for (int i = 0; i < 8; i++) {
     res = res | ((uint64_t) data[i] << 8 * i);
@@ -140,6 +157,8 @@ uint64_t readRegister64(uint8_t VIR) {
 void writeRegister64(uint8_t VIR, uint64_t data) {
   uint8_t bytes[8];
 
+  // Since the library expects the data as a byte array, we need to convert our input data
+  // NB: the bytes in the array are expected to be little-endian: the first is the least significant and the last is the most significant
   for (int i = 0; i < 8; i++) {
     bytes[i] = data >> i * 8;
   }
@@ -148,7 +167,7 @@ void writeRegister64(uint8_t VIR, uint64_t data) {
 }
 
 /*
- * Cicero drivers
+ * Drivers for Cicero
  */
 
 // Writes the given qwords (8 bytes) to the RAM of Cicero, starting from the given address
@@ -161,6 +180,7 @@ void writeQWordsToRAM(int qwordsToWrite, uint64_t *qwords, uint32_t startingAddr
     writeRegister64(VIR_DATA_IN, qwords[i]);
 
     if (first) {
+      // We need to send the WRITE command to Cicero, as the RAM has a write enable
       first = false;
       writeRegister32(VIR_COMMAND, CMD_WRITE);
     }
@@ -168,6 +188,7 @@ void writeQWordsToRAM(int qwordsToWrite, uint64_t *qwords, uint32_t startingAddr
     addr = addr + 1;
   }
 
+  // When the write is finished, we need to send the NOP command to Cicero, to put it back into the idle state
   writeRegister32(VIR_COMMAND, CMD_NOP);
 }
 
@@ -175,12 +196,13 @@ void writeQWordsToRAM(int qwordsToWrite, uint64_t *qwords, uint32_t startingAddr
 // NB: the RAM is addressed by qwords (address 0 is the first qword, address 1 is the second qword, ...)
 void readQWordsFromRAM(int qwordsToRead, uint64_t *res, uint32_t startingAddr) {
   uint32_t addr = startingAddr;
-  short first = 1;
+  bool first = true;
   for(int i = 0; i < qwordsToRead; i++) {
     writeRegister32(VIR_ADDRESS, addr);
 
     if (first) {
-      first = 0;
+      // We need to send the READ command to Cicero, as the RAM has a read enable
+      first = false;
       writeRegister32(VIR_COMMAND, CMD_READ);
     }
 
@@ -189,6 +211,7 @@ void readQWordsFromRAM(int qwordsToRead, uint64_t *res, uint32_t startingAddr) {
     addr = addr + 1;
   }
 
+  // When the read is finished, we need to send the NOP command to Cicero, to put it back into the idle state
   writeRegister32(VIR_COMMAND, CMD_NOP);
 }
 
@@ -205,9 +228,13 @@ uint32_t loadCode() {
   int bytesWritten = 0;
   for (int i = 2; i < codeNumBytes + 2 - 1; i = i + 2) {
     bytesWritten = bytesWritten + 2;
+
+    // The code needs to be written in RAM as little-endian, but the endianess is refering to words (2 bytes) and not bytes
+    // So we need to write the first word in the least significant 2 bytes and the last word in the most significant 2 bytes
     qword = qword | ((uint64_t) code[i]) << 8 * (bytesWritten - 1) | ((uint64_t) code[i + 1]) << 8 * (bytesWritten - 2);
 
     if (bytesWritten == 8 || i == codeNumBytes) {
+      // If we have composed a full qword or if we are at the last byte of code, save the qword to the array
       qwords[index] = qword;
       index = index + 1;
             
@@ -217,6 +244,8 @@ uint32_t loadCode() {
   }
 
   writeQWordsToRAM(qwordsToWrite, qwords, 0);
+
+  // Since the RAM is addressed by qwords starting from address 0, the next free RAM address is equals to the number of qwords written
   return qwordsToWrite;
 }
 
@@ -232,6 +261,9 @@ void loadStringAndStart(String str, uint32_t strStartAddr) {
   uint8_t strBytes[str.length()];
   convertStringToBytes(str, strBytes);
 
+  // Calculate the address of the first and the last byte as if the RAM was addressed by bytes
+  // This is needed by Cicero to understand where to start and stop reading the string
+  // Note that the start of the string will always be aligned with the start of a qword
   uint32_t strStartByteAddr = strStartAddr * 8;
   uint32_t strEndByteAddr = strStartByteAddr + str.length() + 1;
 
@@ -243,6 +275,8 @@ void loadStringAndStart(String str, uint32_t strStartAddr) {
     
     for (int j = 0; j < 7; j++) {
       if (i + j >= str.length()) break;
+      // The string needs to be written in RAM as little-endian refering to bytes
+      // So we need to write the first byte in the least significant byte and the last byte in the most significant byte
       qword = qword | ((uint64_t) strBytes[i + j]) << 8 * j;
     }
 
@@ -267,11 +301,14 @@ void reset() {
 /*
  * Test functions
  */
+
+// Reads the given number of qwords from RAM, starting from address 0, and prints them to the serial as hex numbers
 void printRAMContents(int qwordsToRead) {
   uint64_t qwordsRead[qwordsToRead];
   readQWordsFromRAM(qwordsToRead, qwordsRead, 0);
   Serial.println("RAM contents:");
   for(int i = 0; i < qwordsToRead; i++) {
+    // Note that leading zeros will not be printed
     Serial.println(qwordsRead[i], HEX);
   }
 }
@@ -280,10 +317,14 @@ void printRAMContents(int qwordsToRead) {
 
 // The address of the qword where input strings can be loaded
 uint32_t strStartAddr;
+// The current status of Cicero
 uint32_t status;
 
+// The string in input that will need to be examined by Cicero
 String input;
+// Flag that indicates if we are waiting for user input through serial
 bool waiting;
+// Flag that indicates if Cicero is currently examining a string
 bool ciceroExecuting;
 
 // Runs once on reset or power to the board
@@ -319,7 +360,9 @@ void loop() {
     } else {
       while (Serial.available() > 0) {
         char inChar = Serial.read();
+        // Read the string until a newline is found
         if (inChar == '\n') {
+          // Add the string terminator (needed by Cicero)
           input += '\0';
 
           Serial.print("Examining string: ");
