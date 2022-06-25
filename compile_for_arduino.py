@@ -4,6 +4,7 @@
 
 # The regex to compile
 regex = "a(b|c)+"
+	
 
 # If True, requires that the regular expression matches with the start of the string (equivalent to ^<your_regex>)
 no_prefix = False

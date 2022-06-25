@@ -48,6 +48,24 @@ const unsigned char bitstream[] = {
   #include "app.h"
 };
 
+// Global variables
+
+// The address of the qword where input strings can be loaded
+uint32_t strStartAddr;
+// The current status of Cicero
+uint32_t status;
+
+// The string in input that will need to be examined by Cicero
+String input;
+// Flag that indicates if we are waiting for user input through serial
+bool waiting;
+// Flag that indicates if Cicero is currently examining a string
+bool ciceroExecuting;
+// variable that keeps track when execution starts
+unsigned long execStartingTime;
+// variable that keeps track when execution ends
+unsigned long execEndingTime;
+
 // Load the bitstream on the FPGA
 static void  setupFPGA() {
   static uint8_t data[9] = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -290,6 +308,9 @@ void loadStringAndStart(String str, uint32_t strStartAddr) {
 
   writeRegister32(VIR_COMMAND, CMD_START);
   writeRegister32(VIR_COMMAND, CMD_NOP);
+  execStartingTime = millis();
+
+  
 }
 
 // Resets Cicero
@@ -313,19 +334,7 @@ void printRAMContents(int qwordsToRead) {
   }
 }
 
-// Global variables
 
-// The address of the qword where input strings can be loaded
-uint32_t strStartAddr;
-// The current status of Cicero
-uint32_t status;
-
-// The string in input that will need to be examined by Cicero
-String input;
-// Flag that indicates if we are waiting for user input through serial
-bool waiting;
-// Flag that indicates if Cicero is currently examining a string
-bool ciceroExecuting;
 
 // Runs once on reset or power to the board
 void setup() {
@@ -392,10 +401,19 @@ void loop() {
           Serial.println("Cicero is running");
           break;
         case STATUS_ACCEPTED:
+          execEndingTime = millis();
           Serial.println("The string is accepted");
-          break;
+          Serial.print("Execution time : ");
+          Serial.print((execEndingTime - execStartingTime));
+          Serial.println(" milliseconds");
+          
+         break;
         case STATUS_REJECTED:
+          execEndingTime = millis();
           Serial.println("The string is rejected");
+          Serial.print("Execution time : ");
+          Serial.print((execEndingTime - execStartingTime));
+          Serial.println(" milliseconds");
           break;
         case STATUS_ERROR:
           Serial.println("Cicero has encountered an error");

@@ -1,4 +1,5 @@
 vidor-bitstream-converter/*.ttf
 vidor-bitstream-converter/*.h
+cicero-compiler/__pycache__/*
 *.qws
 *.dot
