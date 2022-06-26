@@ -3,7 +3,7 @@
 # #####################
 
 # The regex to compile
-regex = "a(b|c)+"
+regex = "((C|X).(D|B|N|B|X)(....)?(F|Y|X).(C|X).(C|X))|((C|X)(.....?)?(C|X)(C|X)(S|X)(..)?(G|X).(C|X)(G|X)(....?)?(F|Y|W|X)(C|X))|((C|X)(..(..)?)?(C|X)(...)?(L|I|V|M|F|Y|W|C|X)(........)?(H|X)(...(..)?)?(H|X))|(((L|X)(M|X)(A|X)(E|Z|Q|Z|X)(G|X)(L|X)(Y|X)(N|B|X)))"
 	
 
 # If True, requires that the regular expression matches with the start of the string (equivalent to ^<your_regex>)
