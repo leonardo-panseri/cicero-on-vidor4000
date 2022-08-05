@@ -165,7 +165,7 @@ reg [5:0] rRESETCNT;
 // include user logic
 user user_module
 	(
-	.clk     (wCLK24),
+	.clk     (wOSC_CLK),
 	.reset_n (iRESETn)
 	);
 
