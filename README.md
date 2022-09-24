@@ -36,11 +36,7 @@ The usage of this interface is simple: following the protocol described in the d
 JTAG is a serial protocol and it is not the most efficient way of communicating, as the data needs to be shifted in and out bit by bit, but it is easy to use both on the FPGA side, thanks to the Virtual JTAG IP, and on the Arduino side, thanks to the Vidor libraries (more on these below).
 
 ### Design incompatibilities
-CICERO has been designed for a Xilinx Ultra FPGA and the chip present on the Arduino is an Intel Cyclone 10 LP, so we had to make some adjustements:
-- there was some SystemVerilog syntax in CICERO HDL files that is incompatible with Quartus SystemVerilog standards, such as for loops outside of a generate block, Xilinx specific syntax attributes and signal declaration and initialization on the same line ([document with a list of common incompatibilities when porting SystemVerilog from Xilinx to Intel](https://marekpikula.github.io/quartus-sv-gotchas/Intel%20Quartus%20SystemVerilog%20gotchas.html))
-- the syntax of [the RAM used by CICERO](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/projects/cicero-cyclone/cicero-rtl/memories/bram.sv), was not synthesizable by Quartus, so we had to rewrite it following Intel standards. We chose to implement a dual-port RAM with read and write enables and with the same width for both ports
-- the I/O signals in the [AXI_top module](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/projects/cicero-cyclone/cicero-rtl/AXI/AXI_top.sv) where limited in width by the AXI protocol, causing the need to have a dual-port RAM with ports of different width (CICERO expects the read port to be 64 bits). Since the JTAG protocol does not impose any restrictions on register size, we modified the signals in AXI_top responsible of the communication with RAM to make them both 64 bits wide and we refactored some logic regarding these signals to ensure compatibility with our rewritten RAM
-
+CICERO has been designed for a Xilinx Ultra FPGA and the chip present on the Arduino is an Intel Cyclone 10 LP, so we had to make some adjustements. More information on this can be found in the [fork of the original repo](), CICERO HDL files have been copied from there.
 
 At last, we compiled the design and obtained the `MKRVIDOR4000.ttf` bitstream file.  
 In order to load the FPGA bitstream in the Arduino sketch, the `.ttf` file needs to be converted with the executable found in `vidor-bitstream-converter/`.
