@@ -12,7 +12,7 @@ no_prefix = False
 no_postfix = False
 # NB: no_postfix=True does not seem to work, as the compiled code does not recognize any string even if it is valid
 
-output_file = "cicero-driver-sketch/code.h"
+output_file = "code.h"
 
 
 # ##################
@@ -23,7 +23,7 @@ def compile_regex(regex):
     import sys
 
     # Add Cicero compiler folder to path
-    sys.path.append('cicero-compiler')
+    sys.path.append('cicero_compiler')
 
     import re2compiler
     
