@@ -36,7 +36,7 @@ The usage of this interface is simple: following the protocol described in the d
 JTAG is a serial protocol and it is not the most efficient way of communicating, as the data needs to be shifted in and out bit by bit, but it is easy to use both on the FPGA side, thanks to the Virtual JTAG IP, and on the Arduino side, thanks to the Vidor libraries (more on these below).
 
 ### Design incompatibilities
-CICERO has been designed for a Xilinx Ultra FPGA and the chip present on the Arduino is an Intel Cyclone 10 LP, so we had to make some adjustements. More information on this can be found in the [fork of the original repo](), CICERO HDL files have been copied from there.
+CICERO has been designed for a Xilinx Ultra FPGA and the chip present on the Arduino is an Intel Cyclone 10 LP, so we had to make some adjustements. More information on this can be found in the [fork of the original repo](https://github.com/leonardo-panseri/cicero-port-to-intel), CICERO HDL files have been copied from there.
 
 At last, we compiled the design and obtained the `MKRVIDOR4000.ttf` bitstream file.  
 In order to load the FPGA bitstream in the Arduino sketch, the `.ttf` file needs to be converted with the executable found in `vidor-bitstream-converter/`.
