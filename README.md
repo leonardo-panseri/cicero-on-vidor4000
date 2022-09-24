@@ -8,7 +8,7 @@ The directory structure is summarized in the following table:
 Directory                 | Contents
 ----------                | --------
 cicero-arduino-library    | Arduino library that provides an interface to use CICERO from Arduino's sketches
-cicero-compiler           | Python program that is responsible of producing the machine code for CICERO, starting from a regular expression
+cicero_compiler           | Python program that is responsible of producing the machine code for CICERO, starting from a regular expression
 constraints               | Constraint files for the FPGA, includes pinout and timings
 ip                        | Source code for IP blocks provided by Arduino
 projects                  | Quartus Prime project files for the FPGA
@@ -51,9 +51,9 @@ Arduino provides a Java program to do the same task, but it only works with Java
 flips bit order) [wd5gnr](https://github.com/wd5gnr/VidorFPGA) rewrote it in C.  
 The executable provided is compiled for Windows x86, but it can be compiled on any system with: `gcc -o vidorcvt vidorcvt.c`  
 There are no arguments, so it is needed to redirect: `vidorcvt <binaryfile.ttf >app.h`  
-A Windows batch file that automatically convert the bitstream in `projects/cicero-cyclone/output_files/` and writes the result to `cicero-driver-sketch/app.h` is provided.
+A Windows batch file that automatically convert the bitstream in `projects/cicero-cyclone/output_files/` and writes the result to `app.h` is provided.
 
-## About cicero-compiler
+## About cicero_compiler
 We wrote [an utility](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/cicero-compiler/compile_for_arduino.py) that calls the CICERO compiler and writes the resulting machine code to a `code.h` file so that it is easy to import it into the Arduino sketch. For more information on how the CICERO compiler works, refer to [the official repo](https://github.com/necst/cicero_compiler).
 
 ## About cicero-arduino-library
