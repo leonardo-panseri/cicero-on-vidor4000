@@ -110,14 +110,22 @@ class CiceroOnArduino:
 
         return results
 
-if __name__ == "__main__":
-    cicero = CiceroOnArduino("../cicero_compiler")
-    res = cicero.load_regex_and_test_strings("a+(b|c)+", ["aaab", "fdkllwk", "njfkdackljldg", "lkortioe", "jkgjdfaaabc"])
-    for r in res:
+
+def print_results(results):
+    for r in results:
         if r == CiceroOnArduino.MATCH_FOUND:
             print("OK")
         elif r == CiceroOnArduino.MATCH_NOT_FOUND:
             print("KO")
         else:
             print("ERR")
+
+
+if __name__ == "__main__":
+    cicero = CiceroOnArduino("../cicero_compiler")
     
+    res = cicero.load_regex_and_test_strings("a+(b|c)+", ["aaab", "fdkllwk", "njfkdackljldg", "lkortioe", "jkgjdfaaabc"])
+    print_results(res)
+    
+    res = cicero.load_regex_and_test_strings("g+h+", ["aaab", "fdklgghlwk", "njfkdackljldg", "lkortioeggggh", "jkgjdfaaabc"])
+    print_results(res)
