@@ -214,10 +214,10 @@ void Cicero_::convertStringToBytes(String string, uint8_t res[]) {
 }
 
 uint32_t Cicero_::loadCode(String codeStr) {
-  uint8_t strBytes[str.length()];
+  uint8_t strBytes[codeStr.length()];
   convertStringToBytes(codeStr, strBytes);
   
-  return loadCode(str.length(), strBytes);
+  return loadCode(codeStr.length(), strBytes);
 }
 
 void Cicero_::loadStringAndStart(String str) {

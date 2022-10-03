@@ -12,15 +12,6 @@
 #define DRIVER_INPUT_TERMINATOR  0xFF
 
 /**
-  Machine code for CICERO, generated with CICERO Compiler.
-  Regex: a+(c|b)+
-  Since it is included in the program, a change to the machine code of Cicero always requires to recompile and reupload the sketch.
- */
-uint8_t code[] = {
-  #include "code.h"
-};
-
-/**
   Prints qwords (8 bytes) of the RAM to Serial, starting from address 0.
 
   @param qwordsToPrint the number of qwords to print
@@ -57,6 +48,7 @@ void printRAMContents(int qwordsToPrint) {
  */
 uint32_t ciceroStatus;
 uint8_t driverStatus;
+char inChar;
 String input;
 
 void setup() {
@@ -67,11 +59,6 @@ void setup() {
   
   // Upload the bitstream of CICERO to the FPGA
   Cicero.begin();
-
-  // The length of the code in bytes is encoded in the first two bytes of the file
-  uint16_t codeNumBytes = ((uint16_t) code[1]) | (((uint16_t) code[0]) << 8);
-  // Load machine code to CICERO RAM
-  Cicero.loadCode(codeNumBytes, code + 2);
 
   // Initialize Serial
   Serial.begin(9600);
@@ -88,7 +75,7 @@ void loop() {
   switch (driverStatus) {
     case DRIVER_STATUS_WAIT_CMD:
       if(Serial.available() <= 0) return;
-      char inChar = Serial.read();
+      inChar = Serial.read();
       
       switch (inChar) {
         case DRIVER_CMD_REGEX:
@@ -103,7 +90,7 @@ void loop() {
       break;
     case DRIVER_STATUS_WAIT_REGEX:
       while (Serial.available() > 0) {
-        char inChar = Serial.read();
+        inChar = Serial.read();
         
         if (inChar == DRIVER_INPUT_TERMINATOR) {
           Cicero.loadCode(input);
@@ -115,7 +102,7 @@ void loop() {
       break;
     case DRIVER_STATUS_WAIT_TEXT:
       while (Serial.available() > 0) {
-        char inChar = Serial.read();
+        inChar = Serial.read();
       
         if (inChar == DRIVER_INPUT_TERMINATOR) {
           driverStatus = DRIVER_STATUS_WAIT_CMD;
