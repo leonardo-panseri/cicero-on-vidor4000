@@ -46,6 +46,13 @@ class Cicero_ {
     */
     uint32_t loadCode(int numBytes, uint8_t code[]);
     /**
+      Loads machine code into the RAM of CICERO.
+      
+      @param codeStr the string containing the bytes of code
+      @return the next free address of the RAM
+    */
+    uint32_t loadCode(String codeStr);
+    /**
       Writes the string into RAM and starts the execution of CICERO.
       
       @param str the string to analyze

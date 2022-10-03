@@ -5,6 +5,12 @@
 #define DRIVER_STATUS_WAIT_TEXT   0x02
 #define DRIVER_STATUS_EXECUTING   0x03
 
+#define DRIVER_CMD_REGEX  0x00
+#define DRIVER_CMD_TEXT   0x01
+
+// Need to test if this is not conflicting with any possible input value
+#define DRIVER_INPUT_TERMINATOR  0xFF
+
 /**
   Machine code for CICERO, generated with CICERO Compiler.
   Regex: a+(c|b)+
@@ -78,93 +84,76 @@ void loop() {
     1) if CICERO is not executing and we are not waiting for user input, ask the user for a new string to examine and start waiting for input
     2) if we are waiting for input, append any char received through Serial to the input string until a newline is found, then start the execution of CICERO
     3) if CICERO is executing, read its status and notify the user of status change, if the execution is done reset the variables and go to state 1
-   */
-  if (driverStatus == DRIVER_STATUS_WAIT_CMD) {
-    if (Serial.available() > 0) {
+   */   
+  switch (driverStatus) {
+    case DRIVER_STATUS_WAIT_CMD:
+      if(Serial.available() <= 0) return;
       char inChar = Serial.read();
+      
       switch (inChar) {
-        
+        case DRIVER_CMD_REGEX:
+          driverStatus = DRIVER_STATUS_WAIT_REGEX;
+          input = "";
+          break;
+        case DRIVER_CMD_TEXT:
+          driverStatus = DRIVER_STATUS_WAIT_TEXT;
+          input = "";
+          break;
       }
-    }
-
-
-    
-    if (!waiting) {
-      Serial.print("Input a string to examine: ");
-      waiting = true;
-    } else {
+      break;
+    case DRIVER_STATUS_WAIT_REGEX:
       while (Serial.available() > 0) {
         char inChar = Serial.read();
-        // Read the string until a newline is found
-        if (inChar == '\n') {
-          // Add the string terminator (needed by Cicero)
-          input += '\0';
-
-          Serial.println(input);
-
-          ciceroStatus = Cicero.getStatus();
-          if (ciceroStatus != CICERO_STATUS_IDLE) {
-            Serial.print("Cicero is in an unexpected state: ");
-            Serial.println(status);
-          }
-
-          waiting = false;
-
-          // Load string to examine to CICERO RAM and begin computation
-          Cicero.loadStringAndStart(input);
         
-          // OPTIONAL: print the first 10 qwords of the RAM to verify that everything is working as expected
-          printRAMContents(10);
+        if (inChar == DRIVER_INPUT_TERMINATOR) {
+          Cicero.loadCode(input);
+          driverStatus = DRIVER_STATUS_WAIT_CMD;
         } else {
           input += inChar;
         }
       }
-    }
-  } else if (driverStatus = DRIVER_STATUS_WAIT_REGEX) {
-
-  } else if (driverStatus = DRIVER_STATUS_WAIT_TEXT) {
-    
-  } else if (driverStatus = DRIVER_STATUS_EXECUTING) {
-    uint32_t newStatus = Cicero.getStatus();
-    if (newStatus != ciceroStatus) {
-      ciceroStatus = newStatus;
-
-      bool restart = false;
-      switch (ciceroStatus) {
-        case CICERO_STATUS_RUNNING:
-          Serial.println("CICERO is running");
-          break;
-        case CICERO_STATUS_ACCEPTED:
-          Serial.println("A match has been found");
-          restart = true;
-         break;
-        case CICERO_STATUS_REJECTED:
-          Serial.println("A match has not been found");
-          restart = true;
-          break;
-        case CICERO_STATUS_ERROR:
-          Serial.println("CICERO has encountered an error");
-          restart = true;
-          break;
-        default:
-          Serial.print("Unknown CICERO state: ");
-          Serial.println(status);
-          break;
+      break;
+    case DRIVER_STATUS_WAIT_TEXT:
+      while (Serial.available() > 0) {
+        char inChar = Serial.read();
+      
+        if (inChar == DRIVER_INPUT_TERMINATOR) {
+          driverStatus = DRIVER_STATUS_WAIT_CMD;
+        } else if (inChar == '\n') {
+          // Add the string terminator (needed by Cicero)
+          input += '\0';
+          // Load string to examine to CICERO RAM and begin computation
+          Cicero.loadStringAndStart(input);
+          
+          driverStatus = DRIVER_STATUS_EXECUTING;
+        } else {
+          input += inChar;
+        }
       }
-
-      if (restart) {
-        Serial.print("Execution time : ");
-        Serial.print(Cicero.getExecTime());
-        Serial.println(" microseconds");
-        
-        Serial.println("");
-        
-        Cicero.reset();
-        
-        ciceroStatus = CICERO_STATUS_IDLE;
-        input = "";
-        driverStatus = DRIVER_STATUS_WAIT_TEXT;
+      break;
+    case DRIVER_STATUS_EXECUTING:
+      uint32_t newStatus = Cicero.getStatus();
+      if (newStatus != ciceroStatus) {
+        ciceroStatus = newStatus;
+  
+        bool restart = false;
+        switch (ciceroStatus) {
+          case CICERO_STATUS_ACCEPTED:
+          case CICERO_STATUS_REJECTED:
+          case CICERO_STATUS_ERROR:
+            Serial.print(ciceroStatus);
+            restart = true;
+            break;
+        }
+  
+        if (restart) {          
+          Cicero.reset();
+          
+          ciceroStatus = CICERO_STATUS_IDLE;
+          input = "";
+          driverStatus = DRIVER_STATUS_WAIT_TEXT;
+        }
       }
-    }
+      break;
   }
 }
