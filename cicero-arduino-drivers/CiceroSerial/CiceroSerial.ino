@@ -67,10 +67,11 @@ void setup() {
 
 void loop() {
   /*
-    The program can be in one of three states:
-    1) if CICERO is not executing and we are not waiting for user input, ask the user for a new string to examine and start waiting for input
-    2) if we are waiting for input, append any char received through Serial to the input string until a newline is found, then start the execution of CICERO
-    3) if CICERO is executing, read its status and notify the user of status change, if the execution is done reset the variables and go to state 1
+    The program can be in one of four states:
+    1) COMMAND MODE: wait for one of the following commands: enter regex editing mode, enter text editing mode
+    2) REGEX EDITING MODE: wait for the bytecode of a new regex, when reading DRIVER_INPUT_TERMINATOR load the received code into CICERO RAM and return to command mode
+    3) TEXT EDITING MODE: wait for a new string to examine, when reading '\n' load the string into CICERO RAM and go to executing mode; when reading DRIVER_INPUT_TERMINATOR return to command mode
+    4) EXECUTING MODE: CICERO is executing, check its status to detect if a match has been found or not, send the result through serial and then reset and return to text editing mode
    */   
   switch (driverStatus) {
     case DRIVER_STATUS_WAIT_CMD:
@@ -120,6 +121,7 @@ void loop() {
       break;
     case DRIVER_STATUS_EXECUTING:
       uint32_t newStatus = Cicero.getStatus();
+      // Run the checks only if the status has changed from the previous iteration of the loop()
       if (newStatus != ciceroStatus) {
         ciceroStatus = newStatus;
   
