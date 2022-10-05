@@ -50,12 +50,14 @@ uint32_t ciceroStatus;
 uint8_t driverStatus;
 char inChar;
 String input;
+long charsToRead;
 
 void setup() {
   // Reset global variables
   ciceroStatus = CICERO_STATUS_IDLE;
   driverStatus = DRIVER_STATUS_WAIT_CMD;
   input = "";
+  charsToRead = -1;
   
   // Upload the bitstream of CICERO to the FPGA
   Cicero.begin();
@@ -77,46 +79,80 @@ void loop() {
     case DRIVER_STATUS_WAIT_CMD:
       if(Serial.available() <= 0) return;
       inChar = Serial.read();
+
+      input = "";
+      charsToRead = -1;
       
       switch (inChar) {
         case DRIVER_CMD_REGEX:
           driverStatus = DRIVER_STATUS_WAIT_REGEX;
-          input = "";
           break;
         case DRIVER_CMD_TEXT:
           driverStatus = DRIVER_STATUS_WAIT_TEXT;
-          input = "";
           break;
       }
       break;
     case DRIVER_STATUS_WAIT_REGEX:
-      while (Serial.available() > 0) {
-        inChar = Serial.read();
-        
-        if (inChar == DRIVER_INPUT_TERMINATOR) {
-          Cicero.loadCode(input);
-          driverStatus = DRIVER_STATUS_WAIT_CMD;
-        } else {
+      if (charsToRead == -1) {
+        while (Serial.available() > 0) {
+          inChar = Serial.read();
+
+          if (inChar == DRIVER_INPUT_TERMINATOR) {
+            char arr[input.length() + 1];
+            input.toCharArray(arr, input.length() + 1);
+            charsToRead = atoi(arr);
+            input = "";
+            break;
+          } else {
+            input += inChar;
+          }
+        }
+      } else if (charsToRead > 0) {
+        while (Serial.available() > 0 && charsToRead > 0) {
+          inChar = Serial.read();
+          charsToRead--;
+          
           input += inChar;
         }
+      } else {
+        Cicero.loadCode(input);
+        driverStatus = DRIVER_STATUS_WAIT_CMD;
+        break;
       }
       break;
     case DRIVER_STATUS_WAIT_TEXT:
-      while (Serial.available() > 0) {
-        inChar = Serial.read();
-      
-        if (inChar == DRIVER_INPUT_TERMINATOR) {
-          driverStatus = DRIVER_STATUS_WAIT_CMD;
-        } else if (inChar == '\n') {
-          // Add the string terminator (needed by Cicero)
-          input += '\0';
-          // Load string to examine to CICERO RAM and begin computation
-          Cicero.loadStringAndStart(input);
+      if (charsToRead == -1) {
+        while (Serial.available() > 0) {
+          inChar = Serial.read();
+  
+          if (inChar == DRIVER_INPUT_TERMINATOR) {
+            char arr[input.length() + 1];
+            input.toCharArray(arr, input.length() + 1);
+            charsToRead = atoi(arr);
+            input = "";
+            break;
+          } else {
+            input += inChar;
+          }
+        }
+      } else if (charsToRead > 0) {
+        while (Serial.available() > 0 && charsToRead > 0) {
+          inChar = Serial.read();
+          charsToRead--;
           
-          driverStatus = DRIVER_STATUS_EXECUTING;
-        } else {
           input += inChar;
         }
+      } else if (charsToRead < -1) {
+        // Negative length means to return to command mode
+        driverStatus = DRIVER_STATUS_WAIT_CMD;
+      } else {
+        // Add the string terminator (needed by Cicero)
+        input += '\0';
+        // Load string to examine to CICERO RAM and begin computation
+        Cicero.loadStringAndStart(input);
+        
+        driverStatus = DRIVER_STATUS_EXECUTING;
+        break;
       }
       break;
     case DRIVER_STATUS_EXECUTING:
@@ -140,6 +176,7 @@ void loop() {
           
           ciceroStatus = CICERO_STATUS_IDLE;
           input = "";
+          charsToRead = -1;
           driverStatus = DRIVER_STATUS_WAIT_TEXT;
         }
       }
