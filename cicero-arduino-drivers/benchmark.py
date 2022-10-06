@@ -105,6 +105,9 @@ class CiceroOnArduino:
         self._serial_write(self._encode_data_length(string))
         self._serial_write(string, "utf-8")
         
+        for i in range(14):
+            print(self.arduino.readline())
+        
         self.driver_status = self.DriverStatus.EXECUTION_MODE
         
     def wait_result(self):
@@ -153,7 +156,7 @@ def print_results(results):
 
 
 if __name__ == "__main__":
-    cicero = CiceroOnArduino("../cicero_compiler", debug=True, timeout=10)
+    cicero = CiceroOnArduino("../cicero_compiler", debug=True, timeout=5)
     
     res = cicero.load_regex_and_test_strings("a+(b|c)+", ["aaab", "fdkllwk", "njfkdackljldg", "lkortioe", "jkgjdfaaabc"])
     print_results(res)

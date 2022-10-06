@@ -150,6 +150,8 @@ void loop() {
         input += '\0';
         // Load string to examine to CICERO RAM and begin computation
         Cicero.loadStringAndStart(input);
+
+        printRAMContents(10);
         
         driverStatus = DRIVER_STATUS_EXECUTING;
         break;
