@@ -266,7 +266,7 @@ unsigned long Cicero_::getExecTime() {
 }
 
 uint64_t Cicero_::getElapsedClockCycles() {
-    writeRegister32(VIR_COMMAND, CMD_READ);
+    writeRegister32(VIR_COMMAND, CMD_READ_ELAPSED_CLK);
     
     uint64_t elapsedCC = readRegister64(VIR_DATA_OUT);
     
