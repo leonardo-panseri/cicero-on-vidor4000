@@ -71,8 +71,8 @@ void loop() {
   /*
     The program can be in one of four states:
     1) COMMAND MODE: wait for one of the following commands: enter regex editing mode, enter text editing mode
-    2) REGEX EDITING MODE: wait for the bytecode of a new regex, when reading DRIVER_INPUT_TERMINATOR load the received code into CICERO RAM and return to command mode
-    3) TEXT EDITING MODE: wait for a new string to examine, when reading '\n' load the string into CICERO RAM and go to executing mode; when reading DRIVER_INPUT_TERMINATOR return to command mode
+    2) REGEX EDITING MODE: wait for the number of bytes to read followed by DRIVER_INPUT_TERMINATOR, then read the bytecode of a new regex, load it into CICERO RAM and return to command mode
+    3) TEXT EDITING MODE: wait for the number of bytes to read followed by DRIVER_INPUT_TERMINATOR, then read a new string to examine, load the string into CICERO RAM and go to executing mode; when reading DRIVER_INPUT_TERMINATOR return to command mode
     4) EXECUTING MODE: CICERO is executing, check its status to detect if a match has been found or not, send the result through serial and then reset and return to text editing mode
    */   
   switch (driverStatus) {
@@ -166,12 +166,15 @@ void loop() {
           case CICERO_STATUS_ACCEPTED:
           case CICERO_STATUS_REJECTED:
           case CICERO_STATUS_ERROR:
+            uint32_t elapsedCC = Cicero.getElapsedClockCycles();
             Serial.print(ciceroStatus);
+            Serial.print(elapsedCC);
+            Serial.write(DRIVER_INPUT_TERMINATOR);
             restart = true;
             break;
         }
   
-        if (restart) {          
+        if (restart) {
           Cicero.reset();
           
           ciceroStatus = CICERO_STATUS_IDLE;

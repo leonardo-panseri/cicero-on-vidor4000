@@ -76,6 +76,13 @@ class Cicero_ {
     */
     unsigned long getExecTime();
     /**
+      Gets the number of clock cycles that CICERO used for finishing the previous computation.
+      To get a meaningful value this function should be invoked only when CICERO is in ACCEPTED, REJECTED or ERROR statuses.
+      
+      @return the number of clock cycles needed for the previous computation
+    */
+    uint64_t getElapsedClockCycles();
+    /**
       Resets CICERO.
     */
     void reset();

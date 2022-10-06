@@ -13,16 +13,18 @@ class CiceroOnArduino:
 
     MATCH_FOUND = "2"
     MATCH_NOT_FOUND = "3"
+    
+    CICERO_CLOCK_FREQ = 80e6
 
     class DriverStatus(Enum):
         COMMAND_MODE = 1
         TEXT_MODE = 2
         EXECUTION_MODE = 3
 
-    def __init__(self, cicero_compiler_path, port="COM3", baudrate=9600, debug=False) -> None:
+    def __init__(self, cicero_compiler_path, port="COM3", baudrate=9600, timeout=1, debug=False) -> None:
         self.cicero_compiler_path = cicero_compiler_path
 
-        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=timeout)
         
         self.debug = debug
 
@@ -107,12 +109,20 @@ class CiceroOnArduino:
         
     def wait_result(self):
         result = self.arduino.read()
+        elapsedCC = self.arduino.read_until(self.INPUT_TERMINATOR)
         
         if self.debug:
             print("Rx (1): " + decode_bytes_as_hex(result))
+            print("Rx (" + str(len(elapsedCC)) + "): " + decode_bytes_as_hex(elapsedCC))
+        
+        # Discard the terminator
+        elapsedCC = elapsedCC[:-1]        
+        # Convert from bytestring to int
+        elapsedCC = int(elapsedCC.decode("utf-8"))
+        execTime = elapsedCC / self.CICERO_CLOCK_FREQ
         
         self.driver_status = self.DriverStatus.TEXT_MODE
-        return result.decode("utf-8")
+        return result.decode("utf-8"), execTime
     
     def load_regex_and_test_strings(self, regex, strings):
         results = []
@@ -123,24 +133,27 @@ class CiceroOnArduino:
         for string in strings:
             self.load_string_and_start(string)
             
-            results += self.wait_result()
+            result, elapsedCC = self.wait_result()
+            results.append((result, elapsedCC))
         self._exit_text_mode()
 
         return results
 
 
 def print_results(results):
-    for r in results:
+    for r, execTime in results:
+        res_str = ""
         if r == CiceroOnArduino.MATCH_FOUND:
-            print("OK")
+            res_str = "OK"
         elif r == CiceroOnArduino.MATCH_NOT_FOUND:
-            print("KO")
+            res_str = "KO"
         else:
-            print("ERR")
+            res_str = "ERR"
+        print(res_str + " - " + str(execTime) + "s")
 
 
 if __name__ == "__main__":
-    cicero = CiceroOnArduino("../cicero_compiler")
+    cicero = CiceroOnArduino("../cicero_compiler", debug=True, timeout=10)
     
     res = cicero.load_regex_and_test_strings("a+(b|c)+", ["aaab", "fdkllwk", "njfkdackljldg", "lkortioe", "jkgjdfaaabc"])
     print_results(res)

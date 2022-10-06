@@ -8,6 +8,7 @@ loadCode	KEYWORD2
 loadStringAndStart	KEYWORD2
 getStatus	KEYWORD2
 getExecTime	KEYWORD2
+getElapsedClockCycles	KEYWORD2
 reset	KEYWORD2
 writeQWordsToRAM	KEYWORD2
 readQWordsFromRAM	KEYWORD2

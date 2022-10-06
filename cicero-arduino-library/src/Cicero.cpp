@@ -265,6 +265,16 @@ unsigned long Cicero_::getExecTime() {
   return micros() - execStartingTime;
 }
 
+uint64_t Cicero_::getElapsedClockCycles() {
+    writeRegister32(VIR_COMMAND, CMD_READ);
+    
+    uint64_t elapsedCC = readRegister64(VIR_DATA_OUT);
+    
+    writeRegister32(VIR_COMMAND, CMD_NOP);
+    
+    return elapsedCC;
+}
+
 void Cicero_::reset() {
   writeRegister32(VIR_COMMAND, CMD_RESET);
   writeRegister32(VIR_COMMAND, CMD_NOP);
