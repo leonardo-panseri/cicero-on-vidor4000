@@ -122,7 +122,7 @@ class CiceroOnArduino:
         execTime = elapsedCC / self.CICERO_CLOCK_FREQ
         
         self.driver_status = self.DriverStatus.TEXT_MODE
-        return result.decode("utf-8"), execTime
+        return result.decode("utf-8"), elapsedCC, execTime
     
     def load_regex_and_test_strings(self, regex, strings):
         results = []
@@ -133,15 +133,15 @@ class CiceroOnArduino:
         for string in strings:
             self.load_string_and_start(string)
             
-            result, elapsedCC = self.wait_result()
-            results.append((result, elapsedCC))
+            result, elapsedCC, execTime = self.wait_result()
+            results.append((result, elapsedCC, execTime))
         self._exit_text_mode()
 
         return results
 
 
 def print_results(results):
-    for r, execTime in results:
+    for r, elapsedCC, execTime in results:
         res_str = ""
         if r == CiceroOnArduino.MATCH_FOUND:
             res_str = "OK"
@@ -149,7 +149,7 @@ def print_results(results):
             res_str = "KO"
         else:
             res_str = "ERR"
-        print(res_str + " - " + str(execTime) + "s")
+        print(res_str + " - " + str(execTime) + "s (" + str(elapsedCC) + "cc)")
 
 
 if __name__ == "__main__":
