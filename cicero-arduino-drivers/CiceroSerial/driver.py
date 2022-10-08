@@ -21,7 +21,7 @@ class CiceroOnArduino:
     MATCH_NOT_FOUND = "3"
     CICERO_ERROR = "4"
     
-    CICERO_CLOCK_FREQ = 80e6
+    CICERO_CLOCK_FREQ = 24e6
 
     class DriverStatus(Enum):
         COMMAND_MODE = 1
@@ -111,8 +111,8 @@ class CiceroOnArduino:
         self._serial_write(data_bytes + self.INPUT_TERMINATOR)
         
         read = self._serial_read_until_terminator()
-        read2 = self._serial_read_until_terminator()
-        if read != data_bytes or read2 != data_bytes:
+        read2 = self._serial_read()
+        if read != data_bytes or read2 != self.INPUT_TERMINATOR:
             raise Exception("Could not exit text mode! Expected '-2' but got '" + str(read, "utf-8") + "'")
         
         self.driver_status = self.DriverStatus.COMMAND_MODE
@@ -155,9 +155,6 @@ class CiceroOnArduino:
         self._send_data_length(string)
         self._serial_write(string, "utf-8")
 
-        for i in range(14):
-            print(str(self.arduino.readline(), "utf-8"), end="")
-
         read = self._serial_read()
         if read != self.INPUT_TERMINATOR:
             raise Exception("Could not load string!")
@@ -191,10 +188,15 @@ class CiceroOnArduino:
             if self.debug:
                 print("Loading string: " + string)
 
+            if isinstance(string, bytes):
+                string = str(string, "utf-8")
+
             self.load_string_and_start(string)
             
             result, elapsedCC, execTime = self.wait_result()
-            results.append((result, elapsedCC, execTime))
+            if result == self.CICERO_ERROR:
+                print("WARN: CICERO error on regex: " + regex + ", string: " + string)
+            results.append([result == self.MATCH_FOUND, elapsedCC, execTime])
         self._exit_text_mode()
 
         return results

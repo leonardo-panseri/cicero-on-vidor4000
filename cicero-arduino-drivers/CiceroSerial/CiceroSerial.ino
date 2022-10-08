@@ -159,7 +159,7 @@ void loop() {
         // Load string to examine to CICERO RAM and begin computation
         Cicero.loadStringAndStart(input);
 
-        printRAMContents(10);
+        // printRAMContents(10);
         
         driverStatus = DRIVER_STATUS_EXECUTING;
         Serial.write(DRIVER_INPUT_TERMINATOR);
