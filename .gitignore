@@ -1,3 +1,4 @@
 vidor-bitstream-converter/*.ttf
 vidor-bitstream-converter/*.h
 *.dot
+__pycache__

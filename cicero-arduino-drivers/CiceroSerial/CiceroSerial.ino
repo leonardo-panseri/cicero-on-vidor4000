@@ -86,9 +86,11 @@ void loop() {
       switch (inChar) {
         case DRIVER_CMD_REGEX:
           driverStatus = DRIVER_STATUS_WAIT_REGEX;
+          Serial.write((byte) DRIVER_CMD_REGEX);
           break;
         case DRIVER_CMD_TEXT:
           driverStatus = DRIVER_STATUS_WAIT_TEXT;
+          Serial.write((byte) DRIVER_CMD_TEXT);
           break;
       }
       break;
@@ -102,6 +104,8 @@ void loop() {
             input.toCharArray(arr, input.length() + 1);
             charsToRead = atoi(arr);
             input = "";
+            Serial.print(charsToRead);
+            Serial.write(DRIVER_INPUT_TERMINATOR);
             break;
           } else {
             input += inChar;
@@ -117,6 +121,7 @@ void loop() {
       } else {
         Cicero.loadCode(input);
         driverStatus = DRIVER_STATUS_WAIT_CMD;
+        Serial.write(DRIVER_INPUT_TERMINATOR);
         break;
       }
       break;
@@ -130,6 +135,8 @@ void loop() {
             input.toCharArray(arr, input.length() + 1);
             charsToRead = atoi(arr);
             input = "";
+            Serial.print(charsToRead);
+            Serial.write(DRIVER_INPUT_TERMINATOR);
             break;
           } else {
             input += inChar;
@@ -145,13 +152,17 @@ void loop() {
       } else if (charsToRead < -1) {
         // Negative length means to return to command mode
         driverStatus = DRIVER_STATUS_WAIT_CMD;
+        Serial.write(DRIVER_INPUT_TERMINATOR);
       } else {
         // Add the string terminator (needed by Cicero)
         input += '\0';
         // Load string to examine to CICERO RAM and begin computation
         Cicero.loadStringAndStart(input);
+
+        printRAMContents(10);
         
         driverStatus = DRIVER_STATUS_EXECUTING;
+        Serial.write(DRIVER_INPUT_TERMINATOR);
         break;
       }
       break;
