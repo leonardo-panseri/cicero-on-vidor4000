@@ -3,8 +3,12 @@ from measurers import regular_expression_measurer, RESULT_measurer, CiceroOnArdu
 
 import csv
 import argparse
+import os.path
 from itertools import chain, product
 from tqdm import tqdm
+import numpy as np
+
+RESULTS_DIRECTORY = "results"
 
 def chunks(iterable: Iterable, chunk_size: int):
     """Yield successive n-sized chunks from an iterable.
@@ -129,8 +133,11 @@ def save_results_to_file(results:dict[tuple,bool|str|int|float], benchmark_name:
 
         result_index[string][regex].append(measurer)
 
+    if not os.path.isdir(RESULTS_DIRECTORY):
+        os.mkdir(RESULTS_DIRECTORY)
+
     # Write results to CSV file
-    with open(f'measure_{benchmark_name}.csv', 'w', newline='') as csvfile:
+    with open(f'{RESULTS_DIRECTORY}/measure_{benchmark_name}.csv', 'w', newline='') as csvfile:
         fout = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 
         # Write a section for each string
@@ -153,19 +160,52 @@ def save_results_to_file(results:dict[tuple,bool|str|int|float], benchmark_name:
                 result_line = [results[(regex,string,e)] if (regex,string,e) in results else None for e in names]
                 fout.writerow([regex,  *result_line ])
 
+def get_sampled_indexes(original_array: list, size: int) -> list[int]:
+    """Gets a list of randomly chosen indexes of the array.
+
+    :param list original_array: the array to generate indexes for
+    :param int size: the number of indexes to randomly choose
+    :return list[int]: the list containing the randomly chosen indexes of the array
+    """
+    samples = np.random.normal(size=size)
+    normalized_samples = (samples - min(samples)) / (max(samples) - min(samples))
+    return (normalized_samples * (len(original_array) - 1)).astype(np.int32)
+
+def generate_random_sample(benchmark_name:str, regexes:list[str], strings:list[bytes], size:int) -> None:
+    """Genereates two lists of randomly chosen indexes for the regexes and strings, then save them to file and exit.
+
+    :param str benchmark_name: the name of the benchmark, will be used in the name of the file
+    :param list[str] regexes: the list of regexes
+    :param list[bytes] strings: the list of strings
+    :param int size: the number of indexes to randomly choose
+    """
+    regexes_sampled_indexes = get_sampled_indexes(regexes, size)
+    strings_sampled_indexes = get_sampled_indexes(strings, size)
+
+    np.save(benchmark_name + "_rand.input.index", strings_sampled_indexes)
+    np.save(benchmark_name + "_rand.regex.index", regexes_sampled_indexes)
+
+    print("Done! Now execute with '-loadsample' argument.")
+
+    exit()
+
+
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(description='test regular expression matching')
-    arg_parser.add_argument('-maxstrlen',      type=int, help='max length of string. to restrict string size',                          default=1024)
-    arg_parser.add_argument('-startstr',       type=int, help='index first str. to restrict num of strings',                            default=0)
-    arg_parser.add_argument('-endstr',         type=int, help='index end string. to restrict num of strings',                           default=None)
-    arg_parser.add_argument('-startreg',       type=int, help='index first reg.to restrict num of regexp',                              default=0)
-    arg_parser.add_argument('-endreg',         type=int, help='index end reg.to restrict num of regexp',                                default=None)
-    arg_parser.add_argument('-strfile',        type=str, help='file containing strings',                                                default='protomata.input.txt')
-    arg_parser.add_argument('-regfile',        type=str, help='file containing regular expressions',                                    default='protomata.regex.txt')
-    arg_parser.add_argument('-debug',                    help='execute in debug mode',                            action='store_true',  default=False)
-    arg_parser.add_argument('-skipException',            help='skip exceptions',                                  action='store_true',  default=False)
-    arg_parser.add_argument('-format',         type=str, help='regex input format',                                                     default='pythonre')
-    arg_parser.add_argument('-benchmark',      type=str, help='name of the benchmark in execution',                                     default='protomata')
+    arg_parser.add_argument('-maxstrlen',         type=int,  help='max length of string. to restrict string size',                                     default=1024)
+    arg_parser.add_argument('-startstr',          type=int,  help='index first str. to restrict num of strings',                                       default=0)
+    arg_parser.add_argument('-endstr',            type=int,  help='index end string. to restrict num of strings',                                      default=None)
+    arg_parser.add_argument('-startreg',          type=int,  help='index first reg.to restrict num of regexp',                                         default=0)
+    arg_parser.add_argument('-endreg',            type=int,  help='index end reg.to restrict num of regexp',                                           default=None)
+    arg_parser.add_argument('-strfile',           type=str,  help='file containing strings',                                                           default='protomata.input.txt')
+    arg_parser.add_argument('-regfile',           type=str,  help='file containing regular expressions',                                               default='protomata.regex.txt')
+    arg_parser.add_argument('-debug',                        help='execute in debug mode',                                       action='store_true',  default=False)
+    arg_parser.add_argument('-skipException',                help='skip exceptions',                                             action='store_true',  default=False)
+    arg_parser.add_argument('-format',            type=str,  help='regex input format',                                                                default='pcre')
+    arg_parser.add_argument('-benchmark',         type=str,  help='name of the benchmark in execution',                                                default='protomata')
+    arg_parser.add_argument('-randomsample',      type=int,  help='generate a new random sample of the given size',                                    default=None)
+    arg_parser.add_argument('-loadregexsample',              help='execute with the previously generated random regex sample',   action="store_true",  default=False)
+    arg_parser.add_argument('-loadstringsample',             help='execute with the previously generated random string sample',  action="store_true",  default=False)
 
     args = arg_parser.parse_args()
 
@@ -177,6 +217,19 @@ if __name__ == "__main__":
     regexes = load_regexes(args.regfile, args.startreg, args.endreg)
     strings = load_strings(args.strfile, args.startstr, args.endstr, args.maxstrlen)
 
+    # If the sample size is provided, generate two new array of randomly chosen indexes for the regexes and strings list respectively, and save them to file
+    if args.randomsample:
+        generate_random_sample(args.benchmark, regexes, strings, args.randomsample)
+    
+    # If the load sample argument is provided, keep in the regexes and/or strings list only the indexes loaded from file
+    if args.loadregexsample:
+        regexes_sampled_indexes = np.load(args.benchmark + "_rand.regex.index.npy")
+        regexes = [regexes[i] for i in regexes_sampled_indexes]
+
+    if args.loadstringsample:
+        strings_sampled_indexes = np.load(args.benchmark + "_rand.input.index.npy")
+        strings = [strings[i] for i in strings_sampled_indexes]
+
     # Calculate the total number of executions to initialize the progress bar
     total_number_of_executions = len(strings)*len(regexes)*len(measurer_list)
     progress_bar = tqdm(total=total_number_of_executions)
@@ -184,5 +237,8 @@ if __name__ == "__main__":
     # Execute the benchmark with the given measurers
     results = execute_benchmark(measurer_list, progress_bar, regexes, strings, args.format, args.skipException, args.debug)
 
-    # Finally, save the results to a CSV file
-    save_results_to_file(results, f"{args.benchmark}_{args.startreg}-{args.endreg}")
+    # Finally, save the results to a CSV file args.loadstringsample
+    file_name = f"{args.benchmark}_"
+    file_name += "rand_" if args.loadregexsample else f"{args.startreg}-{args.endreg}_"
+    file_name += "rand" if args.loadstringsample else f"{args.startstr}-{args.endstr}"
+    save_results_to_file(results, file_name)
