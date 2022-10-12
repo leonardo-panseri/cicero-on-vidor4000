@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
     # Any different method of regex matching is measured through an instance of a regular_expression_measurer subclass,
     # which expose method 'execute_multiple_strings()' that returns either one or a list of results.  
-    measurer_list = [RESULT_measurer(), CiceroOnArduino_measurer()]
+    measurer_list = [RESULT_measurer()]#, CiceroOnArduino_measurer()]
     
     # Check if the specified benchmark exists in the input folder
     if not os.path.isdir(INPUTS_DIRECTORY + "/" + args.benchmark):
