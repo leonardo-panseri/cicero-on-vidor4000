@@ -1,4 +1,5 @@
 vidor-bitstream-converter/*.ttf
 vidor-bitstream-converter/*.h
 *.dot
+*.csv
 __pycache__

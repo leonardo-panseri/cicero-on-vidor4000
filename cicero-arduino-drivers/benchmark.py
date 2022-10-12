@@ -9,6 +9,7 @@ from tqdm import tqdm
 import numpy as np
 
 RESULTS_DIRECTORY = "results"
+INPUTS_DIRECTORY = "inputs"
 
 def chunks(iterable: Iterable, chunk_size: int):
     """Yield successive n-sized chunks from an iterable.
@@ -20,16 +21,17 @@ def chunks(iterable: Iterable, chunk_size: int):
     for i in range(0, len(iterable), chunk_size):
         yield iterable[i:i + chunk_size]
 
-def load_regexes(regex_file:str, start_index:int, end_index:int) -> list[str]:
+def load_regexes(benchmark_name:str, start_index:int, end_index:int) -> list[str]:
     """Loads a list of regexes from a file.
 
-    :param str regex_file: the name of the file
+    :param str benchmark_name: the name of the benchmark for which to load regexes
     :param int start_index: the start index of the subset of regexes to return
     :param int end_index: the end index of the subset of regexes to return
     :return list[str]: the list of regexes
     """
     regexes = []
-
+    
+    regex_file = INPUTS_DIRECTORY + "/" + benchmark_name + "/regex.txt"
     # Read regexes from file
     with open(regex_file, 'r') as f:
         regexes = f.readlines()[start_index:end_index]
@@ -39,17 +41,21 @@ def load_regexes(regex_file:str, start_index:int, end_index:int) -> list[str]:
 
     return regexes
 
-def load_strings(string_file:str, start_index:int, end_index:int, max_length:int) -> list[bytes]:
+def load_strings(benchmark_name:str, reduced_input:bool, start_index:int, end_index:int, max_length:int) -> list[bytes]:
     """Loads a list of strings from file.
 
-    :param str string_file: the name of the file
+    :param str benchmark_name: the name of the benchmark for which to load strings
+    :param bool reduced_input: if strings should be loaded from the reduced version of the input
     :param int start_index: the start index of the subset of strings to return
     :param int end_index: the end index of the subset of strings to return
     :param int max_length: the max length of the strings, if there are longer strings they will be split into chunks and all chunks will be returned
     :return list[bytes]: the list of bytestrings representing the strings
     """
     strings = []
-
+    
+    string_file = INPUTS_DIRECTORY + "/" + benchmark_name + "/"
+    string_file += "reduced." if reduced_input else ""
+    string_file += "input.txt"
     # Read strings from file as bytestrings
     with open(string_file, 'rb') as f:
         strings = f.read().split(b'\n')[start_index:end_index]
@@ -182,8 +188,8 @@ def generate_random_sample(benchmark_name:str, regexes:list[str], strings:list[b
     regexes_sampled_indexes = get_sampled_indexes(regexes, size)
     strings_sampled_indexes = get_sampled_indexes(strings, size)
 
-    np.save(benchmark_name + "_rand.input.index", strings_sampled_indexes)
-    np.save(benchmark_name + "_rand.regex.index", regexes_sampled_indexes)
+    np.save(INPUTS_DIRECTORY + "/" + benchmark_name + "/rand.input.index", strings_sampled_indexes)
+    np.save(INPUTS_DIRECTORY + "/" + benchmark_name + "/rand.regex.index", regexes_sampled_indexes)
 
     print("Done! Now execute with '-loadsample' argument.")
 
@@ -192,17 +198,16 @@ def generate_random_sample(benchmark_name:str, regexes:list[str], strings:list[b
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(description='test regular expression matching')
+    arg_parser.add_argument('-benchmark',         type=str,  help='name of the benchmark in execution',                                                default='protomata')
+    arg_parser.add_argument('-format',            type=str,  help='regex input format',                                                                default='pcre')
+    arg_parser.add_argument('-startreg',          type=int,  help='index first reg.to restrict num of regexp',                                         default=0)
+    arg_parser.add_argument('-endreg',            type=int,  help='index end reg.to restrict num of regexp',                                           default=None)
+    arg_parser.add_argument('-reducedstr',                   help='load strings from the reduced file',                          action='store_true',  default=False)
     arg_parser.add_argument('-maxstrlen',         type=int,  help='max length of string. to restrict string size',                                     default=1024)
     arg_parser.add_argument('-startstr',          type=int,  help='index first str. to restrict num of strings',                                       default=0)
     arg_parser.add_argument('-endstr',            type=int,  help='index end string. to restrict num of strings',                                      default=None)
-    arg_parser.add_argument('-startreg',          type=int,  help='index first reg.to restrict num of regexp',                                         default=0)
-    arg_parser.add_argument('-endreg',            type=int,  help='index end reg.to restrict num of regexp',                                           default=None)
-    arg_parser.add_argument('-strfile',           type=str,  help='file containing strings',                                                           default='protomata.input.txt')
-    arg_parser.add_argument('-regfile',           type=str,  help='file containing regular expressions',                                               default='protomata.regex.txt')
     arg_parser.add_argument('-debug',                        help='execute in debug mode',                                       action='store_true',  default=False)
     arg_parser.add_argument('-skipException',                help='skip exceptions',                                             action='store_true',  default=False)
-    arg_parser.add_argument('-format',            type=str,  help='regex input format',                                                                default='pcre')
-    arg_parser.add_argument('-benchmark',         type=str,  help='name of the benchmark in execution',                                                default='protomata')
     arg_parser.add_argument('-randomsample',      type=int,  help='generate a new random sample of the given size',                                    default=None)
     arg_parser.add_argument('-loadregexsample',              help='execute with the previously generated random regex sample',   action="store_true",  default=False)
     arg_parser.add_argument('-loadstringsample',             help='execute with the previously generated random string sample',  action="store_true",  default=False)
@@ -212,10 +217,15 @@ if __name__ == "__main__":
     # Any different method of regex matching is measured through an instance of a regular_expression_measurer subclass,
     # which expose method 'execute_multiple_strings()' that returns either one or a list of results.  
     measurer_list = [RESULT_measurer(), CiceroOnArduino_measurer()]
-
+    
+    # Check if the specified benchmark exists in the input folder
+    if not os.path.isdir(INPUTS_DIRECTORY + "/" + args.benchmark):
+        print(f"Benchmark '{args.benchmark}' does not exist!")
+        exit()
+    
     # Load regexes and strings from file
-    regexes = load_regexes(args.regfile, args.startreg, args.endreg)
-    strings = load_strings(args.strfile, args.startstr, args.endstr, args.maxstrlen)
+    regexes = load_regexes(args.benchmark, args.startreg, args.endreg)
+    strings = load_strings(args.benchmark, args.reducedstr, args.startstr, args.endstr, args.maxstrlen)
 
     # If the sample size is provided, generate two new array of randomly chosen indexes for the regexes and strings list respectively, and save them to file
     if args.randomsample:
@@ -223,11 +233,11 @@ if __name__ == "__main__":
     
     # If the load sample argument is provided, keep in the regexes and/or strings list only the indexes loaded from file
     if args.loadregexsample:
-        regexes_sampled_indexes = np.load(args.benchmark + "_rand.regex.index.npy")
+        regexes_sampled_indexes = np.load(INPUTS_DIRECTORY + "/" + args.benchmark + "/rand.regex.index.npy")
         regexes = [regexes[i] for i in regexes_sampled_indexes]
 
     if args.loadstringsample:
-        strings_sampled_indexes = np.load(args.benchmark + "_rand.input.index.npy")
+        strings_sampled_indexes = np.load(INPUTS_DIRECTORY + "/" + args.benchmark + "/rand.input.index.npy")
         strings = [strings[i] for i in strings_sampled_indexes]
 
     # Calculate the total number of executions to initialize the progress bar
