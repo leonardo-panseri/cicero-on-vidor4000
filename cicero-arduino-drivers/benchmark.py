@@ -58,10 +58,10 @@ def load_strings(benchmark_name:str, reduced_input:bool, start_index:int, end_in
     string_file += "input.txt"
     # Read strings from file as bytestrings
     with open(string_file, 'rb') as f:
-        strings = f.read().split(b'\n')[start_index:end_index]
+        strings = f.read().split(b'\n')
 
         # Eliminate end of line and split every string in chunks of max lenght 'max_length'
-        strings = list(chain.from_iterable(map(lambda x: chunks(x[:-1], max_length), strings)))
+        strings = list(chain.from_iterable(map(lambda x: chunks(x[:-1], max_length), strings)))[start_index:end_index]
 
     return strings
 
@@ -211,12 +211,13 @@ if __name__ == "__main__":
     arg_parser.add_argument('-randomsample',      type=int,  help='generate a new random sample of the given size',                                    default=None)
     arg_parser.add_argument('-loadregexsample',              help='execute with the previously generated random regex sample',   action="store_true",  default=False)
     arg_parser.add_argument('-loadstringsample',             help='execute with the previously generated random string sample',  action="store_true",  default=False)
+    arg_parser.add_argument('-arduinoport',       type=str,  help='name of serial port where the Arduino running CICERO is',                           default='COM3')
 
     args = arg_parser.parse_args()
 
     # Any different method of regex matching is measured through an instance of a regular_expression_measurer subclass,
     # which expose method 'execute_multiple_strings()' that returns either one or a list of results.  
-    measurer_list = [RESULT_measurer(), CiceroOnArduino_measurer()]
+    measurer_list = [RESULT_measurer(), CiceroOnArduino_measurer(args.arduinoport)]
     
     # Check if the specified benchmark exists in the input folder
     if not os.path.isdir(INPUTS_DIRECTORY + "/" + args.benchmark):

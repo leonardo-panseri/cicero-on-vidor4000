@@ -60,10 +60,10 @@ class regular_expression_measurer():
 
 class CiceroOnArduino_measurer(regular_expression_measurer):
     """Measurer for CICERO on Arduino, measures are: match found (bool), number of clock cycles elapsed on the FPGA for the execution (int) and estimated execution time in microseconds on the FPGA (float)"""
-    def __init__(self):
+    def __init__(self, arduino_port:str):
         super().__init__(["CiceroOnArduino_match[bool]", "CiceroOnArduino_exec[cc]", "CiceroOnArduino_time[micros]"])
         self.debug = False
-        self.cicero = CiceroOnArduino("../cicero_compiler", "COM3", debug=self.debug, timeout=5)
+        self.cicero = CiceroOnArduino("../cicero_compiler", arduino_port, debug=self.debug, timeout=5)
     
     def execute_multiple_strings(self, regex, strings:list, O1=True, no_prefix=True, no_postfix=True, debug=False, regex_format="pythonre", skipException=True):
         self.debug = debug
