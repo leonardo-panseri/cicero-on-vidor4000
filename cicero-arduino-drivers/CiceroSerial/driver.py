@@ -219,10 +219,10 @@ class CiceroOnArduino:
 
         self._change_regex_code(regex_code)
 
-    def load_string_and_start(self, string: str) -> None:
+    def load_string_and_start(self, string: str|bytes) -> None:
         """Loads a new string to CICERO memory and starts the execution.
 
-        :param str string: the new string to load
+        :param str|bytes string: the new string to load
         :raises Exception: if there is no regex loaded, the driver is not in text mode or Arduino doesn't respond
         """
         if not self.regex_loaded:
@@ -231,7 +231,11 @@ class CiceroOnArduino:
             raise Exception("Trying to load a string while not in text mode")
         
         self._send_data_length(string)
-        self._serial_write(string, "utf-8")
+        # If string is a bytestring do not try to decode it as utf-8
+        if isinstance(string, str):
+            self._serial_write(string, "utf-8")
+        else:
+            self._serial_write(string)
 
         read = self._serial_read()
         if read != self.INPUT_TERMINATOR:
@@ -273,11 +277,7 @@ class CiceroOnArduino:
         self.load_regex(regex, regex_format)
 
         self._enter_text_mode()
-        for string in strings:
-            # The benchmark might pass the strings as bytestrings, convert them back to normal strings
-            if isinstance(string, bytes):
-                string = str(string, "utf-8")
-            
+        for string in strings:           
             if self.debug:
                 print("Loading string: " + string)
 
