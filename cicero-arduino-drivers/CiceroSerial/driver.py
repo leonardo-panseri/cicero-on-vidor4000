@@ -285,7 +285,7 @@ class CiceroOnArduino:
             
             result, elapsedCC = self.wait_result()
             if result == self.CICERO_ERROR:
-                print("WARN: CICERO error on regex: " + regex + ", string: " + string)
+                print("WARN: CICERO error on regex: ", regex, ", string: ", string)
             
             # Estimate exec time (in seconds) based on CICERO's clock frequency
             execTime = elapsedCC / self.CICERO_CLOCK_FREQ
