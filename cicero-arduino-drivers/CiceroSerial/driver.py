@@ -215,7 +215,7 @@ class CiceroOnArduino:
         regex_code = self._compile_regex(regex, regex_format)
 
         if self.debug:
-            print("Compiled regex code: " + decode_bytes_as_hex(regex_code))
+            print("Compiled regex code: ", decode_bytes_as_hex(regex_code))
 
         self._change_regex_code(regex_code)
 
@@ -272,14 +272,14 @@ class CiceroOnArduino:
         results = []
 
         if self.debug:
-            print("Loading regex: " + regex)
+            print("Loading regex: ", regex)
 
         self.load_regex(regex, regex_format)
 
         self._enter_text_mode()
         for string in strings:           
             if self.debug:
-                print("Loading string: " + string)
+                print("Loading string: ", string)
 
             self.load_string_and_start(string)
             
@@ -298,7 +298,7 @@ class CiceroOnArduino:
             import golden_model
             golden_model_res = golden_model.get_golden_model_result(regex, string, no_prefix=False, no_postfix=False, frontend=regex_format)
             if result != golden_model_res:
-               print("CICERO output (" + str(result) + ") is incorrect for regex '" + regex + "', string '" + string + "'")
+               print("CICERO output (", result, ") is incorrect for regex '", regex, "', string '", string, "'")
 
             results.append([result, elapsedCC, execTime])
         self._exit_text_mode()
