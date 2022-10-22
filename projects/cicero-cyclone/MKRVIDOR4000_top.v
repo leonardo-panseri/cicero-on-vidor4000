@@ -123,7 +123,7 @@ module MKRVIDOR4000_top
 
 wire        wOSC_CLK;
 
-wire        wCLK8,wCLK24, wCLK64, wCLK120;
+wire        wCLK48,wCLK24, wCLK64, wCLK120;
 
 wire [31:0] wJTAG_ADDRESS, wJTAG_READ_DATA, wJTAG_WRITE_DATA, wDPRAM_READ_DATA;
 wire        wJTAG_READ, wJTAG_WRITE, wJTAG_WAIT_REQUEST, wJTAG_READ_DATAVALID;
@@ -138,7 +138,7 @@ wire        wMEM_CLK;
 
 assign wVID_CLK   = wCLK24;
 assign wVID_CLKx5 = wCLK120;
-assign wCLK8      = iCLK;
+assign wCLK48      = iCLK;
 
 // internal oscillator
 cyclone10lp_oscillator   osc
@@ -149,11 +149,11 @@ cyclone10lp_oscillator   osc
 // system PLL
 SYSTEM_PLL PLL_inst(
   .areset(1'b0),
-  .inclk0(wCLK8),
+  .inclk0(wCLK48),
   .c0(wCLK24),
   .c1(wCLK120),
   .c2(wMEM_CLK),
-   .c3(oSDRAM_CLK),
+  .c3(oSDRAM_CLK),
   .c4(wFLASH_CLK),
    
   .locked());
@@ -165,7 +165,7 @@ reg [5:0] rRESETCNT;
 // include user logic
 user user_module
 	(
-	.clk     (wCLK24),
+	.clk     (wCLK48),
 	.reset_n (iRESETn)
 	);
 
