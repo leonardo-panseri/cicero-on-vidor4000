@@ -62,3 +62,35 @@ The [example sketch](https://github.com/leonardo-panseri/cicero-on-vidor4000/blo
 - when CICERO is done it prints if a match was found, resets CICERO and starts waiting for another string
 
 The library relies on the [JTAG](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/cicero-driver-sketch/JTAG.h) and [jtag_host](https://github.com/leonardo-panseri/cicero-on-vidor4000/blob/master/cicero-driver-sketch/jtag_host.h) libraries, part of the [official VidorBoot/VidorPeripherals/VidorGraphics library](https://github.com/vidor-libraries). These libraries implement the JTAG protocol: they allows us to load the bitstream on the FPGA and to communicate using the Virtual JTAG IP.
+
+
+
+If you find this repository useful, please use the following citation:
+
+```
+@inproceedings{cicero2023arduinoraw,
+  title={Enabling Efficient Regular Expression Matching at the Edge through Domain-Specific Architectures},
+ author={Carloni, Filippo and Panseri, Leonardo and Conficconi, Davide and Sironi, Mattia and Santambrogio, Marco D.},
+  booktitle={IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)},
+  year={2023},
+  note ="Accepted - To Appear"
+}
+```
+
+Original Cicero  work:
+
+```
+@article{parravicini2021cicero,
+    title = {{CICERO}: A Domain-Specific Architecture for Efficient Regular Expression Matching},
+    author = {Daniele Parravicini and Davide Conficconi and Emanuele Del Sozzo and Christian Pilato and Marco D. Santambrogio}, 
+    journal = {{ACM} Transactions on Embedded Computing Systems},
+    year = 2021,
+    month = {oct},
+    publisher = {Association for Computing Machinery ({ACM})},
+    volume = {20},
+    number = {5s},
+    pages = {1--24},
+    doi = {10.1145/3476982},
+    url = {https://doi.org/10.1145%2F3476982},
+ } 
+```
