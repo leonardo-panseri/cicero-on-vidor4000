@@ -53,11 +53,18 @@ We exploited the **YARB** benchmark suite (https://github.com/necst/yarb) to exe
 Specifically, it bases on a standard and replicabe approach to execute the tests and provides an integrate environment for REs execution retriving all the useful information.
 
 Via YARB is possible to get the testbench, comprising the data and the REs to execute. However, to faithfully reproduce the paper experimental results, we strongly suggest to use the REs and the data we already configured. Precisely, for the tests in the paper we randomly selected a set of 200 REs from the benchmarks, and we reporte them for convenince. 
+
+For simplicity, to test from a scratch the RE2 library on the Raspberry it possible to run:
+
+```
+cd cicero-on-vidor4000/artifact-evaluation/
+./creating_re2_benchmark.sh
+```
  
 ## Charts Plotting
 Once the software and hardware executions end, it is possible to plot the data to reproduces the figures on the paper.
 
-1. ### Creating the plotting folder structure to save the data
+1. ### Creating the plotting folder structure to save the data copying the data from the source folders
 
 Go into the *artifact-evaluation/plotting* folder
 ```
@@ -65,6 +72,15 @@ cd cicero-on-vidor4000/artifact-evaluation/plotting
 ```
 Then execute the folders creator script
 ```
-cd cicero-on-vidor4000/artifact-evaluation/plotting
+./generating_folders_structure.sh
 ```
 
+3. ### Plotting the data
+For execution times:
+```
+python charts.py 0
+```
+For energy efficiency:
+```
+python charts.py 1
+```
