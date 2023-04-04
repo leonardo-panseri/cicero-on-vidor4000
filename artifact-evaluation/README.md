@@ -1,13 +1,16 @@
-# How to reporduce the experimental results of the paper
-This document detailed explains all the steps to reproduce the experimental results of the paper, from the executio to the charts plotting.
+# Reproducing Experimental Results of the Paper
+This document details all the steps to reproduce the experimental results of the paper, from the execution to the charts plotting.
 
 ## Clone the repository
+On a machine connected with the Arduino MKR Vidor 4000.
+To program the device refer to this [README](./ArduinoProgramming.md)
 ```
 git clone https://github.com/leonardo-panseri/cicero-on-vidor4000.git --recurse-submodules
 ```
 
 ## Execution on Cicero
- Before to start is well to know that the execution on the all benachmarks could take a long time. For this reason, we encorage the use of *tmux* or a similar tool to avoid execution interruption due to connection loss or accidentaly terminal disconnession.
+Executing all the benchmarks might require long time.
+Therefore, we encorage the use of *tmux* or a similar tool to avoid execution interruption due to connection loss or accidentaly terminal disconnession.
 
 1. Create a *tmux* session, names *test_session*:
  ```console
@@ -34,14 +37,18 @@ Alternatively, it is possible to execute individually each single benchmark by e
 ./execute_{benchmark_name}.sh
 ```
 **NOTE:** 
-Before to execute a scripts be sure that the *arduinoport* parameter is associated to the Arduino port.
+Before to execute a scripts be sure that the *arduinoport* parameter is associated to the proper Arduino port.
 
 ### Aggregating the execution results
-Once the execution ends, each benchmark results file under the *results* folder must be aggregate:
+If you execute one benchmark at a time,  you must aggregate the results:
 
 1. ### Under the *cicero-on-vidor4000/cicero-arduino-drivers/results* is possible to find the files for each benchmark raw execution
 
-2. ### To convert the raw file in aggregate file it is possible to exploit the
+2. ### To convert the raw file of CICERO execution file in aggregated file it is possible to exploit the scripts as follows:
+
+```
+python parser_results.py -irf ./results/measure_{benchmark-name}_rand_0-None.csv -gv 1 -orf ./results_aggr/{benchmark-name}_output_comp_data_1MB_1000_0.csv -copro -freq 48
+```
 
 **NOTE:** the *execute_all_benchmark.sh* calls also the aggregation scripts
 
@@ -50,9 +57,12 @@ To execute the REs benchmarks on the ARM A53 we used a Raspberry Pi 3 model B wi
 ### YARB Benchmark Suite
 We exploited the **YARB** benchmark suite (https://github.com/necst/yarb) to execute the RE2 library on the used benchmarks. 
 
-Specifically, it bases on a standard and replicabe approach to execute the tests and provides an integrate environment for REs execution retriving all the useful information.
+Specifically, it is based on a standard and replicable approach to execute the tests.
+YARB provides an integrated environment for REs execution retriving all the useful information.
 
-Via YARB is possible to get the testbench, comprising the data and the REs to execute. However, to faithfully reproduce the paper experimental results, we strongly suggest to use the REs and the data we already configured. Precisely, for the tests in the paper we randomly selected a set of 200 REs from the benchmarks, and we reporte them for convenince. 
+Via YARB is possible to get the testbench, comprising the data and the REs to execute.
+However, to faithfully reproduce the paper experimental results, we strongly suggest to use the REs and the data we already configured.
+Precisely, for the tests in the paper we randomly selected a set of 200 REs from the benchmarks, and we report in the repo for convenince. 
 
 For simplicity, to test from a scratch the RE2 library on the Raspberry it possible to run:
 
@@ -62,7 +72,7 @@ cd cicero-on-vidor4000/artifact-evaluation/
 ```
  
 ## Charts Plotting
-Once the software and hardware executions end, it is possible to plot the data to reproduces the figures on the paper.
+Once the software and hardware executions end, it is possible to plot the data and reproduce the figures on the paper.
 
 1. ### Creating the plotting folder structure to save the data copying the data from the source folders
 
